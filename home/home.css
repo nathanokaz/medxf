@@ -1,0 +1,117 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #FFFFFF;
+}
+
+h1 {
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+#foto-perfil {
+    border-radius: 50%;
+}
+
+#botao-mais {
+    width: 20px;
+    height: 20px;
+}
+
+#img-logo {
+    margin-right: auto;
+}
+
+#img-mais {
+    margin-left: auto;
+}
+
+#nome {
+    margin-left: auto;
+}
+
+button {
+    transition: 1s;
+    background-color: #2563EB;
+}
+
+button:hover {
+    background-color: #2563EB;
+    border: none;
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+.quadrados {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-size: 19px;
+    color: #181818;
+    padding: 10px;
+}
+
+.quadrado {
+    background-color: #EAEAEA;
+    border-radius: 10px;
+    border: 2px solid #E0E3E7;
+    color: #181818;
+    width: 95px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.numeros {
+    padding-top: 10px;
+    font-size: 25px;
+    color: #181818;
+}
+
+p {
+    font-size: 16px;
+}
+
+hr {
+    height: 2px;
+    background-color: #AEAEAE; 
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 90%;
+    margin: 20px auto 0 auto;
+}
+
+.principal-botoes {
+    padding-top: 20px;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.botao-principal {
+    width: 325px;
+    height: 120px;
+    color: #FFFFFF;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.botao-principal:hover {
+    background-color: #114ea4;
+}
