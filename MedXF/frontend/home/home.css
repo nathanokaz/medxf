@@ -57,7 +57,7 @@ button:hover {
 }
 
 h2 {
-    font-size: 19px;
+    font-size: 18px;
     color: #181818;
     padding: 10px;
 }
@@ -77,16 +77,16 @@ h2 {
 
 .numeros {
     padding-top: 10px;
-    font-size: 25px;
+    font-size: 20px;
     color: #181818;
 }
 
 p {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 hr {
-    height: 2px;
+    height: 1px;
     background-color: #AEAEAE; 
     border: none;
     border-radius: 5px;
@@ -105,11 +105,10 @@ hr {
 }
 
 .botao-principal {
-    width: 325px;
-    height: 120px;
+    width: 310px;
+    height: 110px;
     color: #FFFFFF;
-    font-size: 23px;
-    font-weight: 600;
+    font-size: 20px;
 }
 
 .botao-principal:hover {
