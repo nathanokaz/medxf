@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/MedXF/frontend/global/global.css">
+    <link rel="stylesheet" href="/MedXF/frontend/cadastro-medico/cadastro-medico.css">
+    <link rel="icon" href="/MedXF/frontend/icones/Icone-Medico.png" type="image/png">
+    <title>Cadastro Médico - MedXF</title>
+</head>
+<body>
+    <header>
+        <button id="botao-mais">
+            <img id="img-mais" src="/MedXF/frontend/icones/Icone-Voltar.png" alt="icone de voltar" width="20" height="20">
+        </button>   
+        <h1>Menu Principal</h1>
+        <h1 id="nome"></h1> 
+        <img src="/MedXF/frontend/icones/Logo2.png" alt="logo" width="100" height="40">
+    </header>
+    <div class="titulo">
+        <h2>Dados do Médico</h2>
+    </div>
+    <div class="formulario">
+        <form action="">
+            <div class="nomes">
+                <input type="text" placeholder="Nome Completo">
+            </div>
+            <div class="dados">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Senha">
+                <input type="number" placeholder="CRM">
+                <select name="especialidade" id="especialidade-medico">
+                    <option value="Cardiologista">Cardiologista</option>
+                </select>
+                <input type="text" placeholder="Clínica / Hospital">
+                <input type="text" placeholder="Cidade / Estado">
+            </div>
+            <div class="continuar">
+                <button id="botao-continuar" type="submit">Continuar</button>
+            </div>
+        </form>
+    </div>
+</body>  
+</html> 

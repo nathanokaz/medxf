@@ -1,0 +1,96 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #FFFFFF;
+}
+
+h1 {
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+#botao-mais {
+    width: 20px;
+    height: 20px;
+}
+
+#img-mais {
+    margin-left: auto;
+}
+
+#nome {
+    margin-left: auto;
+}
+
+button {
+    transition: 1s;
+    background-color: #2563EB;
+}
+
+button:hover {
+    background-color: #2563EB;
+    border: none;
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+.titulo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+h2 {
+    font-size: 18px;
+    color: #181818;
+    padding-top: 20px;
+    padding-left: 32px;
+}
+
+.nomes {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-left: 20px;
+    gap: 10px;
+}
+
+.dados {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-left: 20px;
+    gap: 10px;
+    padding-top: 0px;
+}
+
+.continuar {
+    display: flex;
+    margin-top: 120px;
+    justify-content: center;
+    padding: 10px;
+    padding-left: 20px;
+}
+
+.formulario {
+    display: flex;
+    justify-content: center;
+    min-height: 85vh;
+}
+
+#botao-continuar:hover {
+    background-color: #114ea4;
+    transform: scale(1.03);
+}
+
+
+#especialidade-medico {
+    background-color: #EAEAEA;
+    border: 2px solid #E0E3E7;
+    border-radius: 10px;
+    font-size: 14px;
+    padding-left: 10px;
+    color: #5D5D5D;
+    height: 42px;
+}
