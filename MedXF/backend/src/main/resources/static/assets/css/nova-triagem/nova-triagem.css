@@ -1,0 +1,171 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #FFFFFF;
+}
+
+h1 {
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+#botao-mais {
+    width: 20px;
+    height: 20px;
+}
+
+#img-mais {
+    margin-left: auto;
+}
+
+#nome {
+    margin-left: auto;
+}
+
+button {
+    transition: 1s;
+    background-color: #2563EB;
+}
+
+button:hover {
+    background-color: #2563EB;
+    border: none;
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+.titulo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+h2 {
+    font-size: 18px;
+    color: #181818;
+    padding-top: 20px;
+    padding-left: 32px;
+}
+
+.nomes {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-left: 20px;
+    gap: 10px;
+}
+
+.data-sexo {
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-top: 0px;
+}
+
+#data-nascimento {
+    width: 50%;
+}
+
+#sexo-paciente {
+    width: 296px;
+    height: 42px;
+    background-color: #EAEAEA;
+    border: 2px solid #E0E3E7;
+    border-radius: 10px;
+    font-size: 14px;
+    padding-left: 10px;
+    color: #5D5D5D;
+    width: 50%;
+}
+
+.contato {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-left: 20px;
+    gap: 10px;
+    padding-top: 0px;
+}
+
+.perguntas {
+    display: flex;
+    padding: 10px;
+    padding-left: 20px;
+    gap: 5px;
+    padding-top: 0px;
+}
+
+h3 {
+    padding: 10px;
+    padding-left: 20px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #181818;
+}
+
+#botao-sim {
+    width: 50%;
+    background-color: #EAEAEA;
+    border: 2px solid #E0E3E7;
+    color: #5D5D5D;
+    font-size: 12px;
+}
+
+#botao-nao {
+    width: 50%;
+    background-color: #EAEAEA;
+    border: 2px solid #E0E3E7;
+    color: #5D5D5D;
+    font-size: 12px;
+}
+
+.continuar {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    padding: 10px;
+    padding-left: 20px;
+}
+
+.formulario {
+    display: flex;
+    justify-content: center;
+    min-height: 85vh;
+}
+
+#botao-sim:active {
+    background-color: #2563EB;
+    color: #FFFFFF;
+}
+
+#botao-nao:active {
+    background-color: #2563EB;
+    color: #FFFFFF;
+}
+
+/* BOTÃO CONTINUAR COMO ÂNCORA */
+
+#botao-continuar {
+    width: 310px;
+    height: 42px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #2563EB;
+
+    color: #FFFFFF;
+    text-decoration: none;
+
+    border-radius: 5px;
+
+    transition: 1s;
+}
+
+#botao-continuar:hover {
+    background-color: #114ea4;
+    transform: scale(1.03);
+}

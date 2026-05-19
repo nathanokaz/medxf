@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.titulo {
+    margin-bottom: 35px;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+#checkbox {
+    width: 10px;
+    height: 10px;
+    background-color: #DDDDDD;
+    border-radius: 3px;
+    border: 1px solid #E0E3E7;
+}
+
+#texto-checkbox {
+    color: #181818;
+    font-size: 13px;
+}
+
+#div-email {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.div-formulario {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}

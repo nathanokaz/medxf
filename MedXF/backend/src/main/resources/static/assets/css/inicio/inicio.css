@@ -1,0 +1,68 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.imagem {
+    margin-right: 60px;
+}
+
+#texto {
+    color: #1B397D;
+}
+
+#texto-botoes {
+    font-size: 15px;
+    margin-right: 60px;
+}
+
+.titulo {
+    margin-bottom: 35px;
+}
+
+.botao-home {
+    width: 310px;
+    height: 120px;
+
+    border-radius: 10px;
+    border: 2px solid #E0E3E7;
+    background-color: #EAEAEA;
+
+    transition: 1s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    gap: 15px;
+
+    text-decoration: none;
+    color: inherit;
+
+    cursor: pointer;
+}
+
+.botao-home:hover {
+    transform: scale(1.03);
+    background-color: #dfdddd;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 17px;
+}
+
+p {
+    color: #176FED;
+    font-size: 15px;
+    margin: 0;
+}

@@ -1,0 +1,138 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #FFFFFF;
+}
+
+h1 {
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+#foto-perfil {
+    border-radius: 50%;
+}
+
+#botao-mais {
+    width: 20px;
+    height: 20px;
+}
+
+#img-logo {
+    margin-right: auto;
+}
+
+#img-mais {
+    margin-left: auto;
+}
+
+#nome {
+    margin-left: auto;
+}
+
+/* BOTÕES PRINCIPAIS */
+
+.principal-botoes {
+    padding-top: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.botao-principal {
+    width: 310px;
+    height: 110px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #2563EB;
+
+    border-radius: 10px;
+    border: none;
+
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 1s;
+
+    cursor: pointer;
+}
+
+.botao-principal:hover {
+    background-color: #114ea4;
+    transform: scale(1.05);
+}
+
+/* QUADRADOS */
+
+.quadrados {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-size: 18px;
+    color: #181818;
+
+    padding: 10px;
+}
+
+.quadrado {
+    background-color: #EAEAEA;
+
+    border-radius: 10px;
+    border: 2px solid #E0E3E7;
+
+    color: #181818;
+
+    width: 95px;
+    height: 85px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.numeros {
+    padding-top: 10px;
+
+    font-size: 20px;
+    color: #181818;
+}
+
+p {
+    font-size: 14px;
+}
+
+hr {
+    height: 1px;
+
+    background-color: #AEAEAE;
+    border: none;
+
+    border-radius: 5px;
+
+    margin-top: 20px;
+    width: 90%;
+    margin: 20px auto 0 auto;
+}

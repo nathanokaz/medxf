@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/nova-triagem/nova-triagem.css}">
+    <link rel="icon" th:href="@{/assets/icones/Icone-Usuario.png}" type="image/png">
+    <title>Nova Triagem - MedXF</title>
+</head>
+<body>
+    <header>
+        <a th:href="@{/medico/home}" id="botao-mais">
+            <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
+        </a>
+        <h1>Menu Principal</h1>
+        <h1 id="nome"></h1>
+        <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
+    </header>
+    <div class="titulo">
+        <h2>Dados do Paciente</h2>
+    </div>
+    <div class="formulario">
+        <form action="">
+            <div class="nomes">
+                <input type="text" placeholder="Nome Completo">
+                <input type="text" placeholder="Nome do Responsável (se tiver)">
+            </div>
+            <div class="data-sexo">
+                <input id="data-nascimento" type="date" placeholder="Data de Nascimento">
+                <select name="sexo" id="sexo-paciente">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                </select>
+            </div>
+            <div class="contato">
+                <input type="email" placeholder="Email">
+                <input type="tel" placeholder="Telefone">
+            </div>
+            <h3>Histórico familiar de deficiência intelectual?</h3>
+            <div class="perguntas">
+                <button id="botao-sim">Sim</button>
+                <button id="botao-nao">Não</button>
+            </div>
+            <h3>Histórico de X Frágil na família?</h3>
+            <div class="perguntas">
+                <button id="botao-sim">Sim</button>
+                <button id="botao-nao">Não</button>
+            </div>
+            <div class="continuar">
+                <a th:href="@{/medico/avaliacao}" id="botao-continuar">
+                    Continuar
+                </a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
