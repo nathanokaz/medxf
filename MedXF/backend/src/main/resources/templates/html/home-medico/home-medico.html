@@ -5,43 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
     <link rel="stylesheet" th:href="@{/assets/css/home-medico/home-medico.css}">
-    <link rel="icon" th:href="@{/assets/icones/Icone-Casa.png}" type="image/png">
+    <link rel="icon" th:href="@{/assets/icones/Icone-Casa.png}">
     <title>Início - MedXF</title>
 </head>
 <body>
     <header>
-        <button id="botao-mais">
-            <img id="img-mais" th:src="@{/assets/icones/Main-Info.png}" alt="tres barras" width="20" height="20">
+        <button id="icone-mais">
+            <img th:src="@{/assets/icones/Mais-Info.png}" alt="mais" width="20px" height="15px">
         </button>
-        <img id="img-logo" th:src="@{/assets/icones/Logo2.png}" alt="logo 2" width="100" height="40">
-        <h1 id="nome">Dr. Nome</h1>
-        <img id="foto-perfil" th:src="@{/assets/icones/Perfil}" alt="" width="35" height="35">
+        <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="125px" height="50px">
+        <div class="usuario">
+            <p id="nome-doutor">Dr. Nathan Bonitao</p>
+            <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40px" height="40px">
+        </div>
     </header>
-    <div class="titulo">
-        <h2>Bem vindo, Dr. Nome</h2>
-    </div>
-    <div class="quadrados">
-        <div class="quadrado">
-            <p>Avaliações</p>
-            <p>Realizadas</p>
-            <p class="numeros">0</p>
+    <div class="container">
+        <div class="principal">
+            <h1>Bem vindo, Dr. Nathan Bonitão</h1>
+            <h2>Menu principal MedXF - Sistema de triagem X frágil</h2>
+            <div class="caixas">
+                <button class="caixa">
+                    <p class="subtitulo">Avaliações Realizadas</p>
+                    <p class="numero">12</p>
+                </button>
+                <button class="caixa">
+                    <p class="subtitulo">Pacientes cadastrados</p>
+                    <p class="numero">17</p>
+                </button>
+                <button class="caixa">
+                    <p class="subtitulo">Alto Risco</p>
+                    <p class="numero">3</p>
+                </button>
+            </div>
         </div>
-        <div class="quadrado">
-            <p>Pacientes</p>
-            <p>Cadastrados</p>
-            <p class="numeros">0</p>
-        </div>
-        <div class="quadrado">
-            <p>Alto Risco</p>
-            <p>Detectado</p>
-            <p class="numeros">0</p>
-        </div>
     </div>
-    <hr>
-    <div class="principal-botoes">
-        <button class="botao-principal">Nova Triagem</button>
-        <button class="botao-principal">Avaliações Realizadas</button>
-        <button class="botao-principal">Pacientes</button>
-    </div>
-</body>  
+</body>
 </html>

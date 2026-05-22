@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/inicio")
-public class Aplicativo {
+public class AplicativoController {
 
     @GetMapping
     public String paginaInicio() {
