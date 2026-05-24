@@ -27,27 +27,14 @@ body {
 .botao-home {
     width: 310px;
     height: 120px;
-
     border-radius: 10px;
     border: 2px solid #E0E3E7;
     background-color: #EAEAEA;
-
     transition: 1s;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-
-    gap: 15px;
-
-    text-decoration: none;
-    color: inherit;
-
-    cursor: pointer;
 }
 
 .botao-home:hover {
+    transition: 1s;
     transform: scale(1.03);
     background-color: #dfdddd;
 }
@@ -57,12 +44,10 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-    gap: 17px;
+    gap: 17px
 }
 
 p {
     color: #176FED;
     font-size: 15px;
-    margin: 0;
 }

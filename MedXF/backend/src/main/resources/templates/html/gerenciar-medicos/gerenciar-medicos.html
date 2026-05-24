@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/cadastro-medico/cadastro-medico.css}">
+    <link rel="icon" th:href="@{/assets/icones/Icone-Medico.png}" type="image/png">
+    <title>Cadastro Médico - MedXF</title>
+</head>
+<body>
+<header>
+    <button id="botao-mais">
+        <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
+    </button>
+    <h1>Menu Principal</h1>
+    <h1 id="nome"></h1>
+    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
+</header>
+<div class="titulo">
+    <h2>Médicos Cadastrados</h2>
+</div>
+<table class="tabela">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>CRM</th>
+        <th>Especialidade</th>
+        <th>Hospital</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="medico : ${medicos}">
+        <td th:text="${medico.nome}"></td>
+        <td th:text="${medico.email}"></td>
+        <td th:text="${medico.crm}"></td>
+        <td th:text="${medico.especialidade}"></td>
+        <td th:text="${medico.hospital}"></td>
+        <td th:text="${medico.cidade}"></td>
+        <td th:text="${medico.estado}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

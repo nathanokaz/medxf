@@ -2,137 +2,265 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: #FFFFFF;
+    background-color: #F4F7FB;
+    font-family: sans-serif;
 }
 
-h1 {
-    color: #FFFFFF;
-    font-size: 16px;
+.menu-container {
+    position: relative;
+    display: inline-block;
 }
 
-#foto-perfil {
-    border-radius: 50%;
-}
-
-#botao-mais {
-    width: 20px;
-    height: 20px;
-}
-
-#img-logo {
-    margin-right: auto;
-}
-
-#img-mais {
-    margin-left: auto;
-}
-
-#nome {
-    margin-left: auto;
-}
-
-/* BOTÕES PRINCIPAIS */
-
-.principal-botoes {
-    padding-top: 20px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.popup-dropdown {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 230px;
+    background-color: #1565D8;
+    border-radius: 12px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none;
     flex-direction: column;
-
-    gap: 10px;
+    padding: 8px 0;
 }
 
-.botao-principal {
-    width: 310px;
-    height: 110px;
+.popup-dropdown.ativo {
+    display: flex;
+}
 
+.popup-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.popup-item:hover {
+    background-color: #0f4fb5;
+}
+
+#icone-mais {
+    background-color: #1565D8;
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background-color: #2563EB;
-
-    border-radius: 10px;
-    border: none;
-
-    color: #FFFFFF;
-    font-size: 20px;
-    font-weight: bold;
-
-    text-decoration: none;
-
-    transition: 1s;
-
     cursor: pointer;
 }
 
-.botao-principal:hover {
-    background-color: #114ea4;
-    transform: scale(1.05);
+#icone-perfil {
+    border-radius: 50%;
 }
 
-/* QUADRADOS */
-
-.quadrados {
+.usuario {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px;
+}
 
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 1200px;
+    padding-top: 50px;
     gap: 15px;
 }
 
-.titulo {
+.caixas {
+    background-color: white;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: 15px;
 }
 
-h2 {
-    font-size: 18px;
-    color: #181818;
-
-    padding: 10px;
-}
-
-.quadrado {
-    background-color: #EAEAEA;
-
-    border-radius: 10px;
-    border: 2px solid #E0E3E7;
-
-    color: #181818;
-
-    width: 95px;
-    height: 85px;
-
+.caixa {
+    width: 390px;
+    height: 130px;
+    padding-left: 30px;
+    border-radius: 18px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-top: 7px solid #1565D8;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
     flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.numeros {
-    padding-top: 10px;
+.numero {
+    color: #1565D8;
+    font-size: 30px;
+    display: flex;
+    margin-top: 5px;
+}
 
-    font-size: 20px;
-    color: #181818;
+#nome-doutor {
+    color: white;
+}
+
+.subtitulo {
+    display: flex;
+}
+
+button {
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.03);
+}
+
+header {
+    height: 72px;
+    background-color: #1565D8;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: space-between;
 }
 
 p {
-    font-size: 14px;
+    font-size: 16px;
+    color: #64748B;
+    white-space: nowrap;
 }
 
-hr {
-    height: 1px;
+h1 {
+    color: black;
+    font-size: 28px;
+}
 
-    background-color: #AEAEAE;
-    border: none;
+h2 {
+    color: #64748B;
+    font-size: 18px;
+}
 
-    border-radius: 5px;
+h3 {
+    font-size: 26px;
+    margin: 0;
+}
 
-    margin-top: 20px;
-    width: 90%;
-    margin: 20px auto 0 auto;
+.lista {
+    width: 100%;
+    background-color: #EFEFEF;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.lista-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+.ver-mais {
+    color: #181818;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 70%;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.ver-mais:hover {
+    color: #1565D8;
+    transform: scale(1.03);
+}
+
+table {
+    width: 100%;
+    border-radius: 18px;
+    border-spacing: 0;
+    overflow: hidden;
+}
+
+.titulo-lista {
+    color: white;
+    font-size: 18px;
+    text-align: left;
+    padding: 12px;
+    background-color: #1565D8;
+    padding-left: 15px;
+}
+
+.conteudo-lista {
+    padding: 15px;
+    color: #64748B;
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+#botao-gerenciar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 15px;
+    background-color: #1565D8;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 100px;
+    height: 35px;
+    box-sizing: border-box;
+}
+
+#botao-gerenciar:hover {
+    transform: scale(1.05);
+    background-color: #0f4fb5;
+}
+
+.medico {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.risco {
+    background-color: rgba(255, 159, 159, 0.441);
+    border-radius: 15px;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 79, 79);
+    font-weight: 600;
+}
+
+.status {
+    background-color: rgba(159, 255, 161, 0.441);
+    border-radius: 15px;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(68, 167, 53);
+    font-weight: 600;
 }

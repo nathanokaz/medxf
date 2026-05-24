@@ -17,16 +17,14 @@
     </div>
     <form class="botoes">
         <h2 id="texto-botoes">Escolha como deseja iniciar sua sessão:</h2>
-
-        <a class="botao-home" th:href="@{/medico/login}">
-            <img th:src="@{/assets/icones/Icone-Medico.png}" alt="icone medico" width="90" height="90">
+        <button class="botao-home" type="submit"> 
+            <img th:src="@{/assets/icones/Icone-Medico.png}" alt="icone medico" width="90px" height="90px">
             <p>Médico(a)</p>
-        </a>
-
-        <a class="botao-home" th:href="@{/admin/login}">
-            <img th:src="@{/assets/icones/Icone-Adm.png}" alt="icone admin" width="90" height="90">
+        </button>
+        <button class="botao-home" type="submit">
+            <img th:src="@{/assets/icones/Icone-Adm.png}" alt="icone admin" width="90px" height="90px">
             <p>Administrador</p>
-        </a>
+        </button>
     </form>
 </body>
 </html>

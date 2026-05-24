@@ -3,25 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
     <link rel="stylesheet" th:href="@{/assets/css/nova-triagem/nova-triagem.css}">
     <link rel="icon" th:href="@{/assets/icones/Icone-Usuario.png}" type="image/png">
-    <title>Nova Triagem - MedXF</title>
+    <title>Nova Triagem - MedFX</title>
 </head>
 <body>
-    <header>
-        <a th:href="@{/medico/home}" id="botao-mais">
-            <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
-        </a>
-        <h1>Menu Principal</h1>
-        <h1 id="nome"></h1>
-        <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
-    </header>
-    <div class="titulo">
-        <h2>Dados do Paciente</h2>
-    </div>
+
+<header>
+    <a th:href="@{/medico/home}" id="botao-mais">
+        <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
+        <span>Menu Principal</span>
+    </a>
+    <h1 id="nome"></h1>
+    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
+</header>
+
+<div class="container">
     <div class="formulario">
         <form action="">
+
+            <div class="titulo">
+                <h2>Dados do Paciente</h2>
+            </div>
+
             <div class="nomes">
                 <input type="text" placeholder="Nome Completo">
                 <input type="text" placeholder="Nome do Responsável (se tiver)">
@@ -39,20 +47,20 @@
             </div>
             <h3>Histórico familiar de deficiência intelectual?</h3>
             <div class="perguntas">
-                <button id="botao-sim">Sim</button>
-                <button id="botao-nao">Não</button>
+                <button id="botao-sim" type="button">Sim</button>
+                <button id="botao-nao" type="button">Não</button>
             </div>
             <h3>Histórico de X Frágil na família?</h3>
             <div class="perguntas">
-                <button id="botao-sim">Sim</button>
-                <button id="botao-nao">Não</button>
+                <button id="botao-sim" type="button">Sim</button>
+                <button id="botao-nao" type="button">Não</button>
             </div>
             <div class="continuar">
-                <a th:href="@{/medico/avaliacao}" id="botao-continuar">
-                    Continuar
-                </a>
+                <button id="botao-continuar" type="submit">Continuar</button>
             </div>
         </form>
     </div>
+</div>
+
 </body>
 </html>
