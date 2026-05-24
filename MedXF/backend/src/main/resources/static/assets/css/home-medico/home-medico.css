@@ -74,3 +74,194 @@ button:hover {
     transform: scale(1.05);
     transition: 1s;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #F4F7FB;
+}
+
+#icone-mais {
+    background-color: #1565D8;
+    border: none;
+}
+
+#icone-perfil {
+    border-radius: 50%;
+}
+
+.usuario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 1200px;
+    padding-top: 50px;
+    gap: 15px;
+}
+
+.caixas {
+    background-color: white;
+    display: flex;
+    gap: 15px;
+}
+
+.caixa {
+    width: 390px;
+    height: 130px;
+    padding-left: 30px;
+    border-radius: 18px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-top: 7px solid #1565D8;
+}
+
+.numero {
+    color: #1565D8;
+    font-size: 30px;
+    display: flex;
+}
+
+#nome-doutor {
+    color: white;
+}
+
+.subtitulo {
+    display: flex;
+}
+
+button {
+    transition: 1s;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.03);
+    transition: 1s;
+}
+
+header {
+    height: 60px;
+    background-color: #1565D8;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: center;
+    gap: 780px;
+}
+
+p {
+    font-size: 16px;
+    color: white;
+    white-space: nowrap;
+    color: #64748B;
+}
+
+h1 {
+    color: black;
+    font-size: 28px;
+}
+
+h2 {
+    color: #64748B;
+    font-size: 18px;
+}
+
+h3 {
+    font-size: 26px;
+}
+
+.lista {
+    width: 96.7%;
+    background-color: #EFEFEF;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+table {
+    width: 100%;
+    border-radius: 18px;
+    border-spacing: 0;
+    overflow: hidden;
+}
+
+.titulo-lista {
+    color: white;
+    font-size: 18px;
+    text-align: left;
+    padding: 5px;
+    background-color: #1565D8;
+    padding-left: 15px;
+}
+
+.conteudo-lista {
+    padding: 15px;
+    color: #64748B;
+    font-size: 16px;
+}
+
+#botao-gerenciar {
+    border-radius: 15px;
+    background-color: #1565D8;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 1s;
+    width: 100px;
+    height: 35px;
+    border: none;
+}
+
+#botao-gerenciar:hover {
+    transition: 1s;
+    transform: scale(1.03);
+    background-color: #1253ae;
+}
+
+.medico {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.risco {
+    background-color: rgba(255, 159, 159, 0.441);
+    border-radius: 15px;
+    height: 20px;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 79, 79);
+}
+
+.status {
+    background-color: rgba(159, 255, 161, 0.441);
+    border-radius: 15px;
+    height: 20px;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(68, 167, 53);
+}
+

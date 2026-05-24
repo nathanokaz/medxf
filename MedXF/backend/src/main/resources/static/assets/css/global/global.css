@@ -1,72 +1,11 @@
 @font-face {
     font-family: "SFPro";
-    src: url("/assets/fontes/SFPro.OTF");
+    src: url('/assets/fontes/SFPro.OTF');
 }
 
 * {
     margin: 0;
     padding: 0;
     font-family: "SFPro";
-}
-
-h1 {
-    font-size: 18px;
-    font-weight: 550;
-    color: #181818;
-}
-
-h2 {
-    font-size: 14px;
-    font-weight: 550;
-    color: #181818;
-}
-
-input {
-    width: 296px;
-    height: 38px;
-    background-color: #EAEAEA;
-    border: 2px solid #E0E3E7;
-    border-radius: 10px;
-    font-size: 14px;
-    padding-left: 10px;
-    color: #5D5D5D;
-}
-
-input:focus {
-    border: 2px solid #166CE2;
-}
-
-label {
-    font-size: 16px;
-    font-weight: 550;
-    color: #181818;
-    margin-bottom: 7px;
-}
-
-button {
-    font-size: 17px;
-    background-color: #166CE2;
-    color: #FFFFFF;
-    border-radius: 15px;
-    width: 310px;
-    height: 38px;
-    border: none;
-    cursor: pointer;
-    transition: 1s;
-}
-
-button:hover {
-    background-color: #114ea4;
-    transition: 1s;
-    transform: scale(1.03);
-    color: #FFFFFF;
-}
-
-header {
-    height: 47px;
-    background-color: #2563EB;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 0 15px;
+    font-weight: 600;
 }
