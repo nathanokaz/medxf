@@ -26,14 +26,14 @@ header {
     gap: 10px;
     text-decoration: none;
     color: #FFFFFF;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.1);
     padding: 10px 16px;
     border-radius: 12px;
     transition: background 0.2s ease;
 }
 
 #botao-mais:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255,255,255,0.2);
 }
 
 #botao-mais span {
@@ -76,7 +76,8 @@ form {
     width: 100%;
 }
 
-.nomes {
+.nomes,
+.contato {
     display: flex;
     flex-direction: column;
     padding: 10px 0;
@@ -105,8 +106,8 @@ form input[type="email"]:focus,
 form input[type="tel"]:focus,
 #sexo-paciente:focus {
     border-color: #1565D8;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(21, 101, 216, 0.1);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(21,101,216,0.1);
 }
 
 .data-sexo {
@@ -120,6 +121,7 @@ form input[type="tel"]:focus,
 }
 
 #sexo-paciente {
+    width: 50%;
     height: 45px;
     background-color: #f8fafc;
     border: 1px solid #dbe2ea;
@@ -127,16 +129,8 @@ form input[type="tel"]:focus,
     font-size: 14px;
     padding-left: 12px;
     color: #1e293b;
-    width: 50%;
     outline: none;
     transition: all 0.2s ease;
-}
-
-.contato {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 0;
-    gap: 12px;
 }
 
 h3 {
@@ -152,8 +146,7 @@ h3 {
     padding: 5px 0;
 }
 
-#botao-sim,
-#botao-nao {
+.perguntas label {
     width: 50%;
     height: 45px;
     background-color: #f8fafc;
@@ -163,15 +156,21 @@ h3 {
     font-size: 14px;
     cursor: pointer;
     transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
 }
 
-#botao-sim:hover,
-#botao-nao:hover {
+.perguntas label:hover {
     background-color: #cbd5e1;
 }
 
-#botao-sim:focus,
-#botao-nao:focus {
+.perguntas input[type="radio"] {
+    display: none;
+}
+
+.perguntas label:has(input[type="radio"]:checked) {
     background-color: #1565D8;
     color: #FFFFFF;
     border-color: #1565D8;
@@ -193,7 +192,7 @@ h3 {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.1s ease;
-    box-shadow: 0 4px 12px rgba(21, 101, 216, 0.15);
+    box-shadow: 0 4px 12px rgba(21,101,216,0.15);
 }
 
 #botao-continuar:hover {

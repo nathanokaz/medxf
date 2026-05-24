@@ -160,7 +160,8 @@ tbody tr:last-child .conteudo-lista {
     margin-top: 2px;
 }
 
-.risco, .status {
+.risco,
+.status {
     border-radius: 999px;
     width: 100px;
     height: 28px;

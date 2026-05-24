@@ -24,41 +24,67 @@
 
 <div class="container">
     <div class="formulario">
-        <form action="">
+
+        <form th:action="@{/medico/triagem}" method="post">
 
             <div class="titulo">
                 <h2>Dados do Paciente</h2>
             </div>
 
             <div class="nomes">
-                <input type="text" placeholder="Nome Completo">
-                <input type="text" placeholder="Nome do Responsável (se tiver)">
+                <input type="text" name="nome" placeholder="Nome Completo" required>
+                <input type="text" name="nomeResponsavel" placeholder="Nome do Responsável (se tiver)">
             </div>
+
             <div class="data-sexo">
-                <input id="data-nascimento" type="date" placeholder="Data de Nascimento">
-                <select name="sexo" id="sexo-paciente">
-                    <option value="Masculino">Masculino</option>
-                    <option value="Feminino">Feminino</option>
+                <input id="data-nascimento" type="date" name="nascimento" required>
+
+                <select name="sexo" id="sexo-paciente" required>
+                    <option value="">Sexo</option>
+                    <option value="MASCULINO">Masculino</option>
+                    <option value="FEMININO">Feminino</option>
                 </select>
             </div>
+
             <div class="contato">
-                <input type="email" placeholder="Email">
-                <input type="tel" placeholder="Telefone">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
             </div>
+
             <h3>Histórico familiar de deficiência intelectual?</h3>
+
             <div class="perguntas">
-                <button id="botao-sim" type="button">Sim</button>
-                <button id="botao-nao" type="button">Não</button>
+                <label>
+                    <input type="radio" name="historico1" value="SIM" required>
+                    Sim
+                </label>
+
+                <label>
+                    <input type="radio" name="historico1" value="NAO">
+                    Não
+                </label>
             </div>
+
             <h3>Histórico de X Frágil na família?</h3>
+
             <div class="perguntas">
-                <button id="botao-sim" type="button">Sim</button>
-                <button id="botao-nao" type="button">Não</button>
+                <label>
+                    <input type="radio" name="historico2" value="SIM" required>
+                    Sim
+                </label>
+
+                <label>
+                    <input type="radio" name="historico2" value="NAO">
+                    Não
+                </label>
             </div>
+
             <div class="continuar">
                 <button id="botao-continuar" type="submit">Continuar</button>
             </div>
+
         </form>
+
     </div>
 </div>
 
