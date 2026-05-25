@@ -139,7 +139,6 @@ input {
     border-radius: 10px;
     font-size: 14px;
     padding-left: 10px;
-    color: #5D5D5D;
     height: 42px;
     padding-left: 15px;
     color: #5D5D5D;
@@ -174,6 +173,7 @@ input:focus, #especialidade-medico:focus {
 
 #botao-continuar {
     width: 100%;
+    height: 46px;
     height: 46px;
     background-color: #1565D8;
     color: white;

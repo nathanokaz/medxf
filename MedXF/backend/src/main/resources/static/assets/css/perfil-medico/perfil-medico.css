@@ -13,7 +13,6 @@ body {
     flex-direction: column;
 }
 
-
 header {
     background-color: #1565D8;
     padding: 0 35px;
@@ -50,20 +49,17 @@ header {
     margin-left: auto;
 }
 
-
 .layout {
     display: flex;
     min-height: calc(100vh - 72px);
     width: 100%;
 }
 
-
 .content {
     flex: 1;
     padding: 35px;
     width: 100%;
 }
-
 
 .page-header {
     display: flex;
@@ -108,14 +104,12 @@ header {
     transform: translateY(0);
 }
 
-
 .patient-grid {
     display: flex;
     justify-content: center;
     width: 100%;
     margin-top: 10px;
 }
-
 
 .patient-card {
     background: white;
@@ -124,7 +118,7 @@ header {
     box-shadow: 0 6px 20px rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
-    max-width: 520px; /* Define o tamanho máximo para o card ficar menor e elegante */
+    max-width: 520px;
 }
 
 .patient-card:hover {
@@ -162,7 +156,6 @@ header {
     color: #64748b;
     font-size: 14px;
 }
-
 
 .form-group {
     margin-bottom: 18px;

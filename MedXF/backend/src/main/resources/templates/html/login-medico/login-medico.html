@@ -9,26 +9,32 @@
     <title>Login - Médico</title>
 </head>
 <body>
+<div class="container">
     <div class="titulo">
         <img th:src="@{/assets/icones/Logo.png}" alt="logo" width="300" height="100">
-        <h1 id="texto-login" >Login - Profissional da saúde</h1>
+        <h1 id="texto-login" >Login - MedXF</h1>
     </div>
-    <form class="formulario">
+    <form class="formulario" method="post" th:action="@{/login}">
         <div id="div-email">
-            <label for="email">Email</label>
-            <input id="email" type="email" placeholder="Digite seu email">
+            <label class="label-input" for="email">Email</label>
+            <input id="email" type="email" placeholder="Digite seu email" name="email">
         </div>
         <div class="div-formulario">
-            <label for="senha">Senha</label>
-            <input id="senha" type="password" placeholder="Digite sua senha">
+            <label class="label-input" for="senha">Senha</label>
+            <input id="senha" type="password" placeholder="Digite sua senha" name="password">
         </div>
         <div class="div-formulario">
-            <label id="texto-checkbox">
-            <input id="checkbox" type="checkbox">
-            Lembrar de mim
-        </label>
+            <div class="remember">
+                <label id="texto-checkbox">
+                    <input id="checkbox" type="checkbox">
+                    Lembrar de mim
+                </label>
+            </div>
         </div>
-        <button type="submit">Login</button>
+        <div class="botao">
+            <button type="submit">Login</button>
+        </div>
     </form>
+</div>
 </body>
 </html>

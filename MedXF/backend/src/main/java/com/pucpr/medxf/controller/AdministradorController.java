@@ -45,5 +45,4 @@ public class AdministradorController {
         return "html/gerenciar-medicos/gerenciar-medicos";
     }
 
-
 }
