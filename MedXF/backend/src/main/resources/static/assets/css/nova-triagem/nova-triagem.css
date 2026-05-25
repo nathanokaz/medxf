@@ -19,6 +19,48 @@ h1 {
     margin-left: auto;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f4f7fb;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #1565D8;
+    padding: 0 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 72px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+#botao-mais {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #FFFFFF;
+    background: rgba(255,255,255,0.1);
+    padding: 10px 16px;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+}
+
+#botao-mais:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+#botao-mais span {
+    font-size: 15px;
+}
+
 #nome {
     margin-left: auto;
 }
@@ -33,6 +75,12 @@ button:hover {
     border: none;
     transform: scale(1.05);
     transition: 1s;
+}
+
+.container {
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
 .titulo {
@@ -54,6 +102,61 @@ h2 {
     padding: 10px;
     padding-left: 20px;
     gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #1e293b;
+    text-align: center;
+}
+
+.formulario {
+    width: 100%;
+}
+
+form {
+    background: #FFFFFF;
+    border-radius: 28px;
+    padding: 35px 25px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    width: 100%;
+}
+
+.nomes, .contato {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    gap: 12px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="email"],
+form input[type="tel"] {
+    width: 100%;
+    height: 45px;
+    background-color: #f8fafc;
+    border: 1px solid #dbe2ea;
+    border-radius: 14px;
+    font-size: 14px;
+    padding-left: 15px;
+    color: #1e293b;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="date"]:focus,
+form input[type="email"]:focus,
+form input[type="tel"]:focus,
+#sexo-paciente:focus {
+    border-color: #1565D8;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(21,101,216,0.1);
 }
 
 .data-sexo {
@@ -62,6 +165,8 @@ h2 {
     padding: 10px;
     padding-left: 20px;
     padding-top: 0px;
+    gap: 12px;
+    padding: 10px 0;
 }
 
 #data-nascimento {
@@ -87,6 +192,23 @@ h2 {
     padding-left: 20px;
     gap: 10px;
     padding-top: 0px;
+    width: 50%;
+    height: 45px;
+    background-color: #f8fafc;
+    border: 1px solid #dbe2ea;
+    border-radius: 14px;
+    font-size: 14px;
+    padding-left: 12px;
+    color: #1e293b;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+h3 {
+    padding: 20px 0 10px 0;
+    font-size: 16px;
+    color: #1e293b;
+    text-align: center;
 }
 
 .perguntas {
@@ -119,6 +241,38 @@ h3 {
     border: 2px solid #E0E3E7;
     color: #5D5D5D;
     font-size: 12px;
+    gap: 12px;
+    padding: 5px 0;
+}
+
+.perguntas label {
+    width: 50%;
+    height: 45px;
+    background-color: #f8fafc;
+    border: 1px solid #dbe2ea;
+    border-radius: 14px;
+    color: #475569;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
+.perguntas label:hover {
+    background-color: #cbd5e1;
+}
+
+.perguntas input[type="radio"] {
+    display: none;
+}
+
+.perguntas label:has(input[type="radio"]:checked) {
+    background-color: #1565D8;
+    color: #FFFFFF;
+    border-color: #1565D8;
 }
 
 .continuar {
@@ -148,4 +302,24 @@ h3 {
 #botao-continuar:hover {
     background-color: #114ea4;
     transform: scale(1.03);
+    margin-top: 40px;
+    justify-content: center;
+}
+
+#botao-continuar {
+    width: 100%;
+    height: 50px;
+    background-color: #1565D8;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 12px rgba(21,101,216,0.15);
+}
+
+#botao-continuar:hover {
+    background-color: #0f4fb5;
+    transform: translateY(-1px);
 }

@@ -9,76 +9,128 @@
     <title>Início - MedXF</title>
 </head>
 <body>
-    <header>
+<header>
+    <div class="menu-container">
         <button id="icone-mais">
             <img th:src="@{/assets/icones/Mais-Info.png}" alt="mais" width="20px" height="15px">
         </button>
-        <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="125px" height="50px">
-        <div class="usuario">
-            <p id="nome-doutor">Nathan Bonitao</p>
-            <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40px" height="40px">
-        </div>
-    </header>
-    <div class="container">
-        <div class="principal">
-            <h1>Bem vindo, Dr. Nathan Bonitão</h1>
-            <h2>Menu principal MedXF - Sistema de triagem X frágil</h2>
-            <div class="caixas">
-                <button class="caixa">
-                    <p class="subtitulo">Avaliações Realizadas</p>
-                    <p class="numero">12</p>
-                </button>
-                <button class="caixa">
-                    <p class="subtitulo">Pacientes cadastrados</p>
-                    <p class="numero">17</p>
-                </button>
-                <button class="caixa">
-                    <p class="subtitulo">Alto Risco</p>
-                    <p class="numero">3</p>
-                </button>
-            </div>
-            <div class="lista">
-                <h3>Pacientes cadastrados</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="titulo-lista">Paciente</th>
-                            <th class="titulo-lista">Idade</th>
-                            <th class="titulo-lista">Sintomas</th>
-                            <th class="titulo-lista">Risco</th>
-                            <th class="titulo-lista">Data</th>
-                            <th class="titulo-lista">Status</th>
-                            <th class="titulo-lista">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="conteudo-lista">
-                                <div class="medico">
-                                    <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40px" height="40px">
-                                    <div>
-                                        <div class="nome">Nathan</div>
-                                        <div class="email">nathan@gmail.com</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="conteudo-lista">19</td>
-                            <td class="conteudo-lista">27</td>
-                            <td class="conteudo-lista">
-                                <div class="risco">Alto</div>
-                            </td>
-                            <td class="conteudo-lista">23/05/26</td>
-                            <td class="conteudo-lista">
-                                <div class="status">Concluído</div>
-                            </td>
-                            <td class="conteudo-lista">
-                                <button id="botao-gerenciar">Gerenciar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div id="popup-menu" class="popup-dropdown">
+            <nav class="popup-links">
+                <a th:href="@{/medico/home}" class="popup-item">
+                    <span>Início</span>
+                </a>
+                <a th:href="@{/medico/triagem}" class="popup-item">
+                    <span>Nova Triagem</span>
+                </a>
+                <a th:href="@{/medico/gerenciar/paciente}" class="popup-item">
+                    <span>Gerenciar Pacientes</span>
+                </a>
+                <a th:href="@{/medico/pacientes}" class="popup-item">
+                    <span>Todos Pacientes Cadastrados</span>
+                </a>
+            </nav>
         </div>
     </div>
+    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="125px" height="50px">
+    <div class="usuario">
+        <p id="nome-doutor">Nathan Bonitao</p>
+        <a th:href="@{/medico/perfil}">
+            <img id="icone-perfil"
+                 th:src="@{/assets/icones/Perfil.png}"
+                 alt="perfil"
+                 width="40px"
+                 height="40px">
+        </a>
+    </div>
+</header>
+<div class="container">
+    <div class="principal">
+        <h1>Bem vindo, Dr. Nathan Bonitão</h1>
+        <h2>Menu principal MedXF - Sistema de triagem X frágil</h2>
+        <div class="caixas">
+            <button class="caixa">
+                <p class="subtitulo">Avaliações Realizadas</p>
+                <p class="numero">12</p>
+            </button>
+            <button class="caixa">
+                <p class="subtitulo">Pacientes cadastrados</p>
+                <p class="numero">17</p>
+            </button>
+            <button class="caixa">
+                <p class="subtitulo">Alto Risco</p>
+                <p class="numero">3</p>
+            </button>
+        </div>
+        <div class="lista">
+            <div class="lista-header">
+                <h3>Pacientes cadastrados</h3>
+                <a th:href="@{/medico/pacientes}" class="ver-mais">
+                    Ver mais
+                </a>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th class="titulo-lista">Paciente</th>
+                    <th class="titulo-lista">Idade</th>
+                    <th class="titulo-lista">Sintomas</th>
+                    <th class="titulo-lista">Risco</th>
+                    <th class="titulo-lista">Data</th>
+                    <th class="titulo-lista">Status</th>
+                    <th class="titulo-lista">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="conteudo-lista">
+                        <div class="medico">
+                            <img id="icone-perfil"
+                                 th:src="@{/assets/icones/Perfil.png}"
+                                 alt="perfil"
+                                 width="40px"
+                                 height="40px">
+                            <div>
+                                <div class="nome">Nathan</div>
+                                <div class="email">nathan@gmail.com</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="conteudo-lista">19</td>
+                    <td class="conteudo-lista">27</td>
+                    <td class="conteudo-lista">
+                        <div class="risco">Alto</div>
+                    </td>
+                    <td class="conteudo-lista">23/05/26</td>
+                    <td class="conteudo-lista">
+                        <div class="status">Concluído</div>
+                    </td>
+                    <td class="conteudo-lista">
+                        <a th:href="@{/medico/gerenciar/paciente}"
+                           id="botao-gerenciar"
+                           role="button">
+                            Gerenciar
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    const btnMenu = document.getElementById('icone-mais');
+    const popupMenu = document.getElementById('popup-menu');
+
+    btnMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+        popupMenu.classList.toggle('ativo');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!popupMenu.contains(e.target) && e.target !== btnMenu) {
+            popupMenu.classList.remove('ativo');
+        }
+    });
+</script>
 </body>
 </html>
