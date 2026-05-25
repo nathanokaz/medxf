@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "SFPro";
+    src: url('/assets/fontes/SFPro.OTF');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "SFPro";
+    font-weight: 600;
+}
