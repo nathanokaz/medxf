@@ -3,10 +3,12 @@ package com.pucpr.medxf.domain.paciente;
 import com.pucpr.medxf.domain.medico.Medico;
 import com.pucpr.medxf.domain.paciente.dto.Historico;
 import com.pucpr.medxf.domain.paciente.dto.Sexo;
+import com.pucpr.medxf.domain.triagem.Triagem;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "pacientes")
@@ -48,6 +50,9 @@ public class Paciente {
     @ManyToOne
     @JoinColumn(name = "medico_id")
     private Medico medico;
+
+    @OneToMany(mappedBy = "paciente")
+    private List<Triagem> triagens;
 
 
 }
