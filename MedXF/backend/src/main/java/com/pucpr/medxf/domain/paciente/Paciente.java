@@ -1,5 +1,6 @@
 package com.pucpr.medxf.domain.paciente;
 
+import com.pucpr.medxf.domain.medico.Medico;
 import com.pucpr.medxf.domain.paciente.dto.Historico;
 import com.pucpr.medxf.domain.paciente.dto.Sexo;
 import jakarta.persistence.*;
@@ -24,9 +25,6 @@ public class Paciente {
     private String nome;
 
     @Column(nullable = false)
-    private String nomeResponsavel;
-
-    @Column(nullable = false)
     private LocalDate nascimento;
 
     @Enumerated(EnumType.STRING)
@@ -43,5 +41,13 @@ public class Paciente {
 
     @Enumerated(EnumType.STRING)
     private Historico historico2;
+
+    @Column(nullable = false, unique = true)
+    private String cpf;
+
+    @ManyToOne
+    @JoinColumn(name = "medico_id")
+    private Medico medico;
+
 
 }

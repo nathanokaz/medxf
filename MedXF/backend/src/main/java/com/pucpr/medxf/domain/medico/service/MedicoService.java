@@ -1,12 +1,11 @@
 package com.pucpr.medxf.domain.medico.service;
 
-import com.pucpr.medxf.domain.admin.dto.CadastroMedico;
-import com.pucpr.medxf.domain.admin.dto.ListaMedicos;
-import com.pucpr.medxf.domain.medico.Medico;
-import com.pucpr.medxf.domain.medico.repository.MedicoRepository;
+import com.pucpr.medxf.domain.medico.dto.CadastroPaciente;
+import com.pucpr.medxf.domain.medico.dto.ListaPaciente;
+import com.pucpr.medxf.domain.paciente.Paciente;
+import com.pucpr.medxf.domain.paciente.repository.PacienteRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,41 +14,35 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MedicoService {
 
-    private final MedicoRepository medicoRepository;
+    private final PacienteRepository pacienteRepository;
 
     @Transactional
-    public void cadastrarMedico(CadastroMedico cadastroMedico) {
-
-        if (medicoRepository.existsByEmail(cadastroMedico.email())) {
+    public void cadastrarPaciente(CadastroPaciente cadastroPaciente) {
+        if (pacienteRepository.existsByEmail(cadastroPaciente.email())) {
             throw new IllegalArgumentException("Email já cadastrado.");
         }
-
-        if (medicoRepository.existsByCrm(cadastroMedico.crm())) {
-            throw new IllegalArgumentException("CRM já cadastrado.");
+        if (pacienteRepository.existsByTelefone(cadastroPaciente.telefone())) {
+            throw new IllegalArgumentException("Telefone já cadastrado.");
         }
-
-        var senhaCriptografada =
-                new BCryptPasswordEncoder().encode(cadastroMedico.senha());
-
-        Medico medico = Medico.builder()
-                .nome(cadastroMedico.nome().trim())
-                .email(cadastroMedico.email().trim().toLowerCase())
-                .senha(senhaCriptografada)
-                .crm(cadastroMedico.crm().trim())
-                .especialidade(cadastroMedico.especialidade())
-                .hospital(cadastroMedico.hospital().trim())
-                .cidade(cadastroMedico.cidade().trim())
-                .estado(cadastroMedico.estado().trim())
+        if (pacienteRepository.existsByCpf(cadastroPaciente.cpf())) {
+            throw new IllegalArgumentException("CPF já cadastrado.");
+        }
+        Paciente paciente = Paciente.builder()
+                .nome(cadastroPaciente.nome().trim())
+                .nascimento(cadastroPaciente.nascimento())
+                .sexo(cadastroPaciente.sexo())
+                .email(cadastroPaciente.email().trim().toLowerCase())
+                .telefone(cadastroPaciente.telefone().trim())
+                .historico1(cadastroPaciente.historico1())
+                .historico2(cadastroPaciente.historico2())
+                .cpf(cadastroPaciente.cpf())
                 .build();
-
-        medicoRepository.save(medico);
+        pacienteRepository.save(paciente);
     }
 
-    public List<ListaMedicos> listarMedicos() {
-
-        var medicos = medicoRepository.findAll();
-
-        return medicos.stream().map(ListaMedicos::new).toList();
+    public List<ListaPaciente> listarPacientes() {
+        var pacientes = pacienteRepository.findAll();
+        return pacientes.stream().map(ListaPaciente::new).toList();
     }
 
 }

@@ -14,7 +14,7 @@ public record ListaMedicos(
         String estado) {
 
     public ListaMedicos(Medico medico) {
-        this(medico.getNome(), medico.getEmail(), medico.getCrm(), medico.getEspecialidade(),
+        this(medico.getNome(), medico.getUser().getEmail(), medico.getCrm(), medico.getEspecialidade(),
                 medico.getHospital(), medico.getCidade(), medico.getEstado());
     }
 

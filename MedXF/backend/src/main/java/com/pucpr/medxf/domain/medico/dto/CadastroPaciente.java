@@ -10,9 +10,6 @@ public record CadastroPaciente(
         @NotBlank(message = "Nome obrigatório.")
         String nome,
 
-        @NotBlank(message = "Nome do Responsável obrigatório.")
-        String nomeResponsavel,
-
         @NotNull(message = "Data de Nascimento obrigatória.")
         LocalDate nascimento,
 
@@ -30,7 +27,10 @@ public record CadastroPaciente(
         Historico historico1,
 
         @NotNull(message = "Histórico X frágil obrigatório.")
-        Historico historico2
+        Historico historico2,
+
+        @NotBlank(message = "CPF obrigatório.")
+        String cpf
 
 ) {
 }

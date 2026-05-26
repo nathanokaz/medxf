@@ -1,18 +1,26 @@
 package com.pucpr.medxf.domain.user;
 
+import com.pucpr.medxf.domain.admin.Admin;
+import com.pucpr.medxf.domain.medico.Medico;
 import com.pucpr.medxf.domain.user.dto.UserRoles;
 import jakarta.persistence.*;
+import lombok.*;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class User implements UserDetails {
 
     @Id
@@ -29,7 +37,13 @@ public class User implements UserDetails {
     private UserRoles role;
 
     @Column(nullable = false, name = "criado_em")
-    private LocalDate criadoEm;
+    private LocalDateTime criadoEm;
+
+    @OneToOne(mappedBy = "user")
+    private Medico medico;
+
+    @OneToOne(mappedBy = "user")
+    private Admin admin;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

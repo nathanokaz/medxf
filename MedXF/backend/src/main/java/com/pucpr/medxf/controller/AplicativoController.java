@@ -15,7 +15,7 @@ public class AplicativoController {
 
     @GetMapping("/login")
     public String paginaLoginMedico() {
-        return "/html/login-medico/login-medico";
+        return "/html/login/login";
     }
 
 }

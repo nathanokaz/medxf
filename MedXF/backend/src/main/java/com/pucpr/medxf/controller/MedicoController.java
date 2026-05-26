@@ -1,7 +1,7 @@
 package com.pucpr.medxf.controller;
 
 import com.pucpr.medxf.domain.medico.dto.CadastroPaciente;
-import com.pucpr.medxf.domain.paciente.service.PacienteService;
+import com.pucpr.medxf.domain.medico.service.MedicoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class MedicoController {
 
-    private final PacienteService pacienteService;
+    private final MedicoService medicoService;
 
     @GetMapping("/home")
     public String paginaHomeMedico() {
@@ -34,9 +34,7 @@ public class MedicoController {
 
     @PostMapping("/triagem")
     public String cadastrarPaciente(@Valid CadastroPaciente cadastroPaciente) {
-
-        pacienteService.cadastrarPaciente(cadastroPaciente);
-
+        medicoService.cadastrarPaciente(cadastroPaciente);
         return "redirect:/medico/pacientes";
     }
 
@@ -52,11 +50,8 @@ public class MedicoController {
 
     @GetMapping("/pacientes")
     public String paginaPacientesCadastradosMedico(Model model) {
-
-        var pacientes = pacienteService.listarPacientes();
-
+        var pacientes = medicoService.listarPacientes();
         model.addAttribute("pacientes", pacientes);
-
         return "html/pacientes-cadastrados/pacientes-cadastrados";
     }
 

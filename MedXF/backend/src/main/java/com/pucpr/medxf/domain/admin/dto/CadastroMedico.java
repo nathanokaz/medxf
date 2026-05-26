@@ -30,5 +30,8 @@ public record CadastroMedico(
         String cidade,
 
         @NotBlank(message = "Estado obrigatório.")
-        String estado) {
+        String estado,
+
+        @NotBlank(message = "CPF obrigatório.")
+        String cpf) {
 }
