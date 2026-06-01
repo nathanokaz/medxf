@@ -1,0 +1,334 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f4f7fb;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #1565D8;
+    padding: 0 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 72px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+#botao-mais {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #FFFFFF;
+    background: rgba(255,255,255,0.1);
+    padding: 10px 16px;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+#botao-mais:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+#botao-mais span {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#nome {
+    color: white;
+    font-size: 15px;
+    margin-left: auto;
+}
+
+.container {
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.titulo h2 {
+    font-size: 28px;
+    color: #1e293b;
+    text-align: center;
+    font-weight: 700;
+}
+
+.formulario {
+    width: 100%;
+}
+
+form {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 35px 25px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    width: 100%;
+}
+
+.nomes,
+.contato {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="email"],
+form input[type="tel"],
+select {
+    width: 100%;
+    height: 45px;
+    background-color: #f8fafc;
+    border: 1px solid #dbe2ea;
+    border-radius: 12px;
+    font-size: 14px;
+    padding: 0 15px;
+    color: #1e293b;
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+form input[type="text"]::placeholder,
+form input[type="date"]::placeholder,
+form input[type="email"]::placeholder,
+form input[type="tel"]::placeholder {
+    color: #999;
+}
+
+form input[type="text"]:focus,
+form input[type="date"]:focus,
+form input[type="email"]:focus,
+form input[type="tel"]:focus,
+select:focus {
+    border-color: #1565D8;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(21,101,216,0.1);
+}
+
+.data-sexo {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+#data-nascimento {
+    width: 50%;
+}
+
+#sexo-paciente {
+    width: 50%;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231565D8' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 35px;
+}
+
+h3 {
+    padding: 20px 0 12px 0;
+    font-size: 16px;
+    color: #1e293b;
+    text-align: center;
+    font-weight: 600;
+}
+
+.perguntas {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.perguntas label {
+    width: 50%;
+    height: 45px;
+    background-color: #f8fafc;
+    border: 1px solid #dbe2ea;
+    border-radius: 12px;
+    color: #475569;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
+.perguntas label:hover {
+    background-color: #e0e7ff;
+    border-color: #1565D8;
+}
+
+.perguntas input[type="radio"] {
+    display: none;
+}
+
+.perguntas label:has(input[type="radio"]:checked) {
+    background-color: #1565D8;
+    color: #FFFFFF;
+    border-color: #1565D8;
+}
+
+.continuar {
+    display: flex;
+    margin-top: 40px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#botao-continuar {
+    width: 100%;
+    height: 46px;
+    background-color: #1565D8;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 12px rgba(21,101,216,0.15);
+}
+
+#botao-continuar:hover {
+    background-color: #0f4fb5;
+    transform: translateY(-1px);
+}
+
+#botao-continuar:active {
+    transform: translateY(0);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    header {
+        padding: 0 20px;
+    }
+
+    .container {
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    .titulo h2 {
+        font-size: 24px;
+    }
+
+    form {
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+
+    form input[type="text"],
+    form input[type="date"],
+    form input[type="email"],
+    form input[type="tel"],
+    select {
+        height: 44px;
+        font-size: 13px;
+    }
+
+    .perguntas label {
+        height: 44px;
+        font-size: 13px;
+    }
+
+    h3 {
+        font-size: 15px;
+        padding: 16px 0 10px 0;
+    }
+
+    #botao-continuar {
+        height: 44px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0 15px;
+        height: 64px;
+    }
+
+    .container {
+        margin: 25px auto;
+        padding: 0 12px;
+    }
+
+    .titulo h2 {
+        font-size: 22px;
+    }
+
+    form {
+        padding: 20px 15px;
+        border-radius: 14px;
+    }
+
+    .nomes,
+    .contato {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .data-sexo {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    form input[type="text"],
+    form input[type="date"],
+    form input[type="email"],
+    form input[type="tel"],
+    select {
+        height: 44px;
+        font-size: 13px;
+        padding: 0 12px;
+    }
+
+    .perguntas {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .perguntas label {
+        height: 44px;
+        font-size: 12px;
+    }
+
+    h3 {
+        font-size: 14px;
+        padding: 14px 0 8px 0;
+    }
+
+    .continuar {
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    #botao-continuar {
+        height: 44px;
+        font-size: 14px;
+    }
+}

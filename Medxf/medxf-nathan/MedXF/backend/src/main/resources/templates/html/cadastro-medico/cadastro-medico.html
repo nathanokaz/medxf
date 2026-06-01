@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/cadastro-medico/cadastro-medico.css}">
+    <link rel="icon" th:href="@{/assets/icones/Icone-Medico.png}" type="image/png">
+    <title>Cadastro Médico - MedXF</title>
+</head>
+<body>
+    <header>
+        <button id="botao-mais">
+            <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
+        </button>   
+        <h1>Menu Principal</h1>
+        <h1 id="nome"></h1>
+        <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
+    </header>
+    <div class="titulo">
+        <h2>Dados do Médico</h2>
+    </div>
+    <div class="formulario">
+        <form th:action="@{/admin/cadastrar/medico}" method="post">
+            <div class="nomes">
+                <input type="text" placeholder="Nome Completo" name="nome">
+            </div>
+            <div class="dados">
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Senha" name="senha">
+                <input type="text" placeholder="CRM" name="crm">
+                <select name="especialidade" id="especialidade-medico" >
+                    <option value="CARDIOLOGISTA">Cardiologista</option>
+                </select>
+                <input type="text" placeholder="Clínica / Hospital" name="hospital">
+                <input type="text" placeholder="Cidade" name="cidade">
+                <input type="text" placeholder="Estado" name="estado">
+            </div>
+            <div class="continuar">
+                <button id="botao-continuar" type="submit">Continuar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

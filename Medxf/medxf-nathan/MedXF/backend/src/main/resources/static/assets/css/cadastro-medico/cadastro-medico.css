@@ -1,0 +1,202 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #F4F7FB;
+    font-family: sans-serif;
+}
+
+header {
+    height: 72px;
+    background-color: #1565D8;
+    display: flex;
+    align-items: center;
+    padding: 0 35px;
+    justify-content: space-between;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+header h1 {
+    color: #FFFFFF;
+    font-size: 16px;
+    flex: 1;
+    text-align: center;
+}
+
+#botao-mais {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+
+#img-mais {
+    width: 20px;
+    height: 20px;
+}
+
+#nome {
+    color: white;
+    font-size: 15px;
+    margin-left: auto;
+}
+
+.titulo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 35px;
+    padding-top: 30px;
+    margin-bottom: 20px;
+}
+
+.titulo h2 {
+    font-size: 24px;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.formulario {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    padding: 20px;
+}
+
+.formulario form {
+    width: 100%;
+    max-width: 450px;
+}
+
+.nomes,
+.dados {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+input,
+select {
+    width: 100%;
+    height: 45px;
+    background-color: #EAEAEA;
+    border: 2px solid #E0E3E7;
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 0 15px;
+    color: #5D5D5D;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+input:focus,
+select:focus {
+    border-color: #1565D8;
+    background-color: #fff;
+}
+
+#especialidade-medico {
+    height: 45px;
+    padding: 0 15px;
+}
+
+.continuar {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+#botao-continuar {
+    width: 100%;
+    height: 46px;
+    background-color: #1565D8;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 12px rgba(21, 101, 216, 0.15);
+}
+
+#botao-continuar:hover {
+    background-color: #0f4fb5;
+    transform: translateY(-1px);
+}
+
+#botao-continuar:active {
+    transform: translateY(0);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    header {
+        padding: 0 20px;
+    }
+
+    .titulo {
+        padding-left: 20px;
+        padding-top: 25px;
+    }
+
+    .titulo h2 {
+        font-size: 22px;
+    }
+
+    .formulario {
+        padding: 15px;
+    }
+
+    .formulario form {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0 15px;
+        height: 64px;
+    }
+
+    header h1 {
+        font-size: 14px;
+    }
+
+    .titulo {
+        padding-left: 15px;
+        padding-top: 20px;
+        margin-bottom: 15px;
+    }
+
+    .titulo h2 {
+        font-size: 20px;
+    }
+
+    .formulario {
+        padding: 12px;
+    }
+
+    input,
+    select {
+        font-size: 13px;
+        height: 44px;
+    }
+
+    #botao-continuar {
+        height: 44px;
+        font-size: 14px;
+    }
+}

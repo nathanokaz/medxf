@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/questionario-paciente/questionario-paciente.css}">
+    <link rel="icon" th:href="@{/assets/icones/Icone-Usuario.png}" type="image/png">
+    <title>Questionário - MedXF</title>
+</head>
+<body>
+
+<header>
+    <a th:href="@{/paciente/home}" id="botao-mais">
+        <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
+        <span>Menu Principal</span>
+    </a>
+    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
+    <div class="usuario">
+        <p id="nome-paciente">Seu Nome</p>
+        <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40" height="40">
+    </div>
+</header>
+
+<div class="titulo">
+    <h2>Avaliação de Sintomas</h2>
+    <p>Por favor, indique a presença ou ausência de cada sintoma</p>
+</div>
+
+<div class="container">
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <form th:action="@{/paciente/questionario}" method="post" class="questionario-form">
+        
+        <div class="questoes-container">
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">1</span>
+                    <h3>Deficiência intelectual</h3>
+                </div>
+                <div class="question-content">
+                    <p>Você apresenta dificuldades significativas em habilidades intelectuais ou adaptativas?</p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="q1" value="SIM" required>
+                            <span class="radio-label">Sim</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="q1" value="NAO">
+                            <span class="radio-label">Não</span>
+                        </label>
+                    </div>
+                    <details class="observation">
+                        <summary>Adicionar observações</summary>
+                        <textarea placeholder="Descreva detalhes adicionais..." name="obs1"></textarea>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">2</span>
+                    <h3>Face alongada / Orelhas grandes</h3>
+                </div>
+                <div class="question-content">
+                    <p>Você notou que seu rosto é mais alongado ou suas orelhas são proporcionalmente maiores?</p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="q2" value="SIM" required>
+                            <span class="radio-label">Sim</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="q2" value="NAO">
+                            <span class="radio-label">Não</span>
+                        </label>
+                    </div>
+                    <details class="observation">
+                        <summary>Adicionar observações</summary>
+                        <textarea placeholder="Descreva detalhes adicionais..." name="obs2"></textarea>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">3</span>
+                    <h3>Hipermobilidade articular</h3>
+                </div>
+                <div class="question-content">
+                    <p>Você tem articulações muito flexíveis ou consegue fazer movimentos que a maioria das pessoas não consegue?</p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="q3" value="SIM" required>
+                            <span class="radio-label">Sim</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="q3" value="NAO">
+                            <span class="radio-label">Não</span>
+                        </label>
+                    </div>
+                    <details class="observation">
+                        <summary>Adicionar observações</summary>
+                        <textarea placeholder="Descreva detalhes adicionais..." name="obs3"></textarea>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">4</span>
+                    <h3>Dificuldades de aprendizagem</h3>
+                </div>
+                <div class="question-content">
+                    <p>Você tem ou teve dificuldades em aprender ou acompanhar seus colegas na escola?</p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="q4" value="SIM" required>
+                            <span class="radio-label">Sim</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="q4" value="NAO">
+                            <span class="radio-label">Não</span>
+                        </label>
+                    </div>
+                    <details class="observation">
+                        <summary>Adicionar observações</summary>
+                        <textarea placeholder="Descreva detalhes adicionais..." name="obs4"></textarea>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">5</span>
+                    <h3>Déficit de atenção</h3>
+                </div>
+                <div class="question-content">
+                    <p>Você tem dificuldade em manter a concentração ou se distrai facilmente?</p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="q5" value="SIM" required>
+                            <span class="radio-label">Sim</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="q5" value="NAO">
+                            <span class="radio-label">Não</span>
+                        </label>
+                    </div>
+                    <details class="observation">
+                        <summary>Adicionar observações</summary>
+                        <textarea placeholder="Descreva detalhes adicionais..." name="obs5"></textarea>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">6</span>
+                    <h3>Movimentos repetitivos</h3>
+                </div>
+                <div class="question-content">
+                    <p>Você faz movimentos repetitivos (como balançar, bater as mãos) de forma involuntária ou compulsiva?</p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="q6" value="SIM" required>
+                            <span class="radio-label">Sim</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="q6" value="NAO">
+                            <span class="radio-label">Não</span>
+                        </label>
+                    </div>
+                    <details class="observation">
+                        <summary>Adicionar observações</summary>
+                        <textarea placeholder="Descreva detalhes adicionais..." name="obs6"></textarea>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">7</span>
+                    <h3>Atraso na fala</h3>
+                </div>
+                <div class="question-content">
+                    <p>Você começou a falar mais tarde que o normal ou tem dificuldade em se comunicar verbalmente?</p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="q7" value="SIM" required>
+                            <span class="radio-label">Sim</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="q7" value="NAO">
+                            <span class="radio-label">Não</span>
+                        </label>
+                    </div>
+                    <details class="observation">
+                        <summary>Adicionar observações</summary>
+                        <textarea placeholder="Descreva detalhes adicionais..." name="obs7"></textarea>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">8</span>
+                    <h3>Hiperatividade</h3>
+                </div>
+                <div class="question-content">
+                    <p>Você é muito ativo, tem dificuldade em ficar quieto ou parece estar sempre em movimento?</p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="q8" value="SIM" required>
+                            <span class="radio-label">Sim</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="q8" value="NAO">
+                            <span class="radio-label">Não</span>
+                        </label>
+                    </div>
+                    <details class="observation">
+                        <summary>Adicionar observações</summary>
+                        <textarea placeholder="Descreva detalhes adicionais..." name="obs8"></textarea>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">9</span>
+                    <h3>Evita contato visual</h3>
+                </div>
+                <div class="question-content">
+                    <p>Você sente desconforto em manter contato visual com outras pessoas?</p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="q9" value="SIM" required>
+                            <span class="radio-label">Sim</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="q9" value="NAO">
+                            <span class="radio-label">Não</span>
+                        </label>
+                    </div>
+                    <details class="observation">
+                        <summary>Adicionar observações</summary>
+                        <textarea placeholder="Descreva detalhes adicionais..." name="obs9"></textarea>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">10</span>
+                    <h3>Evita contato físico</h3>
+                </div>
+                <div class="question-content">
+                    <p>Você sente desconforto com o contato físico ou abraços?</p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="q10" value="SIM" required>
+                            <span class="radio-label">Sim</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="q10" value="NAO">
+                            <span class="radio-label">Não</span>
+                        </label>
+                    </div>
+                    <details class="observation">
+                        <summary>Adicionar observações</summary>
+                        <textarea placeholder="Descreva detalhes adicionais..." name="obs10"></textarea>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">11</span>
+                    <h3>Agressividade</h3>
+                </div>
+                <div class="question-content">
+                    <p>Você apresenta comportamentos agressivos ou tem dificuldade em controlar impulsos?</p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="q11" value="SIM" required>
+                            <span class="radio-label">Sim</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="q11" value="NAO">
+                            <span class="radio-label">Não</span>
+                        </label>
+                    </div>
+                    <details class="observation">
+                        <summary>Adicionar observações</summary>
+                        <textarea placeholder="Descreva detalhes adicionais..." name="obs11"></textarea>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-header">
+                    <span class="question-number">12</span>
+                    <h3>Observações Gerais</h3>
+                </div>
+                <div class="question-content">
+                    <p>Adicione qualquer informação adicional que ache relevante para sua avaliação</p>
+                    <div class="form-group">
+                        <textarea placeholder="Descreva qualquer outra informação importante..." name="observacoes_gerais" class="general-observation"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">Enviar Resposta</button>
+            <a th:href="@{/paciente/home}" class="btn-cancel">Cancelar</a>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    // Atualizar barra de progresso conforme o usuário preenche
+    const form = document.querySelector('.questionario-form');
+    const progressBar = document.getElementById('progressBar');
+    const inputs = form.querySelectorAll('input[type="radio"]');
+
+    function updateProgress() {
+        const checkedInputs = form.querySelectorAll('input[type="radio"]:checked').length;
+        const totalQuestions = 11; // Questões obrigatórias (1-11)
+        const percentage = (checkedInputs / totalQuestions) * 100;
+        progressBar.style.width = Math.min(percentage, 100) + '%';
+    }
+
+    inputs.forEach(input => {
+        input.addEventListener('change', updateProgress);
+    });
+
+    // Inicializar
+    updateProgress();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
+  <link rel="stylesheet" th:href="@{/assets/css/pacientes-cadastrados/pacientes-cadastrados.css}">
+  <link rel="icon" th:href="@{/assets/icones/Icone-Medico.png}" type="image/png">
+  <title>Pacientes Cadastrados - MedXF</title>
+</head>
+<body>
+
+<header>
+  <a th:href="@{/medico/home}" id="botao-mais">
+    <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
+    <span>Menu Principal</span>
+  </a>
+
+  <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="125px" height="50px">
+
+  <div class="usuario">
+    <p id="nome-doutor">Nathan Bonitao</p>
+
+    <a th:href="@{/medico/perfil}">
+      <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40px" height="40px">
+    </a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="principal">
+
+    <h1>Todos Pacientes Cadastrados</h1>
+
+    <div class="lista">
+
+      <div class="lista-header">
+        <h3>Pacientes Cadastrados</h3>
+      </div>
+
+      <table>
+
+        <thead>
+        <tr>
+          <th class="titulo-lista">Paciente</th>
+          <th class="titulo-lista">Responsável</th>
+          <th class="titulo-lista">Nascimento</th>
+          <th class="titulo-lista">Sexo</th>
+          <th class="titulo-lista">Telefone</th>
+          <th class="titulo-lista">Histórico 1</th>
+          <th class="titulo-lista">Histórico 2</th>
+          <th class="titulo-lista">Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="paciente : ${pacientes}">
+
+          <td class="conteudo-lista">
+            <div class="medico">
+
+              <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40px" height="40px">
+
+              <div>
+                <div class="nome" th:text="${paciente.nome}"></div>
+                <div class="email" th:text="${paciente.email}"></div>
+              </div>
+
+            </div>
+          </td>
+
+          <td class="conteudo-lista" th:text="${paciente.nomeResponsavel}"></td>
+
+          <td class="conteudo-lista" th:text="${paciente.nascimento}"></td>
+
+          <td class="conteudo-lista" th:text="${paciente.sexo}"></td>
+
+          <td class="conteudo-lista" th:text="${paciente.telefone}"></td>
+
+          <td class="conteudo-lista">
+            <div th:class="${paciente.historico1.name() == 'SIM'} ? 'status' : 'risco'"
+                 th:text="${paciente.historico1}">
+            </div>
+          </td>
+
+          <td class="conteudo-lista">
+            <div th:class="${paciente.historico2.name() == 'SIM'} ? 'status' : 'risco'"
+                 th:text="${paciente.historico2}">
+            </div>
+          </td>
+
+          <td class="conteudo-lista">
+            <a href="/medico/gerenciar/paciente" id="botao-gerenciar">Gerenciar</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
