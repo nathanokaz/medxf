@@ -1,7 +1,9 @@
 package com.pucpr.medxf.controller;
 
+import com.pucpr.medxf.domain.medico.dto.AvaliacaoMedico;
 import com.pucpr.medxf.domain.medico.dto.CadastroPaciente;
 import com.pucpr.medxf.domain.medico.service.MedicoService;
+import com.pucpr.medxf.domain.paciente.Paciente;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/medico")
@@ -34,13 +39,20 @@ public class MedicoController {
 
     @PostMapping("/triagem")
     public String cadastrarPaciente(@Valid CadastroPaciente cadastroPaciente) {
-        medicoService.cadastrarPaciente(cadastroPaciente);
-        return "redirect:/medico/pacientes";
+        Paciente paciente = medicoService.cadastrarPaciente(cadastroPaciente);
+        return "redirect:/medico/avaliacao?pacienteId=" + paciente.getId();
     }
 
     @GetMapping("/avaliacao")
-    public String paginaAvaliacaoMedico() {
+    public String paginaAvaliacaoMedico(@RequestParam Integer pacienteId, Model model) {
+        model.addAttribute("pacienteId", pacienteId);
         return "html/avaliacao-medico/avaliacao-medico";
+    }
+
+    @PostMapping("/avaliacao")
+    public String registrarAvaliacao(AvaliacaoMedico avaliacaoMedico) {
+        medicoService.cadastrarAvaliacao(avaliacaoMedico);
+        return "redirect:/medico/home";
     }
 
     @GetMapping("/gerenciar/paciente")
