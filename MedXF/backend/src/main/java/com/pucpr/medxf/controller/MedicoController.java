@@ -2,6 +2,7 @@ package com.pucpr.medxf.controller;
 
 import com.pucpr.medxf.domain.medico.dto.AvaliacaoMedico;
 import com.pucpr.medxf.domain.medico.dto.CadastroPaciente;
+import com.pucpr.medxf.domain.medico.dto.InformacoesPerfil;
 import com.pucpr.medxf.domain.medico.service.MedicoService;
 import com.pucpr.medxf.domain.paciente.Paciente;
 import jakarta.validation.Valid;
@@ -68,8 +69,16 @@ public class MedicoController {
     }
 
     @GetMapping("/perfil")
-    public String paginaPerfilMedico() {
+    public String paginaPerfilMedico(Model model) {
+        var medico = medicoService.informacoesMedico();
+        model.addAttribute("medico", medico);
         return "html/perfil-medico/perfil-medico";
+    }
+
+    @PostMapping("/perfil")
+    public String editarPerfil(InformacoesPerfil informacoesPerfil) {
+        medicoService.editarInformacoesMedico(informacoesPerfil);
+        return "redirect:/inicio/login";
     }
 
 }

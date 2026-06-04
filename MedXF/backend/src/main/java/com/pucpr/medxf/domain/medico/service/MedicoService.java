@@ -1,10 +1,7 @@
 package com.pucpr.medxf.domain.medico.service;
 
 import com.pucpr.medxf.domain.medico.Medico;
-import com.pucpr.medxf.domain.medico.dto.AvaliacaoMedico;
-import com.pucpr.medxf.domain.medico.dto.CadastroPaciente;
-import com.pucpr.medxf.domain.medico.dto.ListaPaciente;
-import com.pucpr.medxf.domain.medico.dto.Respostas;
+import com.pucpr.medxf.domain.medico.dto.*;
 import com.pucpr.medxf.domain.medico.repository.MedicoRepository;
 import com.pucpr.medxf.domain.paciente.Paciente;
 import com.pucpr.medxf.domain.paciente.repository.PacienteRepository;
@@ -13,12 +10,16 @@ import com.pucpr.medxf.domain.respostas.Resposta;
 import com.pucpr.medxf.domain.respostas.repository.RespostaRepository;
 import com.pucpr.medxf.domain.triagem.Triagem;
 import com.pucpr.medxf.domain.triagem.repository.TriagemReposiotry;
+import com.pucpr.medxf.domain.user.User;
+import com.pucpr.medxf.domain.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,6 +31,7 @@ public class MedicoService {
     private final PerguntaRepository perguntaRepository;
     private final RespostaRepository respostaRepository;
     private final TriagemReposiotry triagemReposiotry;
+    private final UserRepository userRepository;
 
     @Transactional
     public Paciente cadastrarPaciente(CadastroPaciente cadastroPaciente) {
@@ -85,9 +87,65 @@ public class MedicoService {
         return pacientes.stream().map(ListaPaciente::new).toList();
     }
 
+    public List<String> informacoesMedico() {
+        List<String> infoMedico = new ArrayList<>();
+        var medico = medicoRepository.findById(pegarMedico().getId());
+        infoMedico.add(medico.get().getNome());
+        infoMedico.add(pegarUser().getUsername());
+        infoMedico.add(medico.get().getCrm());
+        infoMedico.add(medico.get().getHospital());
+        infoMedico.add(medico.get().getCidade());
+        infoMedico.add(medico.get().getEstado());
+        return infoMedico;
+    }
+
+    @Transactional
+    public void editarInformacoesMedico(InformacoesPerfil informacoesPerfil) {
+        var medico = pegarMedico();
+        var user = pegarUser();
+        if (informacoesPerfil.nome() != null && !informacoesPerfil.nome().isBlank()) {
+            medico.setNome(informacoesPerfil.nome());
+        }
+        if (informacoesPerfil.email() != null && !informacoesPerfil.email().isBlank()) {
+            if (!informacoesPerfil.email().equals(user.getEmail())
+                    && userRepository.existsByEmail(informacoesPerfil.email())) {
+                throw new RuntimeException("Esse email já existe.");
+            }
+            user.setEmail(informacoesPerfil.email());
+        }
+        if (informacoesPerfil.senha() != null && !informacoesPerfil.senha().isBlank()) {
+            var senhaCriptografada = new BCryptPasswordEncoder().encode(informacoesPerfil.senha());
+            user.setSenha(senhaCriptografada);
+        }
+        if (informacoesPerfil.crm() != null && !informacoesPerfil.crm().isBlank()) {
+            if (!informacoesPerfil.crm().equals(medico.getCrm())
+                    && medicoRepository.existsByCrm(informacoesPerfil.crm())) {
+                throw new RuntimeException("CRM já cadastrado.");
+            }
+            medico.setCrm(informacoesPerfil.crm());
+        }
+        if (informacoesPerfil.especialidade() != null) {
+            medico.setEspecialidade(informacoesPerfil.especialidade());
+        }
+        if (informacoesPerfil.hospital() != null && !informacoesPerfil.hospital().isBlank()) {
+            medico.setHospital(informacoesPerfil.hospital());
+        }
+        if (informacoesPerfil.cidade() != null && !informacoesPerfil.cidade().isBlank()) {
+            medico.setCidade(informacoesPerfil.cidade());
+        }
+        if (informacoesPerfil.estado() != null && !informacoesPerfil.estado().isBlank()) {
+            medico.setEstado(informacoesPerfil.estado());
+        }
+    }
+
     private Medico pegarMedico() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return medicoRepository.findByUser_Email(email).orElseThrow(() -> new RuntimeException("Médico não encontrado"));
+    }
+
+    private User pegarUser() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User não encontrado"));
     }
 
 }

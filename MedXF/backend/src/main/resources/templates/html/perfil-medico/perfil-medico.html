@@ -9,7 +9,7 @@
     <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
     <link rel="stylesheet" th:href="@{/assets/css/perfil-medico/perfil-medico.css}">
     <link rel="icon" th:href="@{/assets/icones/Icone-Usuario.png}" type="image/png">
-    <title>Cadastro Médico - MedXF</title>
+    <title>Editar Perfil - MedXF</title>
 </head>
 <body>
     <header>
@@ -24,8 +24,8 @@
         <main class="content">
             <div class="page-header">
                 <div>
-                    <h1>Médicos</h1>
-                    <p>Insira e gerencie os dados para cadastro do médico.</p>
+                    <h1>Médico</h1>
+                    <p>Insira os que deseja editar.</p>
                 </div>
             </div>
             <div class="patient-grid">
@@ -33,18 +33,18 @@
                     <div class="patient-top">
                         <div class="avatar">MD</div>
                         <div class="patient-info">
-                            <h2>Novo Médico</h2>
+                            <h2 th:text="${medico[0]}"></h2>
                             <span>Dados do Médico</span>
                         </div>
                     </div>
-                    <form th:action="@{/admin/cadastrar/medico}" method="post">
+                    <form th:action="@{/medico/perfil}" method="post">
                         <div class="form-group">
                             <label>Nome Completo</label>
-                            <input type="text" placeholder="Nome Completo" name="nome">
+                            <input type="text" th:placeholder="${medico[0]}" name="nome">
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" placeholder="Email" name="email">
+                            <input type="email" th:placeholder="${medico[1]}" name="email">
                         </div>
                         <div class="form-group">
                             <label>Senha</label>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label>CRM</label>
-                            <input type="text" placeholder="CRM" name="crm">
+                            <input type="text" th:placeholder="${medico[2]}" name="crm">
                         </div>
                         <div class="form-group">
                             <label>Especialidade</label>
@@ -62,15 +62,15 @@
                         </div>
                         <div class="form-group">
                             <label>Clínica / Hospital</label>
-                            <input type="text" placeholder="Clínica / Hospital" name="hospital">
+                            <input type="text" th:placeholder="${medico[3]}" name="hospital">
                         </div>
                         <div class="form-group">
                             <label>Cidade</label>
-                            <input type="text" placeholder="Cidade" name="cidade">
+                            <input type="text" th:placeholder="${medico[4]}" name="cidade">
                         </div>
                         <div class="form-group">
                             <label>Estado</label>
-                            <input type="text" placeholder="Estado" name="estado">
+                            <input type="text" th:placeholder="${medico[5]}" name="estado">
                         </div>
                         <div class="actions">
                             <button type="submit" class="save-btn" style="width: 100%;">Salvar</button>

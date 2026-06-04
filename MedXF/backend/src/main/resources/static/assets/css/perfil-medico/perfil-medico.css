@@ -61,7 +61,8 @@ header {
 }
 
 .page-header {
-    margin-bottom: 30px;
+    max-width: 650px;
+    margin: 0 auto 30px auto;
 }
 
 .page-header h1 {
