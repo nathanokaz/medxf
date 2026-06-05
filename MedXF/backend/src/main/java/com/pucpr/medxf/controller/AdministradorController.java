@@ -1,6 +1,7 @@
 package com.pucpr.medxf.controller;
 
 import com.pucpr.medxf.domain.admin.dto.CadastroMedico;
+import com.pucpr.medxf.domain.admin.dto.InformacoesPerfilAdmin;
 import com.pucpr.medxf.domain.admin.service.AdminService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,11 +40,6 @@ public class AdministradorController {
         return "html/home-admin/home-admin";
     }
 
-    @GetMapping("/login")
-    public String paginaLoginAdmin() {
-        return "html/login-admin/login-admin";
-    }
-
     @GetMapping("/gerenciar/medicos")
     public String paginaGerenciarMedicos(Model model) {
         var medicos = adminService.listarMedicos();
@@ -56,6 +52,19 @@ public class AdministradorController {
         var pacientes = adminService.listarPacientes();
         model.addAttribute("pacientes", pacientes);
         return "html/gerenciar-pacientes-admin/gerenciar-pacientes-admin";
+    }
+
+    @GetMapping("/perfil")
+    public String paginaPerfilAdmin(Model model) {
+        var admin = adminService.pegarDadosAdmin();
+        model.addAttribute("admin", admin);
+        return "html/perfil-admin/perfil-admin";
+    }
+
+    @PostMapping("/perfil")
+    public String editarPerfil(InformacoesPerfilAdmin informacoesPerfilAdmin) {
+        adminService.editarDadosAdmin(informacoesPerfilAdmin);
+        return "redirect:/inicio/login";
     }
 
 }

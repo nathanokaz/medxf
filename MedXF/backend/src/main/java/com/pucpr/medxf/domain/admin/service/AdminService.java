@@ -2,6 +2,7 @@ package com.pucpr.medxf.domain.admin.service;
 
 import com.pucpr.medxf.domain.admin.Admin;
 import com.pucpr.medxf.domain.admin.dto.CadastroMedico;
+import com.pucpr.medxf.domain.admin.dto.InformacoesPerfilAdmin;
 import com.pucpr.medxf.domain.admin.dto.ListaMedicos;
 import com.pucpr.medxf.domain.admin.repository.AdminRepository;
 import com.pucpr.medxf.domain.medico.Medico;
@@ -101,14 +102,55 @@ public class AdminService {
         return infos;
     }
 
+    public List<ListaPaciente> listarPacientes() {
+        var pacientes = pacienteRepository.findAll();
+        return pacientes.stream().map(ListaPaciente::new).toList();
+    }
+
+    public List<String> pegarDadosAdmin() {
+        var admin = pegarAdmin().getId();
+        var user = pegarUser().getId();
+        List<String> informacoes = new ArrayList<>();
+        var infosUser = userRepository.findById(user)
+                .orElseThrow(() -> new RuntimeException("User não encontrado"));
+        var infosAdmin = adminRepository.findByUserId(admin)
+                .orElseThrow(() -> new RuntimeException("User não encontrado"));
+        informacoes.add(infosAdmin.getNome());
+        informacoes.add(infosUser.getEmail());
+        return informacoes;
+    }
+
+    @Transactional
+    public void editarDadosAdmin(InformacoesPerfilAdmin informacoesPerfilAdmin) {
+        var admin = pegarAdmin();
+        var user = pegarUser();
+        if (informacoesPerfilAdmin.nome() != null
+                && !informacoesPerfilAdmin.nome().isBlank()) {
+            admin.setNome(informacoesPerfilAdmin.nome());
+        }
+        if (informacoesPerfilAdmin.email() != null
+                && !informacoesPerfilAdmin.email().isBlank()) {
+            if (userRepository.existsByEmail(informacoesPerfilAdmin.email())
+                    && !user.getEmail().equals(informacoesPerfilAdmin.email())) {
+                throw new RuntimeException("Email já cadastrado");
+            }
+            user.setEmail(informacoesPerfilAdmin.email());
+        }
+        if (informacoesPerfilAdmin.senha() != null
+                && !informacoesPerfilAdmin.senha().isBlank()) {
+            var senhaCriptografada = new BCryptPasswordEncoder().encode(informacoesPerfilAdmin.senha());
+            user.setSenha(senhaCriptografada);
+        }
+    }
+
     private Admin pegarAdmin() {
         var email = SecurityContextHolder.getContext().getAuthentication().getName();
         return adminRepository.findByUser_Email(email).orElseThrow(() -> new RuntimeException("Admin não encontrado"));
     }
 
-    public List<ListaPaciente> listarPacientes() {
-        var pacientes = pacienteRepository.findAll();
-        return pacientes.stream().map(ListaPaciente::new).toList();
+    private User pegarUser() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User não encontrado"));
     }
 
 }

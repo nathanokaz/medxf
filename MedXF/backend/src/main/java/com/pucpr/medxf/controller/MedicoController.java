@@ -32,11 +32,6 @@ public class MedicoController {
         return "/html/home-medico/home-medico";
     }
 
-    @GetMapping("/login")
-    public String paginaLoginMedico() {
-        return "/html/login-medico/login-medico";
-    }
-
     @GetMapping("/triagem")
     public String paginaNovaTriagemMedico() {
         return "html/nova-triagem/nova-triagem";
