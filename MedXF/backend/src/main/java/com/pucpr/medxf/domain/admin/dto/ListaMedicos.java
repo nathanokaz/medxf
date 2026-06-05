@@ -5,6 +5,7 @@ import com.pucpr.medxf.domain.medico.dto.Especialidade;
 
 public record ListaMedicos(
 
+        Integer id,
         String nome,
         String email,
         String crm,
@@ -14,7 +15,7 @@ public record ListaMedicos(
         String estado) {
 
     public ListaMedicos(Medico medico) {
-        this(medico.getNome(), medico.getUser().getEmail(), medico.getCrm(), medico.getEspecialidade(),
+        this(medico.getId(), medico.getNome(), medico.getUser().getEmail(), medico.getCrm(), medico.getEspecialidade(),
                 medico.getHospital(), medico.getCidade(), medico.getEstado());
     }
 

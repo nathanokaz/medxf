@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -45,6 +46,18 @@ public class AdministradorController {
         var medicos = adminService.listarMedicos();
         model.addAttribute("medicos", medicos);
         return "html/gerenciar-medicos/gerenciar-medicos";
+    }
+
+    @GetMapping("/editar/medico/{id}")
+    public String paginaEditarMedico(@PathVariable Integer id, Model model) {
+        var medico = adminService.informacoesMedico(id);
+        model.addAttribute("medico", medico);
+        return "html/perfil-medico-admin/perfil-medico-admin";
+    }
+
+    @PostMapping("/editar/medico/{id}")
+    public String editarInformacoesMedico(@PathVariable Integer id) {
+        return "redirect:/admin/home";
     }
 
     @GetMapping("/gerenciar/pacientes")

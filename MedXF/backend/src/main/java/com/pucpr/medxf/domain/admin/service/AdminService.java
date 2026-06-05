@@ -143,6 +143,24 @@ public class AdminService {
         }
     }
 
+    public List<String> informacoesMedico(Integer id) {
+        var medico = medicoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Médico não encontrado"));
+        List<String> infosMedico = new ArrayList<>();
+        infosMedico.add(medico.getNome());
+        infosMedico.add(medico.getUser().getEmail());
+        infosMedico.add(medico.getCrm());
+        infosMedico.add(medico.getHospital());
+        infosMedico.add(medico.getCidade());
+        infosMedico.add(medico.getEstado());
+        infosMedico.add(String.valueOf(id));
+        return infosMedico;
+    }
+
+    public void editarMedico() {
+        //IMPLEMENTAR
+    }
+
     private Admin pegarAdmin() {
         var email = SecurityContextHolder.getContext().getAuthentication().getName();
         return adminRepository.findByUser_Email(email).orElseThrow(() -> new RuntimeException("Admin não encontrado"));
