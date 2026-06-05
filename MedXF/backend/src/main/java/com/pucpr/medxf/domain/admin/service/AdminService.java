@@ -5,6 +5,7 @@ import com.pucpr.medxf.domain.admin.dto.CadastroMedico;
 import com.pucpr.medxf.domain.admin.dto.ListaMedicos;
 import com.pucpr.medxf.domain.admin.repository.AdminRepository;
 import com.pucpr.medxf.domain.medico.Medico;
+import com.pucpr.medxf.domain.medico.dto.ListaPaciente;
 import com.pucpr.medxf.domain.medico.repository.MedicoRepository;
 import com.pucpr.medxf.domain.paciente.Paciente;
 import com.pucpr.medxf.domain.paciente.repository.PacienteRepository;
@@ -93,9 +94,21 @@ public class AdminService {
         return informacoes;
     }
 
+    public List<String> InformacoesAdmin() {
+        var admin = pegarAdmin();
+        List<String> infos = new ArrayList<>();
+        infos.add(admin.getNome());
+        return infos;
+    }
+
     private Admin pegarAdmin() {
         var email = SecurityContextHolder.getContext().getAuthentication().getName();
         return adminRepository.findByUser_Email(email).orElseThrow(() -> new RuntimeException("Admin não encontrado"));
+    }
+
+    public List<ListaPaciente> listarPacientes() {
+        var pacientes = pacienteRepository.findAll();
+        return pacientes.stream().map(ListaPaciente::new).toList();
     }
 
 }

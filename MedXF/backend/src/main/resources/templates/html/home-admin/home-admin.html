@@ -19,8 +19,8 @@
         <div id="popup-menu" class="popup-dropdown">
             <nav class="popup-links">
                 <a th:href="@{/admin/home}" class="popup-item">Início</a>
-                <a th:href="@{/admin/medicos}" class="popup-item">Gerenciar Médicos</a>
-                <a th:href="@{/admin/pacientes}" class="popup-item">Gerenciar Pacientes</a>
+                <a th:href="@{/admin/gerenciar/medicos}" class="popup-item">Gerenciar Médicos</a>
+                <a th:href="@{/admin/gerenciar/pacientes}" class="popup-item">Gerenciar Pacientes</a>
             </nav>
         </div>
     </div>
@@ -28,7 +28,7 @@
     <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="125" height="50">
 
     <div class="usuario">
-        <p id="nome-admin">Admin</p>
+        <p id="nome-admin" th:text="${infosAdmin[0]}"></p>
         <a th:href="@{/admin/perfil}">
             <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40" height="40">
         </a>
@@ -38,7 +38,7 @@
 <div class="container">
     <div class="principal">
 
-        <h1>Bem vindo, Admin</h1>
+        <h1>Bem vindo, <span th:text="${infosAdmin[0]}"></span> </h1>
         <h2>Menu principal MedXF - Sistema de triagem X frágil</h2>
 
         <div class="caixas">
@@ -92,7 +92,9 @@
                     <td class="conteudo-lista" th:text="${medico.cidade}"></td>
                     <td class="conteudo-lista" th:text="${medico.estado}"></td>
                     <td class="conteudo-lista">
-                        <button id="botao-gerenciar">Gerenciar</button>
+                        <a th:href="@{/admin/gerenciar/medicos}">
+                            <button id="botao-gerenciar">Gerenciar</button>
+                        </a>
                     </td>
                 </tr>
                 </tbody>

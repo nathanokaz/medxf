@@ -32,8 +32,10 @@ public class AdministradorController {
     public String paginaHomeAdmin(Model model) {
         var informacoes = adminService.informacoesNumericasHome();
         var medicos = adminService.listarMedicos();
+        var adminInfos = adminService.InformacoesAdmin();
         model.addAttribute("infos", informacoes);
         model.addAttribute("medicos", medicos);
+        model.addAttribute("infosAdmin", adminInfos);
         return "html/home-admin/home-admin";
     }
 
@@ -47,6 +49,13 @@ public class AdministradorController {
         var medicos = adminService.listarMedicos();
         model.addAttribute("medicos", medicos);
         return "html/gerenciar-medicos/gerenciar-medicos";
+    }
+
+    @GetMapping("/gerenciar/pacientes")
+    public String paginaGerenciarPacientes(Model model) {
+        var pacientes = adminService.listarPacientes();
+        model.addAttribute("pacientes", pacientes);
+        return "html/gerenciar-pacientes-admin/gerenciar-pacientes-admin";
     }
 
 }
