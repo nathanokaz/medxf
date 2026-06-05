@@ -14,7 +14,6 @@ import com.pucpr.medxf.domain.user.User;
 import com.pucpr.medxf.domain.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -231,6 +230,48 @@ public class MedicoService {
             }
         }
         return casosGraves;
+    }
+
+    public List<String> informacoesPaciente(Integer id) {
+        List<String> infoPaciente = new ArrayList<>();
+        var paciente = pacienteRepository.findById(id);
+        infoPaciente.add(paciente.get().getNome());
+        infoPaciente.add(String.valueOf(id));
+        infoPaciente.add(paciente.get().getCpf());
+        infoPaciente.add(String.valueOf(paciente.get().getNascimento()));
+        infoPaciente.add(String.valueOf(paciente.get().getSexo()));
+        infoPaciente.add(paciente.get().getTelefone());
+        infoPaciente.add(String.valueOf(paciente.get().getHistorico1()));
+        infoPaciente.add(String.valueOf(paciente.get().getHistorico2()));
+        return infoPaciente;
+    }
+
+    @Transactional
+    public void editarInformacoesPaciente(Integer id, InformacoesPaciente informacoesPaciente) {
+        var paciente = pacienteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+        if (informacoesPaciente.nome() != null && !informacoesPaciente.nome().isBlank()) {
+            paciente.setNome(informacoesPaciente.nome());
+        }
+        if (informacoesPaciente.cpf() != null && !informacoesPaciente.cpf().isBlank()) {
+            if (pacienteRepository.existsByCpf(informacoesPaciente.cpf())
+                    && !informacoesPaciente.cpf().equals(paciente.getCpf())) {
+                throw new RuntimeException("CPF já cadastrado");
+            }
+            paciente.setCpf(informacoesPaciente.cpf());
+        }
+        if (informacoesPaciente.nascimento() != null) {
+            paciente.setNascimento(informacoesPaciente.nascimento());
+        }
+        if (informacoesPaciente.sexo() != null) {
+            paciente.setSexo(informacoesPaciente.sexo());
+        }
+        if (informacoesPaciente.historico1() != null) {
+            paciente.setHistorico1(informacoesPaciente.historico1());
+        }
+        if (informacoesPaciente.historico2() != null) {
+            paciente.setHistorico2(informacoesPaciente.historico2());
+        }
     }
 
     private Medico pegarMedico() {

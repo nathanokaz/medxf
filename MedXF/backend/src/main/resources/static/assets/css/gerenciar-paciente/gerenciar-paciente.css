@@ -8,8 +8,6 @@ body {
     background: #F4F7FB;
     color: #1E293B;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 header {
@@ -31,7 +29,6 @@ header {
     text-decoration: none;
     color: white;
     background: rgba(255, 255, 255, 0.12);
-    transition: 0.3s;
 }
 
 #botao-mais:hover {
@@ -55,25 +52,19 @@ header {
 
 .content {
     width: 100%;
-    max-width: 1200px;
+    max-width: 800px;
     padding: 32px 20px;
 }
 
 .page-header {
     width: 100%;
-    max-width: 650px;
-    margin: 0 auto 30px auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    margin-bottom: 30px;
 }
 
 .page-header h1 {
     font-size: 32px;
     color: #111827;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
 
 .page-header p {
@@ -81,45 +72,18 @@ header {
     font-size: 15px;
 }
 
-.btn-new {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    background: #1565D8;
-    color: white;
-    padding: 14px 24px;
-    border-radius: 14px;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.btn-new:hover {
-    background: #0F4FB5;
-}
-
-.btn-new:hover {
-    background: #0F4FB5;
-}
-
 .patient-grid {
     width: 100%;
-    display: flex;
-    justify-content: center;
 }
 
 .patient-card {
     width: 100%;
-    max-width: 650px;
     background: white;
     border-radius: 24px;
     padding: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
-    min-height: 420px;
 }
 
 .patient-top {
@@ -143,14 +107,14 @@ header {
 }
 
 .patient-info h2 {
-    color: #111827;
     font-size: 22px;
+    color: #111827;
     margin-bottom: 4px;
 }
 
 .patient-info span {
-    color: #64748B;
     font-size: 14px;
+    color: #64748B;
 }
 
 .form-group {
@@ -166,107 +130,94 @@ header {
 }
 
 .form-group input,
-.form-group textarea,
-.form-group select {
+.form-group select,
+.form-group textarea {
     width: 100%;
-    border: 1px solid #DCE3EB;
+    height: 48px;
+    padding: 0 14px;
     border-radius: 14px;
+    border: 1px solid #DCE3EB;
     background: #F8FAFC;
-    padding: 14px;
     font-size: 14px;
     color: #1E293B;
     outline: none;
-    transition: 0.3s;
     font-family: inherit;
+    transition: 0.3s;
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    background: white;
-    border-color: #1565D8;
-    box-shadow: 0 0 0 3px rgba(21, 101, 216, 0.1);
-}
-
-textarea {
+.form-group textarea {
     min-height: 100px;
+    padding: 14px;
     resize: vertical;
 }
 
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background: #fff;
+    border-color: #1565D8;
+    box-shadow: 0 0 0 3px rgba(21,101,216,0.1);
+}
+
 .actions {
-    display: flex;
-    gap: 12px;
     margin-top: 25px;
 }
 
 .save-btn {
-    flex: 2;
-    height: 48px;
+    width: 100%;
+    height: 50px;
     border: none;
     border-radius: 14px;
     background: #1565D8;
     color: white;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .save-btn:hover {
     background: #0F4FB5;
 }
 
-.delete-btn {
-    flex: 1;
-    height: 48px;
-    border: none;
-    border-radius: 14px;
-    background: #FEE2E2;
-    color: #DC2626;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
+.perguntas {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
 }
 
-.delete-btn:hover {
-    background: #DC2626;
+.perguntas label {
+    flex: 1;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #334155;
+    cursor: pointer;
+    border-radius: 12px;
+    border: 1px solid #DCE3EB;
+    background: #F8FAFC;
+}
+
+.perguntas input[type="radio"] {
+    display: none;
+}
+
+.perguntas label:has(input[type="radio"]:checked) {
+    background: #1565D8;
+    border-color: #1565D8;
     color: white;
 }
 
 @media (max-width: 768px) {
-    header {
-        padding: 0 15px;
-    }
-
-    #botao-mais span {
-        display: none;
-    }
-
     .content {
         padding: 20px 15px;
     }
 
-    .page-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .page-header h1 {
-        font-size: 26px;
-    }
-
     .patient-card {
-        padding: 20px;
-    }
-
-    .actions {
-        flex-direction: column;
-    }
-
-    .save-btn,
-    .delete-btn {
-        width: 100%;
+        padding: 24px;
     }
 }
 
@@ -274,14 +225,6 @@ textarea {
     .patient-top {
         flex-direction: column;
         text-align: center;
-    }
-
-    .patient-info {
-        width: 100%;
-    }
-
-    .page-header h1 {
-        font-size: 22px;
     }
 
     .avatar {

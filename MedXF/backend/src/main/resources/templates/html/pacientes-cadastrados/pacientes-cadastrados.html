@@ -33,7 +33,7 @@
           <thead>
           <tr>
             <th class="titulo-lista">Paciente</th>
-            <th class="titulo-lista">Responsável</th>
+            <th class="titulo-lista">CPF</th>
             <th class="titulo-lista">Nascimento</th>
             <th class="titulo-lista">Sexo</th>
             <th class="titulo-lista">Telefone</th>
@@ -53,6 +53,7 @@
                 </div>
               </div>
             </td>
+            <td class="conteudo-lista" th:text="${paciente.cpf}"></td>
             <td class="conteudo-lista" th:text="${paciente.nascimento}"></td>
             <td class="conteudo-lista" th:text="${paciente.sexo}"></td>
             <td class="conteudo-lista" th:text="${paciente.telefone}"></td>
@@ -67,7 +68,10 @@
               </div>
             </td>
             <td class="conteudo-lista">
-              <a href="/medico/gerenciar/paciente" id="botao-gerenciar">Gerenciar</a>
+              <a th:href="@{/medico/gerenciar/paciente/{id}(id=${paciente.id})}"
+                 id="botao-gerenciar">
+                Gerenciar
+              </a>
             </td>
           </tr>
           </tbody>
