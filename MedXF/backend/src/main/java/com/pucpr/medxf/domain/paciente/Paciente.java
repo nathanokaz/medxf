@@ -48,6 +48,9 @@ public class Paciente {
     @Column(nullable = false, unique = true)
     private String cpf;
 
+    @Column
+    private LocalDateTime criado_em;
+
     @ManyToOne
     @JoinColumn(name = "medico_id")
     private Medico medico;

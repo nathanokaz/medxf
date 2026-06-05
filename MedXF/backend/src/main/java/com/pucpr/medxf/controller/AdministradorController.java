@@ -29,7 +29,11 @@ public class AdministradorController {
     }
 
     @GetMapping("/home")
-    public String paginaHomeAdmin() {
+    public String paginaHomeAdmin(Model model) {
+        var informacoes = adminService.informacoesNumericasHome();
+        var medicos = adminService.listarMedicos();
+        model.addAttribute("infos", informacoes);
+        model.addAttribute("medicos", medicos);
         return "html/home-admin/home-admin";
     }
 

@@ -1,5 +1,6 @@
 package com.pucpr.medxf.domain.medico;
 
+import com.pucpr.medxf.domain.admin.Admin;
 import com.pucpr.medxf.domain.medico.dto.Especialidade;
 import com.pucpr.medxf.domain.paciente.Paciente;
 import com.pucpr.medxf.domain.triagem.Triagem;
@@ -52,6 +53,10 @@ public class Medico {
 
     @OneToMany(mappedBy = "medico")
     private List<Triagem> triagens;
+
+    @ManyToOne
+    @JoinColumn(name = "admin_id")
+    private Admin admin;
 
 
 }

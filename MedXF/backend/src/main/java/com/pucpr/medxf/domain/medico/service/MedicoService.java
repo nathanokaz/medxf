@@ -56,6 +56,7 @@ public class MedicoService {
                 .historico2(cadastroPaciente.historico2())
                 .cpf(cadastroPaciente.cpf())
                 .medico(pegarMedico())
+                .criado_em(LocalDateTime.now())
                 .build();
         pacienteRepository.save(paciente);
         return paciente;

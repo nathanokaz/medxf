@@ -1,8 +1,11 @@
 package com.pucpr.medxf.domain.admin;
 
+import com.pucpr.medxf.domain.medico.Medico;
 import com.pucpr.medxf.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "admins")
@@ -23,5 +26,8 @@ public class Admin {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "admin")
+    private List<Medico> medicos;
 
 }
