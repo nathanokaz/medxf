@@ -24,7 +24,11 @@ public class MedicoController {
     private final MedicoService medicoService;
 
     @GetMapping("/home")
-    public String paginaHomeMedico() {
+    public String paginaHomeMedico(Model model) {
+        var medico = medicoService.informacoesMedico();
+        var informacoes = medicoService.informacoesNumericasHome();
+        model.addAttribute("medico", medico);
+        model.addAttribute("infos", informacoes);
         return "/html/home-medico/home-medico";
     }
 

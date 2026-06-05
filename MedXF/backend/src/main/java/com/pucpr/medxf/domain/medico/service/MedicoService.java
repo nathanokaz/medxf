@@ -138,6 +138,44 @@ public class MedicoService {
         }
     }
 
+    public List<Integer> informacoesNumericasHome() {
+        int contadorTriagens = 0;
+        int contadorPacientes = 0;
+        List<Integer> informacoes = new ArrayList<>();
+        var medico = pegarMedico().getId();
+        var triagens = triagemReposiotry.findAllByMedicoId(medico);
+        for (Triagem t : triagens) {
+            contadorTriagens += 1;
+        }
+        var pacientes = pacienteRepository.findAllByMedicoId(medico);
+        for (Paciente p : pacientes) {
+            contadorPacientes += 1;
+        }
+        informacoes.add(contadorTriagens);
+        informacoes.add(contadorPacientes);
+        informacoes.add(pegarAltoRisco());
+        return informacoes;
+    }
+
+    private int pegarAltoRisco() {
+        int casosGraves = 0;
+        var medico = pegarMedico().getId();
+        var triagens = triagemReposiotry.findAllByMedicoId(medico);
+        var respostas = respostaRepository.findAllByTriagemIn(triagens);
+        for (Triagem t : triagens) {
+            int marcadasSim = 0;
+            for (Resposta r : respostas) {
+                if (r.getTriagem().equals(t) && r.isResposta()) {
+                    marcadasSim += 1;
+                }
+            }
+            if (marcadasSim >= 6) {
+                casosGraves += 1;
+            }
+        }
+        return casosGraves;
+    }
+
     private Medico pegarMedico() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return medicoRepository.findByUser_Email(email).orElseThrow(() -> new RuntimeException("Médico não encontrado"));
