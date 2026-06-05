@@ -9,4 +9,6 @@ public interface TriagemReposiotry extends JpaRepository<Triagem, Integer> {
 
     List<Triagem> findAllByMedicoId(Integer medico);
 
+    List<Triagem> findAllByPacienteId(Integer id);
+
 }

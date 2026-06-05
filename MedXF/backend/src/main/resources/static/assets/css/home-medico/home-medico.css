@@ -264,6 +264,33 @@ table {
     transform: scale(1.03);
 }
 
+.badge {
+    min-width: 100px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.risco-alto {
+    background: #FEE2E2;
+    color: #DC2626;
+}
+
+.risco-baixo {
+    background: #DCFCE7;
+    color: #16A34A;
+}
+
+.status-concluido {
+    background: #DCFCE7;
+    color: #16A34A;
+}
+
 @media (max-width: 1024px) {
     .caixas {
         grid-template-columns: repeat(2, 1fr);

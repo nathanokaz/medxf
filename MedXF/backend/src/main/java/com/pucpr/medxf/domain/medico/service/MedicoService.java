@@ -14,11 +14,14 @@ import com.pucpr.medxf.domain.user.User;
 import com.pucpr.medxf.domain.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cglib.core.Local;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +88,60 @@ public class MedicoService {
     public List<ListaPaciente> listarPacientes() {
         var pacientes = pacienteRepository.findAll();
         return pacientes.stream().map(ListaPaciente::new).toList();
+    }
+
+    public List<ListaPacientesHome> listarPacientesHome() {
+        var medico = pegarMedico().getId();
+        var pacientes = pacienteRepository.findAllByMedicoId(medico);
+        List<ListaPacientesHome> lista = new ArrayList<>();
+        for (Paciente p : pacientes) {
+            int idade = Period.between(p.getNascimento(), LocalDate.now()).getYears();
+            int sintomas = pegarSintomas(p);
+            Risco risco = verificarRisco(sintomas);
+            LocalDate data = pegarDataTriagem(p);
+            lista.add(new ListaPacientesHome(
+                    p.getId(),
+                    p.getNome(),
+                    p.getEmail(),
+                    idade,
+                    sintomas,
+                    risco,
+                    data,
+                    Status.CONCLUIDO
+            ));
+        }
+        return lista;
+    }
+
+    private LocalDate pegarDataTriagem(Paciente paciente) {
+        LocalDate data = null;
+        var triagens = triagemReposiotry.findAllByPacienteId(paciente.getId());
+        for (Triagem t : triagens) {
+            data = t.getCriado_em().toLocalDate();
+        }
+        return data;
+    }
+
+    private int pegarSintomas(Paciente paciente) {
+        int total = 0;
+        var triagens = triagemReposiotry.findAllByPacienteId(paciente.getId());
+        for (Triagem t : triagens) {
+            var respostas = t.getRespostas();
+            for (Resposta r : respostas) {
+                if (r.isResposta()) {
+                    total += 1;
+                }
+            }
+        }
+        return total;
+    }
+
+    private Risco verificarRisco(int sintomas) {
+        if (sintomas > 6) {
+            return Risco.ALTO;
+        } else {
+            return Risco.BAIXO;
+        }
     }
 
     public List<String> informacoesMedico() {

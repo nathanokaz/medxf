@@ -9,10 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,8 +24,10 @@ public class MedicoController {
     public String paginaHomeMedico(Model model) {
         var medico = medicoService.informacoesMedico();
         var informacoes = medicoService.informacoesNumericasHome();
+        var pacientesHome = medicoService.listarPacientesHome();
         model.addAttribute("medico", medico);
         model.addAttribute("infos", informacoes);
+        model.addAttribute("pacientesHome", pacientesHome);
         return "/html/home-medico/home-medico";
     }
 
@@ -60,8 +59,8 @@ public class MedicoController {
         return "redirect:/medico/home";
     }
 
-    @GetMapping("/gerenciar/paciente")
-    public String paginaGerenciarPacienteMedico() {
+    @GetMapping("/gerenciar/paciente/{id}")
+    public String paginaGerenciarPacienteMedico(@PathVariable Integer id) {
         return "html/gerenciar-paciente/gerenciar-paciente";
     }
 
