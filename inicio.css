@@ -1,0 +1,140 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #F4F7FB;
+    padding: 20px;
+    gap: 40px;
+}
+
+.imagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+}
+
+.titulo {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo h1 {
+    color: #1e293b;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+#texto {
+    color: #1e293b;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#texto-botoes {
+    font-size: 16px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.botao-home {
+    width: 100%;
+    max-width: 300px;
+    height: 46px;
+    border-radius: 14px;
+    border: none;
+    background-color: #1565D8;
+    transition: background 0.2s ease, transform 0.1s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(21, 101, 216, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao-home:hover {
+    background-color: #0f4fb5;
+    transform: translateY(-2px);
+}
+
+.botao-home:active {
+    transform: translateY(0);
+}
+
+.botao-home a {
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    body {
+        gap: 30px;
+        padding: 20px 15px;
+    }
+
+    .imagem img {
+        max-width: 220px;
+    }
+
+    .titulo h1 {
+        font-size: 28px;
+    }
+
+    #texto-botoes {
+        font-size: 15px;
+    }
+
+    .botao-home {
+        max-width: 100%;
+        height: 44px;
+    }
+
+    .botao-home a {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        gap: 25px;
+        padding: 20px 12px;
+    }
+
+    .imagem img {
+        max-width: 200px;
+    }
+
+    .titulo h1 {
+        font-size: 24px;
+    }
+
+    #texto-botoes {
+        font-size: 14px;
+    }
+
+    .botao-home {
+        height: 44px;
+    }
+
+    .botao-home a {
+        font-size: 14px;
+    }
+}
