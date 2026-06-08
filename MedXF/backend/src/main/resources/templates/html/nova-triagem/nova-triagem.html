@@ -12,65 +12,65 @@
     <title>Nova Triagem - MedXF</title>
 </head>
 <body>
-    <header>
-        <a th:href="@{/medico/home}" id="botao-mais">
-            <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
-            <span>Menu Principal</span>
-        </a>
-        <h1 id="nome"></h1>
-        <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
-    </header>
-    <div class="container">
-        <div class="formulario">
-            <form th:action="@{/medico/triagem}" method="post">
-                <div class="titulo">
-                    <h2>Dados do Paciente</h2>
-                </div>
-                <div class="nomes">
-                    <input type="text" name="nome" placeholder="Nome Completo" required>
-                    <input type="text" name="cpf" placeholder="CPF" required>
-                </div>
-                <div class="data-sexo">
-                    <input id="data-nascimento" type="date" name="nascimento" required>
-                    <select name="sexo" id="sexo-paciente" required>
-                        <option value="">Sexo</option>
-                        <option value="MASCULINO">Masculino</option>
-                        <option value="FEMININO">Feminino</option>
-                    </select>
-                </div>
-                <div class="contato">
-                    <input type="email" name="email" placeholder="Email" required>
-                    <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
-                </div>
-                <h3>Histórico familiar de deficiência intelectual?</h3>
-                <div class="perguntas">
-                    <label>
-                        <input type="radio" name="historico1" value="SIM" required>
-                        Sim
-                    </label>
-                    <label>
-                        <input type="radio" name="historico1" value="NAO">
-                        Não
-                    </label>
-                </div>
-                <h3>Histórico de X Frágil na família?</h3>
-                <div class="perguntas">
-                    <label>
-                        <input type="radio" name="historico2" value="SIM" required>
-                        Sim
-                    </label>
-                    <label>
-                        <input type="radio" name="historico2" value="NAO">
-                        Não
-                    </label>
-                </div>
-                <div class="continuar">
-                    <button id="botao-continuar" type="submit">
-                        Continuar
-                    </button>
-                </div>
-            </form>
-        </div>
+<header>
+    <a th:href="@{/medico/home}" id="botao-mais">
+        <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
+        <span>Menu Principal</span>
+    </a>
+    <h1 id="nome"></h1>
+    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
+</header>
+<div class="container">
+    <div class="formulario">
+        <form th:action="@{/medico/triagem}" method="post">
+            <div class="titulo">
+                <h2>Dados do Paciente</h2>
+            </div>
+            <div class="nomes">
+                <input type="text" name="nome" placeholder="Nome Completo" required>
+                <input type="text" name="cpf" placeholder="CPF" required>
+            </div>
+            <div class="data-sexo">
+                <input id="data-nascimento" type="date" name="nascimento" required>
+                <select name="sexo" id="sexo-paciente" required>
+                    <option value="">Sexo</option>
+                    <option value="MASCULINO">Masculino</option>
+                    <option value="FEMININO">Feminino</option>
+                </select>
+            </div>
+            <div class="contato">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
+            </div>
+            <h3>Histórico familiar de deficiência intelectual?</h3>
+            <div class="perguntas">
+                <label>
+                    <input type="radio" name="historico1" value="SIM" required>
+                    Sim
+                </label>
+                <label>
+                    <input type="radio" name="historico1" value="NAO">
+                    Não
+                </label>
+            </div>
+            <h3>Histórico de X Frágil na família?</h3>
+            <div class="perguntas">
+                <label>
+                    <input type="radio" name="historico2" value="SIM" required>
+                    Sim
+                </label>
+                <label>
+                    <input type="radio" name="historico2" value="NAO">
+                    Não
+                </label>
+            </div>
+            <div class="continuar">
+                <button id="botao-continuar" type="submit">
+                    Continuar
+                </button>
+            </div>
+        </form>
     </div>
+</div>
 </body>
 </html>

@@ -1,11 +1,12 @@
 package com.pucpr.medxf.domain.medico.service;
 
+import com.pucpr.medxf.domain.Socioeconomico.Socioeconomico;
+import com.pucpr.medxf.domain.Socioeconomico.repository.SocioeconomicoRepository;
 import com.pucpr.medxf.domain.medico.Medico;
 import com.pucpr.medxf.domain.medico.dto.*;
 import com.pucpr.medxf.domain.medico.repository.MedicoRepository;
 import com.pucpr.medxf.domain.paciente.Paciente;
 import com.pucpr.medxf.domain.paciente.repository.PacienteRepository;
-import com.pucpr.medxf.domain.pergunta.repository.PerguntaRepository;
 import com.pucpr.medxf.domain.respostas.Resposta;
 import com.pucpr.medxf.domain.respostas.repository.RespostaRepository;
 import com.pucpr.medxf.domain.triagem.Triagem;
@@ -30,10 +31,10 @@ public class MedicoService {
 
     private final PacienteRepository pacienteRepository;
     private final MedicoRepository medicoRepository;
-    private final PerguntaRepository perguntaRepository;
     private final RespostaRepository respostaRepository;
     private final TriagemReposiotry triagemReposiotry;
     private final UserRepository userRepository;
+    private final SocioeconomicoRepository socioeconomicoRepository;
 
     @Transactional
     public Paciente cadastrarPaciente(CadastroPaciente cadastroPaciente) {
@@ -46,6 +47,7 @@ public class MedicoService {
         if (pacienteRepository.existsByCpf(cadastroPaciente.cpf())) {
             throw new IllegalArgumentException("CPF já cadastrado.");
         }
+
         Paciente paciente = Paciente.builder()
                 .nome(cadastroPaciente.nome().trim())
                 .nascimento(cadastroPaciente.nascimento())
@@ -58,31 +60,66 @@ public class MedicoService {
                 .medico(pegarMedico())
                 .criado_em(LocalDateTime.now())
                 .build();
-        pacienteRepository.save(paciente);
-        return paciente;
+        return pacienteRepository.save(paciente);
     }
 
     @Transactional
     public void cadastrarAvaliacao(AvaliacaoMedico avaliacaoMedico) {
         Paciente paciente = pacienteRepository.findById(avaliacaoMedico.pacienteId())
                 .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+
         Triagem triagem = Triagem.builder()
                 .criado_em(LocalDateTime.now())
                 .medico(pegarMedico())
                 .paciente(paciente)
                 .build();
+
         triagemReposiotry.save(triagem);
+
         for (Respostas dto : avaliacaoMedico.respostas()) {
-            var pergunta = perguntaRepository.findById(dto.pergunta())
-                    .orElseThrow(() -> new RuntimeException("Pergunta não encontrada"));
+            var pergunta = dto.pergunta();
             Resposta resposta = Resposta.builder()
-                    .pergunta(pergunta)
                     .resposta(Boolean.TRUE.equals(dto.resposta()))
                     .observacao(dto.observacao())
                     .triagem(triagem)
                     .build();
             respostaRepository.save(resposta);
         }
+    }
+
+    @Transactional
+    public void salvarSocioeconomica(CadastroSocioeconomico dados) {
+        Paciente paciente = pacienteRepository.findById(dados.pacienteId())
+                .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+        Socioeconomico socio = new Socioeconomico();
+        socio.setPaciente(paciente);
+        socio.setNomeResponsavel(dados.nomeResponsavel());
+        socio.setQuantidadeMoradores(dados.quantidadeMoradores());
+        socio.setRenda(dados.renda());
+        socio.setInternet(dados.internet());
+        socio.setBeneficio(dados.beneficio());
+        socio.setPlanoSaude(dados.planoSaude());
+        socio.setMoradia(dados.moradia());
+        socioeconomicoRepository.save(socio);
+    }
+
+    public Socioeconomico buscarSocioeconomico(Integer pacienteId) {
+        return socioeconomicoRepository.findAll()
+                .stream()
+                .filter(s -> s.getPaciente().getId().equals(pacienteId))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public List<Triagem> buscarTriagensPorPaciente(Integer pacienteId) {
+        return triagemReposiotry.findAllByPacienteId(pacienteId);
+    }
+
+    public List<Resposta> buscarRespostasPorTriagens(List<Triagem> triagens) {
+        if (triagens == null || triagens.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return respostaRepository.findAllByTriagemIn(triagens);
     }
 
     public List<ListaPaciente> listarPacientes() {
@@ -129,7 +166,7 @@ public class MedicoService {
             var respostas = t.getRespostas();
             for (Resposta r : respostas) {
                 if (r.isResposta()) {
-                    total += 1;
+                    total++;
                 }
             }
         }
@@ -137,11 +174,7 @@ public class MedicoService {
     }
 
     private Risco verificarRisco(int sintomas) {
-        if (sintomas > 6) {
-            return Risco.ALTO;
-        } else {
-            return Risco.BAIXO;
-        }
+        return sintomas > 6 ? Risco.ALTO : Risco.BAIXO;
     }
 
     public List<String> informacoesMedico() {
@@ -201,13 +234,9 @@ public class MedicoService {
         List<Integer> informacoes = new ArrayList<>();
         var medico = pegarMedico().getId();
         var triagens = triagemReposiotry.findAllByMedicoId(medico);
-        for (Triagem t : triagens) {
-            contadorTriagens += 1;
-        }
+        contadorTriagens = triagens.size();
         var pacientes = pacienteRepository.findAllByMedicoId(medico);
-        for (Paciente p : pacientes) {
-            contadorPacientes += 1;
-        }
+        contadorPacientes = pacientes.size();
         informacoes.add(contadorTriagens);
         informacoes.add(contadorPacientes);
         informacoes.add(pegarAltoRisco());
@@ -223,11 +252,11 @@ public class MedicoService {
             int marcadasSim = 0;
             for (Resposta r : respostas) {
                 if (r.getTriagem().equals(t) && r.isResposta()) {
-                    marcadasSim += 1;
+                    marcadasSim++;
                 }
             }
             if (marcadasSim >= 6) {
-                casosGraves += 1;
+                casosGraves++;
             }
         }
         return casosGraves;
@@ -277,12 +306,13 @@ public class MedicoService {
 
     private Medico pegarMedico() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        return medicoRepository.findByUser_Email(email).orElseThrow(() -> new RuntimeException("Médico não encontrado"));
+        return medicoRepository.findByUser_Email(email)
+                .orElseThrow(() -> new RuntimeException("Médico não encontrado"));
     }
 
     private User pegarUser() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User não encontrado"));
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User não encontrado"));
     }
-
 }

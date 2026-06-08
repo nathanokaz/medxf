@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #F4F7FB;
+    min-height: 100vh;
+}
+
+header {
+    height: 72px;
+    background: #1565D8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    color: white;
+}
+
+#botao-voltar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.12);
+}
+
+#botao-voltar:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 30px 16px;
+}
+
+form {
+    width: 100%;
+    max-width: 650px;
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.titulo {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+.grupo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="number"] {
+    flex: 1;
+    height: 46px;
+    padding: 0 12px;
+    border: 1px solid #DBE2EA;
+    border-radius: 12px;
+    background: #F8FAFC;
+    outline: none;
+}
+
+input:focus {
+    border-color: #1565D8;
+    background: white;
+}
+
+h3 {
+    margin-top: 18px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #1E293B;
+}
+
+.opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.opcoes label {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #DBE2EA;
+    background: #F8FAFC;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.opcoes label:hover {
+    background: #E2E8F0;
+}
+
+.opcoes input {
+    display: none;
+}
+
+.opcoes label:has(input:checked) {
+    background: #1565D8;
+    color: white;
+    border-color: #1565D8;
+}
+
+#botao-continuar {
+    margin-top: 25px;
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 12px;
+    background: #1565D8;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#botao-continuar:hover {
+    background: #0F4FB5;
+}

@@ -37,7 +37,7 @@
                         <span>Dados do Médico</span>
                     </div>
                 </div>
-                <form th:action="@{/editar/medico/{id}(id=${medico[6]})}" method="post">
+                <form th:action="@{/admin/editar/medico/{id}(id=${medico[6]})}" method="post">
                     <div class="form-group">
                         <label>Nome Completo</label>
                         <input type="text" th:placeholder="${medico[0]}" name="nome">

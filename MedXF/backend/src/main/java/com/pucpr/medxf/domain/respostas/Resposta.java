@@ -24,7 +24,7 @@ public class Resposta {
     @Column
     private String observacao;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pergunta_id")
     private Pergunta pergunta;
 

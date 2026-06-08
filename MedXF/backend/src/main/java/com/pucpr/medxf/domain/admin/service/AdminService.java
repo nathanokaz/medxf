@@ -44,9 +44,10 @@ public class AdminService {
             throw new IllegalArgumentException("CRM já cadastrado.");
         }
         if (medicoRepository.existsByCpf(cadastroMedico.cpf())) {
-            throw new IllegalArgumentException("CPF ja cadastrado.");
+            throw new IllegalArgumentException("CPF já cadastrado.");
         }
-        var senhaCriptografada = new BCryptPasswordEncoder().encode(cadastroMedico.senha());
+        var senhaCriptografada =
+                new BCryptPasswordEncoder().encode(cadastroMedico.senha());
         User user = User.builder()
                 .email(cadastroMedico.email())
                 .senha(senhaCriptografada)
@@ -62,6 +63,7 @@ public class AdminService {
                 .cidade(cadastroMedico.cidade())
                 .estado(cadastroMedico.estado())
                 .cpf(cadastroMedico.cpf())
+                .user(user)
                 .admin(pegarAdmin())
                 .build();
         medicoRepository.save(medico);
@@ -157,8 +159,52 @@ public class AdminService {
         return infosMedico;
     }
 
-    public void editarMedico() {
-        //IMPLEMENTAR
+    @Transactional
+    public void editarMedico(Integer id, CadastroMedico cadastroMedico) {
+        var medico = medicoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Médico não encontrado"));
+        if (cadastroMedico.nome() != null && !cadastroMedico.nome().isBlank()) {
+            medico.setNome(cadastroMedico.nome());
+        }
+        if (cadastroMedico.crm() != null && !cadastroMedico.crm().isBlank()) {
+            if (medicoRepository.existsByCrm(cadastroMedico.crm())
+                    && !cadastroMedico.crm().equals(medico.getCrm())) {
+                throw new RuntimeException("CRM já cadastrado");
+            }
+            medico.setCrm(cadastroMedico.crm());
+        }
+        if (cadastroMedico.cpf() != null && !cadastroMedico.cpf().isBlank()) {
+            if (medicoRepository.existsByCpf(cadastroMedico.cpf())
+                    && !cadastroMedico.cpf().equals(medico.getCpf())) {
+                throw new RuntimeException("CPF já cadastrado");
+            }
+            medico.setCpf(cadastroMedico.cpf());
+        }
+        if (cadastroMedico.especialidade() != null) {
+            medico.setEspecialidade(cadastroMedico.especialidade());
+        }
+        if (cadastroMedico.hospital() != null && !cadastroMedico.hospital().isBlank()) {
+            medico.setHospital(cadastroMedico.hospital());
+        }
+        if (cadastroMedico.cidade() != null && !cadastroMedico.cidade().isBlank()) {
+            medico.setCidade(cadastroMedico.cidade());
+        }
+        if (cadastroMedico.estado() != null && !cadastroMedico.estado().isBlank()) {
+            medico.setEstado(cadastroMedico.estado());
+        }
+        if (cadastroMedico.email() != null && !cadastroMedico.email().isBlank()) {
+            var user = medico.getUser();
+            if (userRepository.existsByEmail(cadastroMedico.email())
+                    && !cadastroMedico.email().equals(user.getEmail())) {
+                throw new RuntimeException("Email já cadastrado");
+            }
+            user.setEmail(cadastroMedico.email());
+        }
+        if (cadastroMedico.senha() != null && !cadastroMedico.senha().isBlank()) {
+            var senhaCriptografada =
+                    new BCryptPasswordEncoder().encode(cadastroMedico.senha());
+            medico.getUser().setSenha(senhaCriptografada);
+        }
     }
 
     private Admin pegarAdmin() {

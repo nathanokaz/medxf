@@ -1,9 +1,6 @@
 package com.pucpr.medxf.controller;
 
-import com.pucpr.medxf.domain.medico.dto.AvaliacaoMedico;
-import com.pucpr.medxf.domain.medico.dto.CadastroPaciente;
-import com.pucpr.medxf.domain.medico.dto.InformacoesPaciente;
-import com.pucpr.medxf.domain.medico.dto.InformacoesPerfil;
+import com.pucpr.medxf.domain.medico.dto.*;
 import com.pucpr.medxf.domain.medico.service.MedicoService;
 import com.pucpr.medxf.domain.paciente.Paciente;
 import jakarta.validation.Valid;
@@ -12,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/medico")
 @RequiredArgsConstructor
@@ -21,16 +16,15 @@ public class MedicoController {
 
     private final MedicoService medicoService;
 
+
     @GetMapping("/home")
     public String paginaHomeMedico(Model model) {
-        var medico = medicoService.informacoesMedico();
-        var informacoes = medicoService.informacoesNumericasHome();
-        var pacientesHome = medicoService.listarPacientesHome();
-        model.addAttribute("medico", medico);
-        model.addAttribute("infos", informacoes);
-        model.addAttribute("pacientesHome", pacientesHome);
+        model.addAttribute("medico", medicoService.informacoesMedico());
+        model.addAttribute("infos", medicoService.informacoesNumericasHome());
+        model.addAttribute("pacientesHome", medicoService.listarPacientesHome());
         return "/html/home-medico/home-medico";
     }
+
 
     @GetMapping("/triagem")
     public String paginaNovaTriagemMedico() {
@@ -40,7 +34,23 @@ public class MedicoController {
     @PostMapping("/triagem")
     public String cadastrarPaciente(@Valid CadastroPaciente cadastroPaciente) {
         Paciente paciente = medicoService.cadastrarPaciente(cadastroPaciente);
-        return "redirect:/medico/avaliacao?pacienteId=" + paciente.getId();
+
+        return "redirect:/medico/triagem/socioeconomica?pacienteId=" + paciente.getId();
+    }
+
+
+    @GetMapping("/triagem/socioeconomica")
+    public String paginaTriagemSocioeconomicaMedico(@RequestParam Integer pacienteId, Model model) {
+        model.addAttribute("pacienteId", pacienteId);
+        return "html/triagem-socioeconomica/triagem-socioeconomica";
+    }
+
+    @PostMapping("/triagem/socioeconomica")
+    public String cadastrarSocioeconomicaPaciente(@ModelAttribute CadastroSocioeconomico dados) {
+
+        medicoService.salvarSocioeconomica(dados);
+
+        return "redirect:/medico/avaliacao?pacienteId=" + dados.pacienteId();
     }
 
     @GetMapping("/avaliacao")
@@ -57,8 +67,13 @@ public class MedicoController {
 
     @GetMapping("/gerenciar/paciente/{id}")
     public String paginaGerenciarPacienteMedico(@PathVariable Integer id, Model model) {
-        var infoPaciente = medicoService.informacoesPaciente(id);
-        model.addAttribute("paciente", infoPaciente);
+        model.addAttribute("paciente", medicoService.informacoesPaciente(id));
+        var triagens = medicoService.buscarTriagensPorPaciente(id);
+        var respostas = (triagens == null || triagens.isEmpty())
+                ? java.util.Collections.emptyList()
+                : medicoService.buscarRespostasPorTriagens(triagens);
+        model.addAttribute("respostas", respostas);
+
         return "html/gerenciar-paciente/gerenciar-paciente";
     }
 
@@ -70,15 +85,13 @@ public class MedicoController {
 
     @GetMapping("/pacientes")
     public String paginaPacientesCadastradosMedico(Model model) {
-        var pacientes = medicoService.listarPacientes();
-        model.addAttribute("pacientes", pacientes);
+        model.addAttribute("pacientes", medicoService.listarPacientes());
         return "html/pacientes-cadastrados/pacientes-cadastrados";
     }
 
     @GetMapping("/perfil")
     public String paginaPerfilMedico(Model model) {
-        var medico = medicoService.informacoesMedico();
-        model.addAttribute("medico", medico);
+        model.addAttribute("medico", medicoService.informacoesMedico());
         return "html/perfil-medico/perfil-medico";
     }
 
@@ -87,5 +100,4 @@ public class MedicoController {
         medicoService.editarInformacoesMedico(informacoesPerfil);
         return "redirect:/inicio/login";
     }
-
 }

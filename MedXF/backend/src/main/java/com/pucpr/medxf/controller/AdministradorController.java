@@ -56,7 +56,8 @@ public class AdministradorController {
     }
 
     @PostMapping("/editar/medico/{id}")
-    public String editarInformacoesMedico(@PathVariable Integer id) {
+    public String editarInformacoesMedico(@PathVariable Integer id, CadastroMedico cadastroMedico) {
+        adminService.editarMedico(id, cadastroMedico);
         return "redirect:/admin/home";
     }
 

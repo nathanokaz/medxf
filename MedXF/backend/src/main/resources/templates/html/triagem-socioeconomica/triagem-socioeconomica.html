@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/triagem-socioeconomica/triagem-socioeconomica.css}">
+    <link rel="icon" th:href="@{/assets/icones/Icone-Usuario.png}" type="image/png">
+
+    <title>Triagem Socioeconômica - MedXF</title>
+</head>
+
+<body>
+
+<header>
+    <a th:href="@{/medico/triagem}" id="botao-voltar">
+        <img th:src="@{/assets/icones/Icone-Voltar.png}" alt="voltar" width="20">
+        <span>Voltar</span>
+    </a>
+
+    <h1 id="nome"></h1>
+
+    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100">
+</header>
+
+<div class="container">
+    <form th:action="@{/medico/triagem/socioeconomica}" method="post">
+
+        <input type="hidden" name="pacienteId" th:value="${pacienteId}">
+
+        <h2 class="titulo">Triagem Socioeconômica</h2>
+
+        <div class="grupo">
+            <input type="text" name="nomeResponsavel" placeholder="Nome do Responsável" required>
+            <input type="number" name="quantidadeMoradores" placeholder="Quantidade de moradores" required>
+        </div>
+
+        <h3>Renda familiar mensal</h3>
+        <div class="opcoes">
+            <label><input type="radio" name="renda" value="ATE_1_SALARIO" required>Até 1 salário</label>
+            <label><input type="radio" name="renda" value="ATE_3_SALARIOS">Até 3 salários</label>
+            <label><input type="radio" name="renda" value="ATE_5_SALARIOS">Até 5 salários</label>
+            <label><input type="radio" name="renda" value="ACIMA_5_SALARIOS">Acima de 5 salários</label>
+        </div>
+
+        <h3>Internet</h3>
+        <div class="opcoes">
+            <label><input type="radio" name="internet" value="SIM" required>Sim</label>
+            <label><input type="radio" name="internet" value="NAO">Não</label>
+        </div>
+
+        <h3>Benefício social</h3>
+        <div class="opcoes">
+            <label><input type="radio" name="beneficio" value="SIM" required>Sim</label>
+            <label><input type="radio" name="beneficio" value="NAO">Não</label>
+        </div>
+
+        <h3>Plano de saúde</h3>
+        <div class="opcoes">
+            <label><input type="radio" name="planoSaude" value="SIM" required>Sim</label>
+            <label><input type="radio" name="planoSaude" value="NAO">Não</label>
+        </div>
+
+        <h3>Moradia</h3>
+        <div class="opcoes">
+            <label><input type="radio" name="moradia" value="PROPRIA" required>Própria</label>
+            <label><input type="radio" name="moradia" value="ALUGADA">Alugada</label>
+            <label><input type="radio" name="moradia" value="CEDIDA">Cedida</label>
+        </div>
+
+        <button type="submit" id="botao-continuar">Continuar</button>
+
+    </form>
+</div>
+
+</body>
+</html>

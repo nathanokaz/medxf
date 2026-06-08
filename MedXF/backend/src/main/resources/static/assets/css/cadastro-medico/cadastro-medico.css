@@ -1,191 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
+    background: #F4F7FB;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    background-color: #F4F7FB;
-    font-family: sans-serif;
 }
 
 header {
+    width: 100%;
     height: 72px;
-    background-color: #1565D8;
+    background: #1565D8;
     display: flex;
     align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
     justify-content: space-between;
-}
-
-h1 {
-    color: #FFFFFF;
-    font-size: 16px;
+    padding: 0 24px;
 }
 
 #botao-mais {
-    background: transparent;
-    border: none;
-    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-}
-
-#img-mais {
-    margin-left: auto;
-}
-
-#nome {
-    margin-left: auto;
-}
-
-button {
-    transition: 1s;
-    background-color: #2563EB;
-}
-
-button:hover {
-    background-color: #2563EB;
-    border: none;
-    transform: scale(1.05);
-    transition: 1s;
-}
-
-.titulo {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-h2 {
-    font-size: 18px;
-    color: #181818;
-    padding-top: 20px;
-    padding-left: 32px;
-}
-
-.nomes {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    padding-left: 20px;
     gap: 10px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    background: rgba(255,255,255,.12);
+    transition: .3s;
 }
 
-.dados {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    padding-left: 20px;
-    gap: 10px;
-    padding-top: 0px;
+#botao-mais:hover {
+    background: rgba(255,255,255,.2);
 }
 
-.continuar {
-    display: flex;
-    margin-top: 120px;
-    justify-content: center;
-    padding: 10px;
-    padding-left: 20px;
-    font-size: 22px;
-    color: #1E293B;
-    padding-top: 40px;
-    padding-left: 32px;
+#botao-mais span {
+    font-size: 14px;
     font-weight: 600;
 }
 
-.formulario {
+#nome {
+    flex: 1;
+}
+
+.container {
+    width: 100%;
     display: flex;
     justify-content: center;
-    min-height: 85vh;
+    padding: 30px 20px;
 }
 
-#botao-continuar:hover {
-    background-color: #114ea4;
-    transform: scale(1.03);
-}
-
-#especialidade-medico {
-    margin-top: 20px;
-    padding: 0 20px;
-}
-
-.formulario form {
+.formulario {
     width: 100%;
-    max-width: 450px;
+    max-width: 700px;
 }
 
-.nomes {
+form {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+}
+
+.titulo {
+    margin-bottom: 25px;
+}
+
+h2 {
+    text-align: center;
+    color: #111827;
+    font-size: 28px;
+}
+
+.nomes,
+.contato {
     display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 0;
+    gap: 14px;
+    margin-bottom: 16px;
 }
 
-.dados {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 0;
-    margin-top: 16px;
-}
-
-input {
+.nomes input {
     width: 100%;
-    height: 42px;
-    background-color: #EAEAEA;
-    border: 2px solid #E0E3E7;
-    border-radius: 10px;
+}
+
+.contato input,
+.contato select {
+    flex: 1;
+}
+
+input,
+select {
+    height: 48px;
+    border: 1px solid #DBE2EA;
+    border-radius: 14px;
+    background: #F8FAFC;
+    padding: 0 14px;
     font-size: 14px;
-    padding-left: 10px;
-    height: 42px;
-    padding-left: 15px;
-    color: #5D5D5D;
     outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.2s;
+    transition: .3s;
 }
 
-input:focus, #especialidade-medico:focus {
+input:focus,
+select:focus {
     border-color: #1565D8;
-}
-
-#especialidade-medico {
-    width: 100%;
-    background-color: #EAEAEA;
-    border: 2px solid #E0E3E7;
-    border-radius: 10px;
-    font-size: 14px;
-    padding-left: 15px;
-    color: #5D5D5D;
-    height: 42px;
-    box-sizing: border-box;
-    outline: none;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(21,101,216,.1);
 }
 
 .continuar {
-    display: flex;
-    margin-top: 40px;
-    justify-content: center;
-    padding: 0;
+    margin-top: 30px;
 }
 
 #botao-continuar {
     width: 100%;
-    height: 46px;
-    height: 46px;
-    background-color: #1565D8;
-    color: white;
+    height: 50px;
     border: none;
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: 14px;
+    background: #1565D8;
+    color: white;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: .3s;
 }
 
 #botao-continuar:hover {
-    background-color: #114ea4;
-    transform: scale(1.02);
+    background: #114ea4;
+}
+
+@media (max-width: 768px) {
+
+    .nomes,
+    .contato {
+        flex-direction: column;
+    }
+
+    form {
+        padding: 24px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    #botao-mais span {
+        display: none;
+    }
 }
