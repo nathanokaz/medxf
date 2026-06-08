@@ -10,9 +10,6 @@ public record CadastroPaciente(
         @NotBlank(message = "Nome obrigatório.")
         String nome,
 
-        @NotBlank(message = "Nome do Responsável obrigatório.")
-        String nomeResponsavel,
-
         @NotNull(message = "Data de Nascimento obrigatória.")
         LocalDate nascimento,
 
@@ -24,17 +21,16 @@ public record CadastroPaciente(
         String email,
 
         @NotBlank(message = "Telefone obrigatório.")
-        @Pattern(
-                regexp = "^\\(?\\d{2}\\)?\\s?9?\\d{4}-?\\d{4}$",
-                message = "Telefone inválido."
-        )
         String telefone,
 
         @NotNull(message = "Histórico deficiência intelectual obrigatório.")
         Historico historico1,
 
         @NotNull(message = "Histórico X frágil obrigatório.")
-        Historico historico2
+        Historico historico2,
+
+        @NotBlank(message = "CPF obrigatório.")
+        String cpf
 
 ) {
 }

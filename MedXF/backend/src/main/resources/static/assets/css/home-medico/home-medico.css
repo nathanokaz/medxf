@@ -1,28 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #F4F7FB;
-    font-family: sans-serif;
+}
+
+header {
+    height: 70px;
+    background-color: #1565D8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
 }
 
 .menu-container {
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+}
+
+#icone-mais {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .popup-dropdown {
     position: absolute;
-    top: 50px;
+    top: 55px;
     left: 0;
-    width: 230px;
+    width: 240px;
     background-color: #1565D8;
     border-radius: 12px;
-    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     display: none;
-    flex-direction: column;
-    padding: 8px 0;
+    overflow: hidden;
+    z-index: 1000;
 }
 
 .popup-dropdown.ativo {
@@ -30,237 +53,295 @@ body {
 }
 
 .popup-links {
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .popup-item {
-    display: flex;
-    align-items: center;
-    padding: 10px 16px;
-    color: #ffffff;
+    padding: 14px 18px;
+    color: white;
     text-decoration: none;
-    font-size: 14px;
-    transition: background-color 0.2s;
+    transition: 0.3s;
 }
 
 .popup-item:hover {
     background-color: #0f4fb5;
 }
 
-#icone-mais {
-    background-color: #1565D8;
-    border: none;
+.usuario {
     display: flex;
-    justify-content: center;
     align-items: center;
-    cursor: pointer;
+    gap: 15px;
+}
+
+#nome-doutor {
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 #icone-perfil {
     border-radius: 50%;
 }
 
-.usuario {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
 .container {
+    width: 100%;
     display: flex;
     justify-content: center;
+    padding: 30px 20px;
 }
 
 .principal {
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 1200px;
-    padding-top: 50px;
-    gap: 15px;
-}
-
-.caixas {
-    background-color: white;
-    display: flex;
-    gap: 15px;
-}
-
-.caixa {
-    width: 390px;
-    height: 130px;
-    padding-left: 30px;
-    border-radius: 18px;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    border-top: 7px solid #1565D8;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.numero {
-    color: #1565D8;
-    font-size: 30px;
-    display: flex;
-    margin-top: 5px;
-}
-
-#nome-doutor {
-    color: white;
-}
-
-.subtitulo {
-    display: flex;
-}
-
-button {
-    transition: 0.3s ease;
-    cursor: pointer;
-}
-
-button:hover {
-    transform: scale(1.03);
-}
-
-header {
-    height: 72px;
-    background-color: #1565D8;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    justify-content: space-between;
-}
-
-p {
-    font-size: 16px;
-    color: #64748B;
-    white-space: nowrap;
+    gap: 20px;
 }
 
 h1 {
-    color: black;
-    font-size: 28px;
+    color: #111827;
+    font-size: 32px;
 }
 
 h2 {
     color: #64748B;
     font-size: 18px;
+    font-weight: 400;
 }
 
 h3 {
-    font-size: 26px;
-    margin: 0;
+    color: #111827;
+    font-size: 24px;
+}
+
+.caixas {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.caixa {
+    width: 100%;
+    height: 130px;
+    border: none;
+    border-radius: 18px;
+    background-color: white;
+    border-top: 6px solid #1565D8;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.caixa:hover {
+    transform: translateY(-4px);
+}
+
+.subtitulo {
+    color: #64748B;
+    font-size: 15px;
+}
+
+.numero {
+    margin-top: 8px;
+    color: #1565D8;
+    font-size: 34px;
+    font-weight: 700;
 }
 
 .lista {
     width: 100%;
-    background-color: #EFEFEF;
-    padding: 20px;
+    background-color: white;
     border-radius: 18px;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
 }
 
 .lista-header {
     display: flex;
     align-items: center;
-    width: 100%;
-    padding-bottom: 5px;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .ver-mais {
-    color: #181818;
-    font-size: 16px;
-    font-weight: 600;
-    margin-left: 70%;
+    color: #1565D8;
     text-decoration: none;
-    transition: color 0.2s ease, transform 0.2s ease;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
 .ver-mais:hover {
-    color: #1565D8;
-    transform: scale(1.03);
+    opacity: 0.8;
 }
 
 table {
     width: 100%;
-    border-radius: 18px;
+    border-collapse: separate;
     border-spacing: 0;
+    border-radius: 15px;
     overflow: hidden;
 }
 
 .titulo-lista {
-    color: white;
-    font-size: 18px;
-    text-align: left;
-    padding: 12px;
     background-color: #1565D8;
-    padding-left: 15px;
+    color: white;
+    text-align: left;
+    padding: 14px;
+    font-size: 15px;
 }
 
 .conteudo-lista {
-    padding: 15px;
+    padding: 16px 14px;
     color: #64748B;
-    font-size: 16px;
+    border-bottom: 1px solid #E5E7EB;
     vertical-align: middle;
-}
-
-#botao-gerenciar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    border-radius: 15px;
-    background-color: #1565D8;
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s ease;
-    width: 100px;
-    height: 35px;
-    box-sizing: border-box;
-}
-
-#botao-gerenciar:hover {
-    transform: scale(1.05);
-    background-color: #0f4fb5;
 }
 
 .medico {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
+}
+
+.nome {
+    color: #111827;
+    font-weight: 600;
+}
+
+.email {
+    color: #64748B;
+    font-size: 14px;
+}
+
+.risco,
+.status {
+    width: 100px;
+    height: 35px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
 }
 
 .risco {
-    background-color: rgba(255, 159, 159, 0.441);
-    border-radius: 15px;
-    width: 100px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: rgba(255, 79, 79, 0.12);
     color: rgb(255, 79, 79);
-    font-weight: 600;
 }
 
 .status {
-    background-color: rgba(159, 255, 161, 0.441);
-    border-radius: 15px;
-    width: 100px;
-    height: 35px;
+    background-color: rgba(68, 167, 53, 0.12);
+    color: rgb(68, 167, 53);
+}
+
+#botao-gerenciar {
+    width: 110px;
+    height: 38px;
+    border-radius: 12px;
+    background-color: #1565D8;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(68, 167, 53);
+    transition: 0.3s;
+}
+
+#botao-gerenciar:hover {
+    background-color: #0f4fb5;
+    transform: scale(1.03);
+}
+
+.badge {
+    min-width: 100px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
     font-weight: 600;
+}
+
+.risco-alto {
+    background: #FEE2E2;
+    color: #DC2626;
+}
+
+.risco-baixo {
+    background: #DCFCE7;
+    color: #16A34A;
+}
+
+.status-concluido {
+    background: #DCFCE7;
+    color: #16A34A;
+}
+
+@media (max-width: 1024px) {
+    .caixas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 0 15px;
+    }
+
+    #nome-doutor {
+        display: none;
+    }
+
+    .container {
+        padding: 20px 15px;
+    }
+
+    .caixas {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        min-width: 900px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .caixa {
+        height: 120px;
+        padding: 20px;
+    }
+
+    .numero {
+        font-size: 28px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 14px;
+    }
 }

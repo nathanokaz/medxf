@@ -3,43 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
     <link rel="stylesheet" th:href="@{/assets/css/cadastro-medico/cadastro-medico.css}">
     <link rel="icon" th:href="@{/assets/icones/Icone-Medico.png}" type="image/png">
     <title>Cadastro Médico - MedXF</title>
 </head>
 <body>
+
 <header>
-    <button id="botao-mais">
-        <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
-    </button>
-    <h1>Menu Principal</h1>
+    <a th:href="@{/admin/home}" id="botao-mais">
+        <img id="img-mais"
+             th:src="@{/assets/icones/Icone-Voltar.png}"
+             alt="icone de voltar"
+             width="20"
+             height="20">
+        <span>Menu Principal</span>
+    </a>
+
     <h1 id="nome"></h1>
-    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
+
+    <img th:src="@{/assets/icones/Logo2.png}"
+         alt="logo"
+         width="100"
+         height="40">
 </header>
-<div class="titulo">
-    <h2>Dados do Médico</h2>
+
+<div class="container">
+    <div class="formulario">
+        <form th:action="@{/admin/cadastrar/medico}" method="post">
+
+            <div class="titulo">
+                <h2>Dados do Médico</h2>
+            </div>
+
+            <div class="nomes">
+                <input type="text"
+                       name="nome"
+                       placeholder="Nome Completo"
+                       required>
+            </div>
+
+            <div class="contato">
+                <input type="email"
+                       name="email"
+                       placeholder="Email"
+                       required>
+
+                <input type="password"
+                       name="senha"
+                       placeholder="Senha"
+                       required>
+            </div>
+
+            <div class="contato">
+                <input type="text"
+                       name="cpf"
+                       placeholder="CPF"
+                       required>
+
+                <input type="text"
+                       name="crm"
+                       placeholder="CRM"
+                       maxlength="6"
+                       required>
+            </div>
+
+            <div class="contato">
+                <select name="especialidade"
+                        id="especialidade-medico"
+                        required>
+                    <option value="">Especialidade</option>
+                    <option value="CARDIOLOGISTA">Cardiologista</option>
+                </select>
+            </div>
+
+            <div class="contato">
+                <input type="text"
+                       name="hospital"
+                       placeholder="Clínica / Hospital"
+                       required>
+            </div>
+
+            <div class="contato">
+                <input type="text"
+                       name="cidade"
+                       placeholder="Cidade"
+                       required>
+
+                <input type="text"
+                       name="estado"
+                       placeholder="Estado"
+                       required>
+            </div>
+
+            <div class="continuar">
+                <button id="botao-continuar" type="submit">
+                    Continuar
+                </button>
+            </div>
+
+        </form>
+    </div>
 </div>
-<div class="formulario">
-    <form th:action="@{/admin/cadastrar/medico}" method="post">
-        <div class="nomes">
-            <input type="text" placeholder="Nome Completo" name="nome">
-        </div>
-        <div class="dados">
-            <input type="email" placeholder="Email" name="email">
-            <input type="password" placeholder="Senha" name="senha">
-            <input type="text" placeholder="CRM" name="crm">
-            <select name="especialidade" id="especialidade-medico" >
-                <option value="CARDIOLOGISTA">Cardiologista</option>
-            </select>
-            <input type="text" placeholder="Clínica / Hospital" name="hospital">
-            <input type="text" placeholder="Cidade" name="cidade">
-            <input type="text" placeholder="Estado" name="estado">
-        </div>
-        <div class="continuar">
-            <button id="botao-continuar" type="submit">Continuar</button>
-        </div>
-    </form>
-</div>
+
 </body>
 </html>

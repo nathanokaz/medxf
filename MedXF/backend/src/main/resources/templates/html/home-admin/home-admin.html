@@ -6,39 +6,64 @@
     <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
     <link rel="stylesheet" th:href="@{/assets/css/home-admin/home-admin.css}">
     <link rel="icon" th:href="@{/assets/icones/Icone-Casa.png}">
-    <title>Início - MedXF</title>
+    <title>Início - Admin</title>
 </head>
 <body>
+
 <header>
-    <button id="icone-mais">
-        <img th:src="@{/assets/icones/Mais-Info.png}" alt="mais" width="20px" height="15px">
-    </button>
-    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="125px" height="50px">
+    <div class="menu-container">
+        <button id="icone-mais">
+            <img th:src="@{/assets/icones/Mais-Info.png}" alt="menu" width="20" height="15">
+        </button>
+
+        <div id="popup-menu" class="popup-dropdown">
+            <nav class="popup-links">
+                <a th:href="@{/admin/home}" class="popup-item">Início</a>
+                <a th:href="@{/admin/cadastrar/medico}" class="popup-item">Adicionar Medico</a>
+                <a th:href="@{/admin/gerenciar/medicos}" class="popup-item">Gerenciar Médicos</a>
+                <a th:href="@{/admin/gerenciar/pacientes}" class="popup-item">Gerenciar Pacientes</a>
+            </nav>
+        </div>
+    </div>
+
+    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="125" height="50">
+
     <div class="usuario">
-        <p id="nome-doutor">Nathan Bonitao</p>
-        <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40px" height="40px">
+        <p id="nome-admin" th:text="${infosAdmin[0]}"></p>
+        <a th:href="@{/admin/perfil}">
+            <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40" height="40">
+        </a>
     </div>
 </header>
+
 <div class="container">
     <div class="principal">
-        <h1>Bem vindo, Admin. Nathan Bonitão</h1>
+
+        <h1>Bem vindo, <span th:text="${infosAdmin[0]}"></span> </h1>
         <h2>Menu principal MedXF - Sistema de triagem X frágil</h2>
+
         <div class="caixas">
             <button class="caixa">
                 <p class="subtitulo">Médicos cadastrados</p>
-                <p class="numero">12</p>
+                <p class="numero" th:text="${infos[0]}"></p>
             </button>
+
             <button class="caixa">
                 <p class="subtitulo">Pacientes cadastrados</p>
-                <p class="numero">17</p>
+                <p class="numero" th:text="${infos[1]}"></p>
             </button>
+
             <button class="caixa">
                 <p class="subtitulo">Avaliações realizadas</p>
-                <p class="numero">3</p>
+                <p class="numero" th:text="${infos[2]}"></p>
             </button>
         </div>
+
         <div class="lista">
-            <h3>Médicos cadastrados</h3>
+            <div class="lista-header">
+                <h3>Médicos cadastrados</h3>
+                <a th:href="@{/admin/gerenciar/medicos}" class="ver-mais">Ver todos</a>
+            </div>
             <table>
                 <thead>
                 <tr>
@@ -52,29 +77,49 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr th:each="medico : ${medicos}">
                     <td class="conteudo-lista">
-                        <div class="paciente">
-                            <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40px" height="40px">
+                        <div class="medico">
+                            <img th:src="@{/assets/icones/Perfil.png}" width="40" height="40">
                             <div>
-                                <div class="nome">Nathan</div>
-                                <div class="email">nathan@gmail.com</div>
+                                <div class="nome" th:text="${medico.nome}"></div>
+                                <div class="email" th:text="${medico.email}"></div>
                             </div>
                         </div>
                     </td>
-                    <td class="conteudo-lista">132874</td>
-                    <td class="conteudo-lista">Cardiologista</td>
-                    <td class="conteudo-lista">Pequeno Príncipe</td>
-                    <td class="conteudo-lista">Curitiba</td>
-                    <td class="conteudo-lista">Paraná</td>
+                    <td class="conteudo-lista" th:text="${medico.crm}"></td>
+                    <td class="conteudo-lista" th:text="${medico.especialidade}"></td>
+                    <td class="conteudo-lista" th:text="${medico.hospital}"></td>
+                    <td class="conteudo-lista" th:text="${medico.cidade}"></td>
+                    <td class="conteudo-lista" th:text="${medico.estado}"></td>
                     <td class="conteudo-lista">
-                        <button id="botao-gerenciar">Gerenciar</button>
+                        <a th:href="@{/admin/gerenciar/medicos}">
+                            <button id="botao-gerenciar">Gerenciar</button>
+                        </a>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+
     </div>
 </div>
+
+<script>
+    const btnMenu = document.getElementById('icone-mais');
+    const popupMenu = document.getElementById('popup-menu');
+
+    btnMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+        popupMenu.classList.toggle('ativo');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!popupMenu.contains(e.target) && e.target !== btnMenu) {
+            popupMenu.classList.remove('ativo');
+        }
+    });
+</script>
+
 </body>
 </html>

@@ -1,11 +1,15 @@
 package com.pucpr.medxf.domain.paciente;
 
+import com.pucpr.medxf.domain.medico.Medico;
 import com.pucpr.medxf.domain.paciente.dto.Historico;
 import com.pucpr.medxf.domain.paciente.dto.Sexo;
+import com.pucpr.medxf.domain.triagem.Triagem;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "pacientes")
@@ -24,9 +28,6 @@ public class Paciente {
     private String nome;
 
     @Column(nullable = false)
-    private String nomeResponsavel;
-
-    @Column(nullable = false)
     private LocalDate nascimento;
 
     @Enumerated(EnumType.STRING)
@@ -43,5 +44,19 @@ public class Paciente {
 
     @Enumerated(EnumType.STRING)
     private Historico historico2;
+
+    @Column(nullable = false, unique = true)
+    private String cpf;
+
+    @Column
+    private LocalDateTime criado_em;
+
+    @ManyToOne
+    @JoinColumn(name = "medico_id")
+    private Medico medico;
+
+    @OneToMany(mappedBy = "paciente")
+    private List<Triagem> triagens;
+
 
 }

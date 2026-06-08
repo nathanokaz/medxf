@@ -4,7 +4,7 @@ body {
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    background-color: #FFFFFF;
+    background-color: #F4F7FB;
 }
 
 .imagem {
@@ -12,12 +12,13 @@ body {
 }
 
 #texto {
-    color: #1B397D;
+    color: #000000;
 }
 
 #texto-botoes {
-    font-size: 15px;
-    margin-right: 60px;
+    font-size: 17px;
+    margin-right: 160px;
+    color: #64748B;
 }
 
 .titulo {
@@ -25,18 +26,19 @@ body {
 }
 
 .botao-home {
-    width: 310px;
-    height: 120px;
-    border-radius: 10px;
-    border: 2px solid #E0E3E7;
-    background-color: #EAEAEA;
+    width: 300px;
+    height: 45px;
+    border-radius: 18px;
+    border: none;
+    background-color: #1565D8;
     transition: 1s;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .botao-home:hover {
     transition: 1s;
     transform: scale(1.03);
-    background-color: #dfdddd;
 }
 
 .botoes {
@@ -47,7 +49,8 @@ body {
     gap: 17px
 }
 
-p {
-    color: #176FED;
-    font-size: 15px;
+a {
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
 }

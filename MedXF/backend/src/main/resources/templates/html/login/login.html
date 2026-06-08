@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/login/login.css}">
+    <link rel="icon" th:href="@{/assets/icones/Icone-Medico.png}" type="image/png">
+    <title>Login - Médico</title>
+</head>
+<body>
+<div class="container">
+    <div class="titulo">
+        <img th:src="@{/assets/icones/Logo.png}" alt="logo" width="300" height="100">
+        <h1 id="texto-login" >Login - MedXF</h1>
+    </div>
+    <form class="formulario" method="post" th:action="@{/login}">
+        <div id="div-email">
+            <label class="label-input" for="email">Email</label>
+            <input id="email" type="email" placeholder="Digite seu email" name="email">
+        </div>
+        <div class="div-formulario">
+            <label class="label-input" for="senha">Senha</label>
+            <input id="senha" type="password" placeholder="Digite sua senha" name="password">
+        </div>
+        <div class="div-formulario">
+            <div class="remember">
+                <label id="texto-checkbox">
+                    <input id="checkbox" type="checkbox">
+                    Lembrar de mim
+                </label>
+            </div>
+        </div>
+        <div class="botao">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

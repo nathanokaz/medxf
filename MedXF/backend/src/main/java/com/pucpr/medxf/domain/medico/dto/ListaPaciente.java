@@ -8,8 +8,9 @@ import java.time.LocalDate;
 
 public record ListaPaciente(
 
+        Integer id,
         String nome,
-        String nomeResponsavel,
+        String cpf,
         LocalDate nascimento,
         Sexo sexo,
         String email,
@@ -20,7 +21,7 @@ public record ListaPaciente(
 ) {
 
     public ListaPaciente(Paciente paciente) {
-        this(paciente.getNome(), paciente.getNomeResponsavel(), paciente.getNascimento(), paciente.getSexo(),
+        this(paciente.getId(), paciente.getNome(), paciente.getCpf(), paciente.getNascimento(), paciente.getSexo(),
                 paciente.getEmail(), paciente.getTelefone(), paciente.getHistorico1(), paciente.getHistorico2()
         );
     }

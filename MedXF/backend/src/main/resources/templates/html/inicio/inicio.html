@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
-    <link rel="stylesheet"  th:href="@{/assets/css/inicio/inicio.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/inicio/inicio.css}">
     <link rel="icon" th:href="@{/assets/icones/Icone-Inicio.png}" type="image/png">
     <title>Início - MedXF</title>
 </head>
@@ -15,16 +15,11 @@
     <div class="titulo">
         <h1 id="texto">Triagem clínica para Síndorme do X Frágil</h1>
     </div>
-    <form class="botoes">
-        <h2 id="texto-botoes">Escolha como deseja iniciar sua sessão:</h2>
-        <button class="botao-home" type="submit"> 
-            <img th:src="@{/assets/icones/Icone-Medico.png}" alt="icone medico" width="90px" height="90px">
-            <p>Médico(a)</p>
+    <div class="botoes">
+        <h2 id="texto-botoes">Inicie sua sessão:</h2>
+        <button class="botao-home">
+            <a th:href="@{/inicio/login}">Contiuar</a>
         </button>
-        <button class="botao-home" type="submit">
-            <img th:src="@{/assets/icones/Icone-Adm.png}" alt="icone admin" width="90px" height="90px">
-            <p>Administrador</p>
-        </button>
-    </form>
+    </div>
 </body>
 </html>

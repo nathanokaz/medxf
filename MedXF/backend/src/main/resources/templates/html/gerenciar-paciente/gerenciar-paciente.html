@@ -9,84 +9,104 @@
     <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
     <link rel="stylesheet" th:href="@{/assets/css/gerenciar-paciente/gerenciar-paciente.css}">
     <link rel="icon" th:href="@{/assets/icones/Icone-Usuario.png}" type="image/png">
-    <title>Pacientes - MedFX</title>
+    <title>Gerenciar Paciente - MedFX</title>
 </head>
 <body>
-
-<header>
-    <a th:href="@{/medico/home}" id="botao-mais">
-        <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
-        <span>Menu Principal</span>
-    </a>
-    <h1 id="nome"></h1>
-    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
-</header>
-
-<div class="layout">
-
-    <main class="content">
-
-        <div class="page-header">
-            <div>
-                <h1>Pacientes</h1>
-                <p>Gerencie e atualize os dados dos pacientes.</p>
+    <header>
+        <a th:href="@{/medico/home}" id="botao-mais">
+            <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
+            <span>Menu Principal</span>
+        </a>
+        <h1 id="nome"></h1>
+        <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
+    </header>
+    <div class="layout">
+        <main class="content">
+            <div class="page-header">
+                <div>
+                    <h1>Pacientes</h1>
+                    <p>Gerencie e atualize os dados dos pacientes.</p>
+                </div>
             </div>
-            <a href="/medico/triagem" class="btn-new" role="button">
-                + Novo Paciente
-            </a>
-        </div>
+            <div class="patient-grid">
+                <form th:action="@{/medico/gerenciar/paciente/{id}(id=${paciente[1]})}" method="post">
+                    <div class="patient-card">
+                        <div class="patient-top">
+                            <div class="avatar">JS</div>
+                            <div class="patient-info">
+                                <h2 th:text="${paciente[0]}"></h2>
+                                <span>ID <span th:text="${paciente[1]}"></span></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label th:text="${paciente[0]}"></label>
+                            <input type="text" name="nome" th:placeholder="${paciente[0]}">
+                        </div>
+                        <div class="form-group">
+                            <label>CPF</label>
+                            <input type="text" name="cpf" th:placeholder="${paciente[2]}">
+                        </div>
+                        <div class="form-group">
+                            <label>Nascimento</label>
+                            <input type="date" name="nascimento" th:value="${paciente[3]}">
+                        </div>
+                        <div class="form-group">
+                            <label>Sexo</label>
+                            <select name="sexo">
+                                <option value="" disabled hidden th:selected="${paciente[4] == null}">
+                                    Selecione o sexo
+                                </option>
 
+                                <option value="MASCULINO" th:selected="${paciente[4] == 'MASCULINO'}">
+                                    Masculino
+                                </option>
 
-        <div class="patient-grid">
-
-            <div class="patient-card">
-                <div class="patient-top">
-                    <div class="avatar">JS</div>
-                    <div class="patient-info">
-                        <h2>João Silva</h2>
-                        <span>ID #2031</span>
+                                <option value="FEMININO" th:selected="${paciente[4] == 'FEMININO'}">
+                                    Feminino
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Telefone</label>
+                            <input type="tel" name="telefone" th:placeholder="${paciente[5]}">
+                        </div>
+                        <div class="form-group">
+                            <label>Histórico familiar de deficiência intelectual?</label>
+                            <div class="perguntas">
+                                <label>
+                                    <input type="radio" name="historico1" value="SIM"
+                                           th:checked="${paciente[6] == 'SIM'}">
+                                    Sim
+                                </label>
+                                <label>
+                                    <input type="radio" name="historico1" value="NAO"
+                                           th:checked="${paciente[6] == 'NAO'}">
+                                    Não
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Histórico de X Frágil na família?</label>
+                            <div class="perguntas">
+                                <label>
+                                    <input type="radio" name="historico2" value="SIM"
+                                           th:checked="${paciente[7] == 'SIM'}">
+                                    Sim
+                                </label>
+                                <label>
+                                    <input type="radio" name="historico2" value="NAO"
+                                           th:checked="${paciente[7] == 'NAO'}">
+                                    Não
+                                </label>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <button type="submit" class="save-btn">Salvar Alterações</button>
+                        </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Nome Completo</label>
-                    <input type="text" value="João Silva">
-                </div>
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" value="joao@email.com">
-                </div>
-
-                <div class="form-group">
-                    <label>Idade</label>
-                    <input type="number" value="54">
-                </div>
-
-                <div class="form-group">
-                    <label>Risco</label>
-                    <select>
-                        <option>Alto</option>
-                        <option>Médio</option>
-                        <option>Baixo</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Observações</label>
-                    <textarea>Paciente com sintomas respiratórios e febre persistente.</textarea>
-                </div>
-
-                <div class="actions">
-                    <button class="save-btn">Salvar Alterações</button>
-                    <button class="delete-btn">Excluir</button>
-                </div>
+                </form>
             </div>
-
-        </div>
-    </main>
-
-</div>
-
+        </main>
+    </div>
 </body>
 </html>
