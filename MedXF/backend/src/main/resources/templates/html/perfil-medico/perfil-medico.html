@@ -31,8 +31,14 @@
                     <div class="patient-top">
                         <div class="avatar-container">
                             <img class="avatar"
-                                 th:src="${medicoFoto != null} ? @{'/uploads/' + ${medicoFoto}} : @{/assets/icones/Icone-Usuario.png}"
+                                 th:if="${medicoFoto != null}"
+                                 th:src="@{'/uploads/' + ${medicoFoto}}"
                                  alt="Foto do médico">
+
+                            <img class="avatar"
+                                 th:unless="${medicoFoto != null}"
+                                 th:src="@{/assets/icones/Perfil.png}"
+                                 alt="Foto padrão">
                             <label for="foto" class="upload-btn">
                                 Alterar foto
                             </label>

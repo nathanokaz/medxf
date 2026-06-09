@@ -10,31 +10,24 @@ header {
     background-color: #1565D8;
     display: flex;
     align-items: center;
-    padding: 0 35px;
     justify-content: space-between;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    padding: 0 35px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
 }
 
 .menu-container {
     position: relative;
-    display: inline-block;
 }
 
 #icone-mais {
-    background-color: transparent;
+    background: transparent;
     border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
     width: 40px;
     height: 40px;
-    padding: 0;
-}
-
-#icone-mais img {
-    width: 20px;
-    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .popup-dropdown {
@@ -42,13 +35,13 @@ header {
     top: 65px;
     left: 0;
     width: 230px;
-    background-color: #1565D8;
+    background: #1565D8;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
     display: none;
     flex-direction: column;
-    padding: 8px 0;
+    z-index: 1000;
+    overflow: hidden;
 }
 
 .popup-dropdown.ativo {
@@ -61,33 +54,27 @@ header {
 }
 
 .popup-item {
-    display: flex;
-    align-items: center;
-    padding: 10px 16px;
-    color: #ffffff;
+    color: white;
     text-decoration: none;
+    padding: 12px 18px;
     font-size: 14px;
-    transition: background-color 0.2s;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    text-align: left;
-    width: 100%;
+    transition: background 0.2s;
 }
 
 .popup-item:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-header img[alt="logo"] {
-    display: block;
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .usuario {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-left: auto;
+}
+
+.usuario a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #nome-paciente {
@@ -96,93 +83,72 @@ header img[alt="logo"] {
     font-weight: 600;
 }
 
-#icone-perfil {
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+.avatar {
     width: 40px;
     height: 40px;
-}
-
-.usuario a {
-    display: flex;
-    align-items: center;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    display: block;
 }
 
 .container {
+    width: 100%;
     display: flex;
     justify-content: center;
-    width: 100%;
-    padding: 0 20px;
+    padding: 30px 20px;
 }
 
 .principal {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     width: 100%;
     max-width: 1200px;
-    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
     gap: 30px;
 }
 
 .principal h1 {
-    color: #1e293b;
-    font-size: 28px;
+    color: #1E293B;
+    font-size: 32px;
     font-weight: 700;
 }
 
-.principal > h2 {
-    color: #64748b;
+.principal h2 {
+    color: #64748B;
     font-size: 16px;
     font-weight: 400;
-    margin-top: -25px;
+    margin-top: -15px;
 }
 
 .caixas {
-    background-color: white;
     display: flex;
+    gap: 20px;
     flex-wrap: wrap;
-    gap: 15px;
-    width: 100%;
 }
 
 .caixa {
     flex: 1;
     min-width: 250px;
-    max-width: 100%;
-    height: 130px;
-    padding: 30px;
-    border-radius: 18px;
-    border: none;
-    border-top: 7px solid #1565D8;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     background: white;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    border-radius: 18px;
+    padding: 28px;
+    border-top: 6px solid #1565D8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.caixa:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-
-.caixa .subtitulo {
-    color: #64748b;
+.subtitulo {
+    color: #64748B;
     font-size: 14px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
-.caixa .numero {
+.numero {
     color: #1565D8;
     font-size: 32px;
     font-weight: 700;
 }
 
-.caixa .status-text {
+.status-text {
     color: #22C55E;
     font-size: 18px;
     font-weight: 600;
@@ -193,17 +159,15 @@ header img[alt="logo"] {
 }
 
 .quick-actions h3 {
-    font-size: 20px;
-    color: #1e293b;
-    font-weight: 700;
+    color: #1E293B;
+    font-size: 22px;
     margin-bottom: 20px;
 }
 
 .actions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 16px;
-    width: 100%;
+    gap: 18px;
 }
 
 .action-card {
@@ -212,15 +176,14 @@ header img[alt="logo"] {
     padding: 24px;
     text-decoration: none;
     color: inherit;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
     border-left: 4px solid #1565D8;
-    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .action-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(21, 101, 216, 0.15);
+    box-shadow: 0 8px 20px rgba(21, 101, 216, 0.15);
 }
 
 .action-icon {
@@ -229,252 +192,119 @@ header img[alt="logo"] {
 }
 
 .action-card h4 {
+    color: #1E293B;
     font-size: 16px;
-    color: #1e293b;
-    font-weight: 700;
     margin-bottom: 6px;
 }
 
 .action-card p {
-    font-size: 13px;
-    color: #64748b;
-    line-height: 1.4;
+    color: #64748B;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .info-section {
     width: 100%;
-    margin-top: 20px;
 }
 
 .info-section h3 {
-    font-size: 20px;
-    color: #1e293b;
-    font-weight: 700;
+    color: #1E293B;
+    font-size: 22px;
     margin-bottom: 20px;
 }
 
 .info-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
-    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
 }
 
 .info-card {
     background: white;
     border-radius: 16px;
     padding: 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    border-top: 4px solid #dbeafe;
+    border-top: 4px solid #DBEAFE;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .info-title {
+    color: #1E293B;
     font-size: 16px;
     font-weight: 700;
-    color: #1e293b;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .info-card p {
+    color: #64748B;
     font-size: 14px;
-    color: #64748b;
     line-height: 1.6;
 }
 
-/* Mobile */
 @media (max-width: 768px) {
     header {
         padding: 0 20px;
     }
 
-    .popup-dropdown {
-        left: -80px;
-    }
-
     .container {
-        padding: 0 15px;
-    }
-
-    .principal {
-        padding-top: 30px;
-        gap: 25px;
+        padding: 20px 15px;
     }
 
     .principal h1 {
-        font-size: 24px;
+        font-size: 26px;
     }
 
-    .principal > h2 {
+    .principal h2 {
         font-size: 14px;
-        margin-top: -20px;
-    }
-
-    .caixas {
-        gap: 12px;
     }
 
     .caixa {
-        min-width: calc(50% - 6px);
-        padding: 20px;
-        height: 120px;
-    }
-
-    .caixa .numero {
-        font-size: 28px;
-    }
-
-    .quick-actions h3 {
-        font-size: 18px;
-        margin-bottom: 16px;
+        min-width: 100%;
     }
 
     .actions-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 12px;
-    }
-
-    .action-card {
-        padding: 16px;
-    }
-
-    .action-icon {
-        font-size: 28px;
-        margin-bottom: 8px;
-    }
-
-    .action-card h4 {
-        font-size: 14px;
-    }
-
-    .action-card p {
-        font-size: 12px;
-    }
-
-    .info-section h3 {
-        font-size: 18px;
-        margin-bottom: 16px;
+        grid-template-columns: 1fr;
     }
 
     .info-cards {
         grid-template-columns: 1fr;
-        gap: 12px;
     }
 
-    .info-card {
-        padding: 16px;
-    }
-
-    .info-title {
-        font-size: 15px;
-        margin-bottom: 8px;
-    }
-
-    .info-card p {
-        font-size: 13px;
+    .popup-dropdown {
+        width: 200px;
     }
 }
 
 @media (max-width: 480px) {
     header {
-        padding: 0 15px;
         height: 64px;
+        padding: 0 15px;
     }
 
-    .popup-dropdown {
-        left: -100px;
-        width: 200px;
-    }
-
-    .container {
-        padding: 0 10px;
-    }
-
-    .principal {
-        padding-top: 20px;
-        gap: 20px;
+    #nome-paciente {
+        display: none;
     }
 
     .principal h1 {
         font-size: 22px;
     }
 
-    .principal > h2 {
+    .principal h2 {
         font-size: 13px;
-        margin-top: -18px;
-    }
-
-    .caixas {
-        flex-direction: column;
-        gap: 10px;
     }
 
     .caixa {
-        min-width: 100%;
-        padding: 16px;
-        height: 110px;
+        padding: 20px;
     }
 
-    .caixa .subtitulo {
-        font-size: 13px;
-    }
-
-    .caixa .numero {
-        font-size: 24px;
-    }
-
-    .quick-actions h3 {
-        font-size: 16px;
-        margin-bottom: 12px;
-    }
-
-    .actions-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
+    .numero {
+        font-size: 28px;
     }
 
     .action-card {
-        padding: 14px;
-    }
-
-    .action-icon {
-        font-size: 24px;
-        margin-bottom: 6px;
-    }
-
-    .action-card h4 {
-        font-size: 13px;
-        margin-bottom: 4px;
-    }
-
-    .action-card p {
-        font-size: 11px;
-    }
-
-    .info-section {
-        margin-top: 15px;
-    }
-
-    .info-section h3 {
-        font-size: 16px;
-        margin-bottom: 12px;
-    }
-
-    .info-cards {
-        gap: 10px;
+        padding: 18px;
     }
 
     .info-card {
-        padding: 14px;
-        border-top-width: 3px;
-    }
-
-    .info-title {
-        font-size: 14px;
-        margin-bottom: 6px;
-    }
-
-    .info-card p {
-        font-size: 12px;
-        line-height: 1.4;
+        padding: 18px;
     }
 }

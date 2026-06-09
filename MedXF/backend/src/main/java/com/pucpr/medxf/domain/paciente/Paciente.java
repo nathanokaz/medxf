@@ -52,6 +52,9 @@ public class Paciente {
     @Column
     private LocalDateTime criado_em;
 
+    @Column(name = "foto_perfil")
+    private String fotoPerfil;
+
     @ManyToOne
     @JoinColumn(name = "medico_id")
     private Medico medico;

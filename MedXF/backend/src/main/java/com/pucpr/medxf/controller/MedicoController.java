@@ -90,6 +90,8 @@ public class MedicoController {
     @GetMapping("/perfil")
     public String paginaPerfilMedico(Model model) {
         model.addAttribute("medico", medicoService.informacoesMedico());
+        var foto = medicoService.pegarFotoMedico();
+        model.addAttribute("medicoFoto", foto);
         return "html/perfil-medico/perfil-medico";
     }
 
