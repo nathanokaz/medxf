@@ -21,12 +21,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -201,7 +207,7 @@ public class MedicoService {
     }
 
     @Transactional
-    public void editarInformacoesMedico(InformacoesPerfil informacoesPerfil) {
+    public void editarInformacoesMedico(InformacoesPerfil informacoesPerfil, MultipartFile foto) throws IOException {
         var medico = pegarMedico();
         var user = pegarUser();
         if (informacoesPerfil.nome() != null && !informacoesPerfil.nome().isBlank()) {
@@ -236,6 +242,13 @@ public class MedicoService {
         }
         if (informacoesPerfil.estado() != null && !informacoesPerfil.estado().isBlank()) {
             medico.setEstado(informacoesPerfil.estado());
+        }
+        if (!foto.isEmpty()) {
+            String nomeArquivo = UUID.randomUUID() + "_" + foto.getOriginalFilename();
+            Path caminho = Paths.get("uploads/" + nomeArquivo);
+            Files.createDirectories(caminho.getParent());
+            Files.write(caminho, foto.getBytes());
+            medico.setFotoPerfil(nomeArquivo);
         }
     }
 
@@ -313,6 +326,11 @@ public class MedicoService {
         if (informacoesPaciente.historico2() != null) {
             paciente.setHistorico2(informacoesPaciente.historico2());
         }
+    }
+
+    public String pegarFotoMedico() {
+        var medico = pegarMedico();
+        return medico.getFotoPerfil();
     }
 
     private Medico pegarMedico() {

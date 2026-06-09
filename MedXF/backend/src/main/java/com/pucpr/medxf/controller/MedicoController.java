@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/medico")
@@ -22,6 +25,7 @@ public class MedicoController {
         model.addAttribute("medico", medicoService.informacoesMedico());
         model.addAttribute("infos", medicoService.informacoesNumericasHome());
         model.addAttribute("pacientesHome", medicoService.listarPacientesHome());
+        model.addAttribute("medicoFoto", medicoService.pegarFotoMedico());
         return "/html/home-medico/home-medico";
     }
 
@@ -90,8 +94,8 @@ public class MedicoController {
     }
 
     @PostMapping("/perfil")
-    public String editarPerfil(InformacoesPerfil informacoesPerfil) {
-        medicoService.editarInformacoesMedico(informacoesPerfil);
+    public String editarPerfil(InformacoesPerfil informacoesPerfil, @RequestParam("foto") MultipartFile foto) throws IOException {
+        medicoService.editarInformacoesMedico(informacoesPerfil, foto);
         return "redirect:/inicio/login";
     }
 }
