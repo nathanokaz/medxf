@@ -46,8 +46,7 @@ public class AdminService {
         if (medicoRepository.existsByCpf(cadastroMedico.cpf())) {
             throw new IllegalArgumentException("CPF já cadastrado.");
         }
-        var senhaCriptografada =
-                new BCryptPasswordEncoder().encode(cadastroMedico.senha());
+        var senhaCriptografada = new BCryptPasswordEncoder().encode(cadastroMedico.senha());
         User user = User.builder()
                 .email(cadastroMedico.email())
                 .senha(senhaCriptografada)

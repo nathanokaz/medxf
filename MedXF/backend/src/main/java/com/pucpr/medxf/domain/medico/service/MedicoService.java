@@ -7,11 +7,14 @@ import com.pucpr.medxf.domain.medico.dto.*;
 import com.pucpr.medxf.domain.medico.repository.MedicoRepository;
 import com.pucpr.medxf.domain.paciente.Paciente;
 import com.pucpr.medxf.domain.paciente.repository.PacienteRepository;
+import com.pucpr.medxf.domain.pergunta.Pergunta;
+import com.pucpr.medxf.domain.pergunta.repository.PerguntaRepository;
 import com.pucpr.medxf.domain.respostas.Resposta;
 import com.pucpr.medxf.domain.respostas.repository.RespostaRepository;
 import com.pucpr.medxf.domain.triagem.Triagem;
 import com.pucpr.medxf.domain.triagem.repository.TriagemReposiotry;
 import com.pucpr.medxf.domain.user.User;
+import com.pucpr.medxf.domain.user.dto.UserRoles;
 import com.pucpr.medxf.domain.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +38,7 @@ public class MedicoService {
     private final TriagemReposiotry triagemReposiotry;
     private final UserRepository userRepository;
     private final SocioeconomicoRepository socioeconomicoRepository;
+    private final PerguntaRepository perguntaRepository;
 
     @Transactional
     public Paciente cadastrarPaciente(CadastroPaciente cadastroPaciente) {
@@ -47,7 +51,13 @@ public class MedicoService {
         if (pacienteRepository.existsByCpf(cadastroPaciente.cpf())) {
             throw new IllegalArgumentException("CPF já cadastrado.");
         }
-
+        var senhaCriptografada = new BCryptPasswordEncoder().encode(cadastroPaciente.senha());
+        User user = User.builder()
+                .email(cadastroPaciente.email())
+                .role(UserRoles.PACIENTE)
+                .senha(senhaCriptografada)
+                .criadoEm(LocalDateTime.now())
+                .build();
         Paciente paciente = Paciente.builder()
                 .nome(cadastroPaciente.nome().trim())
                 .nascimento(cadastroPaciente.nascimento())
@@ -59,7 +69,9 @@ public class MedicoService {
                 .cpf(cadastroPaciente.cpf())
                 .medico(pegarMedico())
                 .criado_em(LocalDateTime.now())
+                .user(user)
                 .build();
+        userRepository.save(user);
         return pacienteRepository.save(paciente);
     }
 
@@ -67,21 +79,20 @@ public class MedicoService {
     public void cadastrarAvaliacao(AvaliacaoMedico avaliacaoMedico) {
         Paciente paciente = pacienteRepository.findById(avaliacaoMedico.pacienteId())
                 .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
-
         Triagem triagem = Triagem.builder()
                 .criado_em(LocalDateTime.now())
                 .medico(pegarMedico())
                 .paciente(paciente)
                 .build();
-
         triagemReposiotry.save(triagem);
-
         for (Respostas dto : avaliacaoMedico.respostas()) {
-            var pergunta = dto.pergunta();
+            Pergunta pergunta = perguntaRepository.findById(dto.pergunta())
+                    .orElseThrow(() -> new RuntimeException("Pergunta não encontrada"));
             Resposta resposta = Resposta.builder()
                     .resposta(Boolean.TRUE.equals(dto.resposta()))
                     .observacao(dto.observacao())
                     .triagem(triagem)
+                    .pergunta(pergunta)
                     .build();
             respostaRepository.save(resposta);
         }

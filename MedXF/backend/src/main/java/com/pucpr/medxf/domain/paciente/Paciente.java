@@ -4,6 +4,7 @@ import com.pucpr.medxf.domain.medico.Medico;
 import com.pucpr.medxf.domain.paciente.dto.Historico;
 import com.pucpr.medxf.domain.paciente.dto.Sexo;
 import com.pucpr.medxf.domain.triagem.Triagem;
+import com.pucpr.medxf.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -58,5 +59,8 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente")
     private List<Triagem> triagens;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

@@ -25,7 +25,6 @@ public class MedicoController {
         return "/html/home-medico/home-medico";
     }
 
-
     @GetMapping("/triagem")
     public String paginaNovaTriagemMedico() {
         return "html/nova-triagem/nova-triagem";
@@ -34,10 +33,8 @@ public class MedicoController {
     @PostMapping("/triagem")
     public String cadastrarPaciente(@Valid CadastroPaciente cadastroPaciente) {
         Paciente paciente = medicoService.cadastrarPaciente(cadastroPaciente);
-
         return "redirect:/medico/triagem/socioeconomica?pacienteId=" + paciente.getId();
     }
-
 
     @GetMapping("/triagem/socioeconomica")
     public String paginaTriagemSocioeconomicaMedico(@RequestParam Integer pacienteId, Model model) {
@@ -47,9 +44,7 @@ public class MedicoController {
 
     @PostMapping("/triagem/socioeconomica")
     public String cadastrarSocioeconomicaPaciente(@ModelAttribute CadastroSocioeconomico dados) {
-
         medicoService.salvarSocioeconomica(dados);
-
         return "redirect:/medico/avaliacao?pacienteId=" + dados.pacienteId();
     }
 
@@ -73,7 +68,6 @@ public class MedicoController {
                 ? java.util.Collections.emptyList()
                 : medicoService.buscarRespostasPorTriagens(triagens);
         model.addAttribute("respostas", respostas);
-
         return "html/gerenciar-paciente/gerenciar-paciente";
     }
 

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
 
@@ -15,5 +16,7 @@ public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
     boolean existsByCpf(String cpf);
 
     List<Paciente> findAllByMedicoId(Integer medico);
+
+    Optional<Paciente> findByEmail(String email);
 
 }
