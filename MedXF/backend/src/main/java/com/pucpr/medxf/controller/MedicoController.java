@@ -84,6 +84,7 @@ public class MedicoController {
     @GetMapping("/pacientes")
     public String paginaPacientesCadastradosMedico(Model model) {
         model.addAttribute("pacientes", medicoService.listarPacientes());
+        model.addAttribute("fotoMedico", medicoService.pegarFotoMedico());
         return "html/pacientes-cadastrados/pacientes-cadastrados";
     }
 

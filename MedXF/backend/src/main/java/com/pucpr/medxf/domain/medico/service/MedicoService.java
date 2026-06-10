@@ -161,7 +161,8 @@ public class MedicoService {
                     sintomas,
                     risco,
                     data,
-                    Status.CONCLUIDO
+                    Status.CONCLUIDO,
+                    p.getFotoPerfil()
             ));
         }
         return lista;

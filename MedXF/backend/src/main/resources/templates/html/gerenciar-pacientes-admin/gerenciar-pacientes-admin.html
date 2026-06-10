@@ -18,7 +18,18 @@
     <div class="usuario">
         <p id="nome-doutor">Nathan Bonitao</p>
         <a th:href="@{/medico/perfil}">
-            <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40px" height="40px">
+            <img
+                    class="avatar"
+                    width="40"
+                    height="40"
+                    th:if="${foto != null}"
+                    th:src="@{'/uploads/' + ${foto}}">
+            <img
+                    class="avatar"
+                    width="40"
+                    height="40"
+                    th:unless="${foto != null}"
+                    th:src="@{/assets/icones/Perfil.png}">
         </a>
     </div>
 </header>
@@ -46,7 +57,15 @@
                 <tr th:each="paciente : ${pacientes}">
                     <td class="conteudo-lista">
                         <div class="medico">
-                            <img id="icone-perfil" th:src="@{/assets/icones/Perfil.png}" alt="perfil" width="40px" height="40px">
+                            <img class="avatar"
+                                 th:if="${paciente.fotoPerfil != null}"
+                                 th:src="@{'/uploads/' + ${paciente.fotoPerfil}}"
+                                 alt="Foto do paciente">
+
+                            <img class="avatar"
+                                 th:unless="${paciente.fotoPerfil != null}"
+                                 th:src="@{/assets/icones/Perfil.png}"
+                                 alt="Foto padrão">
                             <div>
                                 <div class="nome" th:text="${paciente.nome}"></div>
                                 <div class="email" th:text="${paciente.email}"></div>

@@ -20,10 +20,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -103,6 +109,11 @@ public class AdminService {
         return infos;
     }
 
+    public String pegarFotoAdmin() {
+        var admin = pegarAdmin();
+        return admin.getFotoPerfil();
+    }
+
     public List<ListaPaciente> listarPacientes() {
         var pacientes = pacienteRepository.findAll();
         return pacientes.stream().map(ListaPaciente::new).toList();
@@ -122,7 +133,7 @@ public class AdminService {
     }
 
     @Transactional
-    public void editarDadosAdmin(InformacoesPerfilAdmin informacoesPerfilAdmin) {
+    public void editarDadosAdmin(InformacoesPerfilAdmin informacoesPerfilAdmin, MultipartFile foto) throws IOException {
         var admin = pegarAdmin();
         var user = pegarUser();
         if (informacoesPerfilAdmin.nome() != null
@@ -141,6 +152,13 @@ public class AdminService {
                 && !informacoesPerfilAdmin.senha().isBlank()) {
             var senhaCriptografada = new BCryptPasswordEncoder().encode(informacoesPerfilAdmin.senha());
             user.setSenha(senhaCriptografada);
+        }
+        if (!foto.isEmpty()) {
+            String nomeArquivo = UUID.randomUUID() + "_" + foto.getOriginalFilename();
+            Path caminho = Paths.get("uploads/" + nomeArquivo);
+            Files.createDirectories(caminho.getParent());
+            Files.write(caminho, foto.getBytes());
+            admin.setFotoPerfil(nomeArquivo);
         }
     }
 

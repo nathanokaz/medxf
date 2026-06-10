@@ -11,7 +11,8 @@ public record ListaPacientesHome(
         int sintomas,
         Risco risco,
         LocalDate data,
-        Status status
+        Status status,
+        String fotoPerfil
 
 ) {
 }

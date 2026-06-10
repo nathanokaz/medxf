@@ -182,6 +182,15 @@ header {
     box-shadow: 0 4px 12px rgba(21, 101, 216, 0.15);
 }
 
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e5e7eb;
+    border: 2px solid #ddd;
+}
+
 .save-btn:hover {
     background: #0F4FB5;
     transform: translateY(-1px);

@@ -23,6 +23,9 @@ public class Admin {
     @Column(nullable = false)
     private String nome;
 
+    @Column(name = "foto_perfil")
+    private String fotoPerfil;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;

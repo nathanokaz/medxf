@@ -201,6 +201,13 @@ tbody tr:hover {
     transform: translateY(-1px);
 }
 
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 @media (max-width: 1024px) {
     h1 {
         font-size: 26px;

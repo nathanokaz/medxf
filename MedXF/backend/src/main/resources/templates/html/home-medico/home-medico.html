@@ -88,10 +88,17 @@
                 <tr th:each="p : ${pacientesHome}">
                     <td class="conteudo-lista">
                         <div class="medico">
-                            <img id="icone-perfil"
+                            <img class="avatar"
+                                 th:if="${p.fotoPerfil != null}"
+                                 th:src="@{'/uploads/' + ${p.fotoPerfil}}"
+                                 width="40"
+                                 height="40">
+
+                            <img class="avatar"
+                                 th:unless="${p.fotoPerfil != null}"
                                  th:src="@{/assets/icones/Perfil.png}"
-                                 width="40px"
-                                 height="40px">
+                                 width="40"
+                                 height="40">
                             <div>
                                 <div class="nome" th:text="${p.nome}"></div>
                                 <div class="email" th:text="${p.email}"></div>
