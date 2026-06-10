@@ -299,6 +299,13 @@ table {
     color: #16A34A;
 }
 
+.avatar-medico {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 @media (max-width: 1024px) {
     .caixas {
         grid-template-columns: repeat(2, 1fr);

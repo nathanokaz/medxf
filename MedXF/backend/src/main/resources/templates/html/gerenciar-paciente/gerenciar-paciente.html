@@ -108,5 +108,18 @@
             </div>
         </main>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script th:if="${perfilAtualizado}">
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Paciente atualizado!',
+                text: 'Dados atualizados com sucesso.',
+                confirmButtonColor: '#2563EB'
+            });
+        });
+    </script>
 </body>
 </html>

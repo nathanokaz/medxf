@@ -187,6 +187,39 @@ header {
     transform: translateY(-1px);
 }
 
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e5e7eb;
+    border: 2px solid #ddd;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-btn {
+    padding: 8px 12px;
+    background: #2563eb;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.upload-btn:hover {
+    background: #1d4ed8;
+}
+
 @media (max-width: 768px) {
     header {
         padding: 0 15px;

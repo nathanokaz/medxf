@@ -2,6 +2,7 @@ package com.pucpr.medxf.domain.user;
 
 import com.pucpr.medxf.domain.admin.Admin;
 import com.pucpr.medxf.domain.medico.Medico;
+import com.pucpr.medxf.domain.paciente.Paciente;
 import com.pucpr.medxf.domain.user.dto.UserRoles;
 import jakarta.persistence.*;
 import lombok.*;
@@ -45,12 +46,18 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user")
     private Admin admin;
 
+    @OneToOne(mappedBy = "user")
+    private Paciente paciente;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == UserRoles.ADMIN) {
             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         }
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        if (this.role == UserRoles.USER) {
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        }
+        return List.of(new SimpleGrantedAuthority("ROLE_PACIENTE"));
     }
 
     @Override

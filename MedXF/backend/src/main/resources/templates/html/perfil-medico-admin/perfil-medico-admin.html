@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-    <a th:href="@{/medico/home}" id="botao-mais">
+    <a th:href="@{/admin/home}" id="botao-mais">
         <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
         <span>Menu Principal</span>
     </a>
@@ -80,5 +80,16 @@
         </div>
     </main>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script th:if="${perfilAtualizado}">
+    Swal.fire({
+        icon: 'success',
+        title: 'Perfil atualizado!',
+        text: 'As informações foram atualizadas com sucesso.',
+        confirmButtonColor: '#2563EB'
+    });
+</script>
 </body>
 </html>

@@ -7,10 +7,14 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/admin")
@@ -19,32 +23,47 @@ public class AdministradorController {
 
     private final AdminService adminService;
 
+
     @GetMapping("/cadastrar/medico")
     public String paginaCadastrarMedico() {
         return "html/cadastro-medico/cadastro-medico";
     }
 
     @PostMapping("/cadastrar/medico")
-    public String cadastrarMedico(@Valid CadastroMedico cadastroMedico) {
-        adminService.cadastrarMedico(cadastroMedico);
-        return "redirect:/admin/home";
+    public String cadastrarMedico(@Valid CadastroMedico cadastroMedico, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("erro", bindingResult.getFieldError().getDefaultMessage());
+            return "html/cadastro-medico/cadastro-medico";
+        }
+        try {
+            adminService.cadastrarMedico(cadastroMedico);
+        } catch (RuntimeException e) {
+            model.addAttribute("erro", e.getMessage());
+            return "html/cadastro-medico/cadastro-medico";
+        }
+        return "redirect:/admin/home?cadastroSucesso=true";
     }
 
     @GetMapping("/home")
-    public String paginaHomeAdmin(Model model) {
+    public String paginaHomeAdmin(@RequestParam(required = false) Boolean cadastroSucesso, Model model) {
         var informacoes = adminService.informacoesNumericasHome();
         var medicos = adminService.listarMedicos();
         var adminInfos = adminService.InformacoesAdmin();
+        var foto = adminService.pegarFotoAdmin();
         model.addAttribute("infos", informacoes);
         model.addAttribute("medicos", medicos);
         model.addAttribute("infosAdmin", adminInfos);
+        model.addAttribute("foto", foto);
+        model.addAttribute("cadastroSucesso", cadastroSucesso);
         return "html/home-admin/home-admin";
     }
 
     @GetMapping("/gerenciar/medicos")
     public String paginaGerenciarMedicos(Model model) {
         var medicos = adminService.listarMedicos();
+        var foto = adminService.pegarFotoAdmin();
         model.addAttribute("medicos", medicos);
+        model.addAttribute("foto", foto);
         return "html/gerenciar-medicos/gerenciar-medicos";
     }
 
@@ -56,29 +75,35 @@ public class AdministradorController {
     }
 
     @PostMapping("/editar/medico/{id}")
-    public String editarInformacoesMedico(@PathVariable Integer id, CadastroMedico cadastroMedico) {
+    public String editarInformacoesMedico(@PathVariable Integer id, CadastroMedico cadastroMedico, RedirectAttributes redirectAttributes) {
         adminService.editarMedico(id, cadastroMedico);
-        return "redirect:/admin/home";
+        redirectAttributes.addFlashAttribute("perfilAtualizado", true);
+        return "redirect:/admin/editar/medico/" + id;
     }
 
     @GetMapping("/gerenciar/pacientes")
     public String paginaGerenciarPacientes(Model model) {
         var pacientes = adminService.listarPacientes();
+        var foto = adminService.pegarFotoAdmin();
         model.addAttribute("pacientes", pacientes);
+        model.addAttribute("foto", foto);
         return "html/gerenciar-pacientes-admin/gerenciar-pacientes-admin";
     }
 
     @GetMapping("/perfil")
     public String paginaPerfilAdmin(Model model) {
         var admin = adminService.pegarDadosAdmin();
+        var foto = adminService.pegarFotoAdmin();
         model.addAttribute("admin", admin);
+        model.addAttribute("foto", foto);
         return "html/perfil-admin/perfil-admin";
     }
 
     @PostMapping("/perfil")
-    public String editarPerfil(InformacoesPerfilAdmin informacoesPerfilAdmin) {
-        adminService.editarDadosAdmin(informacoesPerfilAdmin);
-        return "redirect:/inicio/login";
+    public String editarPerfil(InformacoesPerfilAdmin informacoesPerfilAdmin, @RequestParam("foto") MultipartFile foto, RedirectAttributes redirectAttributes
+    ) throws IOException {
+        adminService.editarDadosAdmin(informacoesPerfilAdmin, foto);
+        redirectAttributes.addFlashAttribute("perfilAtualizado", true);
+        return "redirect:/admin/perfil";
     }
-
 }

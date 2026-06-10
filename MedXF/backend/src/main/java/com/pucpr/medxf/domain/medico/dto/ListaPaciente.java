@@ -16,13 +16,15 @@ public record ListaPaciente(
         String email,
         String telefone,
         Historico historico1,
-        Historico historico2
+        Historico historico2,
+        String fotoPerfil
 
 ) {
 
     public ListaPaciente(Paciente paciente) {
         this(paciente.getId(), paciente.getNome(), paciente.getCpf(), paciente.getNascimento(), paciente.getSexo(),
-                paciente.getEmail(), paciente.getTelefone(), paciente.getHistorico1(), paciente.getHistorico2()
+                paciente.getEmail(), paciente.getTelefone(), paciente.getHistorico1(), paciente.getHistorico2(),
+                paciente.getFotoPerfil()
         );
     }
 

@@ -35,4 +35,5 @@ public class Triagem {
 
     @OneToMany(mappedBy = "triagem")
     private List<Resposta> respostas;
+
 }

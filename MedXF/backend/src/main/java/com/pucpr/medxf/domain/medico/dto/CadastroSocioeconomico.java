@@ -1,16 +1,15 @@
 package com.pucpr.medxf.domain.medico.dto;
 
-import lombok.Data;
+public record CadastroSocioeconomico(
 
-@Data
-public class CadastroSocioeconomico {
+        Integer pacienteId,
+        String nomeResponsavel,
+        Integer quantidadeMoradores,
+        String renda,
+        String internet,
+        String beneficio,
+        String planoSaude,
+        String moradia
 
-    private Integer pacienteId;
-    private String nomeResponsavel;
-    private Integer quantidadeMoradores;
-    private String renda;
-    private String internet;
-    private String beneficio;
-    private String planoSaude;
-    private String moradia;
+) {
 }

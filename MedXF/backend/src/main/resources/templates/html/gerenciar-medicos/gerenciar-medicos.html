@@ -48,11 +48,18 @@
 
     <div class="usuario">
         <p id="nome">Administrador</p>
-        <img id="icone-perfil"
-             th:src="@{/assets/icones/Perfil.png}"
-             alt="perfil"
-             width="40"
-             height="40">
+        <img
+                class="avatar-medico"
+                width="40"
+                height="40"
+                th:if="${foto != null}"
+                th:src="@{'/uploads/' + ${foto}}">
+        <img
+                class="avatar-medico"
+                width="40"
+                height="40"
+                th:unless="${foto != null}"
+                th:src="@{/assets/icones/Perfil.png}">
     </div>
 </header>
 
@@ -82,11 +89,18 @@
                 <tr th:each="medico : ${medicos}">
                     <td class="conteudo-lista">
                         <div class="medico">
-                            <img id="icone-perfil"
-                                 th:src="@{/assets/icones/Perfil.png}"
-                                 alt="perfil"
-                                 width="40"
-                                 height="40">
+                            <img
+                                    class="avatar-medico"
+                                    width="40"
+                                    height="40"
+                                    th:if="${medico.fotoPerfil != null}"
+                                    th:src="@{'/uploads/' + ${medico.fotoPerfil}}">
+                            <img
+                                    class="avatar-medico"
+                                    width="40"
+                                    height="40"
+                                    th:unless="${medico.fotoPerfil != null}"
+                                    th:src="@{/assets/icones/Perfil.png}">
 
                             <div>
                                 <div class="nome"

@@ -34,8 +34,10 @@ public class SecurityConfiguration {
         String role = authentication.getAuthorities().stream().findFirst().get().getAuthority();
         if (role.equals("ROLE_ADMIN")) {
             return "/admin/home";
-        } else {
+        } else if (role.equals("ROLE_USER")) {
             return "/medico/home";
+        } else {
+            return "/paciente/home";
         }
     }
 

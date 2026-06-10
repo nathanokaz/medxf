@@ -44,6 +44,9 @@ public class Medico {
     @Column(nullable = false, unique = true)
     private String cpf;
 
+    @Column(name = "foto_perfil")
+    private String fotoPerfil;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;

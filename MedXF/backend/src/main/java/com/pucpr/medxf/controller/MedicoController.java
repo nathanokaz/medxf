@@ -8,6 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/medico")
@@ -16,15 +20,14 @@ public class MedicoController {
 
     private final MedicoService medicoService;
 
-
     @GetMapping("/home")
     public String paginaHomeMedico(Model model) {
         model.addAttribute("medico", medicoService.informacoesMedico());
         model.addAttribute("infos", medicoService.informacoesNumericasHome());
         model.addAttribute("pacientesHome", medicoService.listarPacientesHome());
+        model.addAttribute("medicoFoto", medicoService.pegarFotoMedico());
         return "/html/home-medico/home-medico";
     }
-
 
     @GetMapping("/triagem")
     public String paginaNovaTriagemMedico() {
@@ -34,10 +37,8 @@ public class MedicoController {
     @PostMapping("/triagem")
     public String cadastrarPaciente(@Valid CadastroPaciente cadastroPaciente) {
         Paciente paciente = medicoService.cadastrarPaciente(cadastroPaciente);
-
         return "redirect:/medico/triagem/socioeconomica?pacienteId=" + paciente.getId();
     }
-
 
     @GetMapping("/triagem/socioeconomica")
     public String paginaTriagemSocioeconomicaMedico(@RequestParam Integer pacienteId, Model model) {
@@ -47,10 +48,8 @@ public class MedicoController {
 
     @PostMapping("/triagem/socioeconomica")
     public String cadastrarSocioeconomicaPaciente(@ModelAttribute CadastroSocioeconomico dados) {
-
         medicoService.salvarSocioeconomica(dados);
-
-        return "redirect:/medico/avaliacao?pacienteId=" + dados.getPacienteId();
+        return "redirect:/medico/avaliacao?pacienteId=" + dados.pacienteId();
     }
 
     @GetMapping("/avaliacao")
@@ -60,8 +59,9 @@ public class MedicoController {
     }
 
     @PostMapping("/avaliacao")
-    public String registrarAvaliacao(AvaliacaoMedico avaliacaoMedico) {
+    public String registrarAvaliacao(AvaliacaoMedico avaliacaoMedico, RedirectAttributes redirectAttributes) {
         medicoService.cadastrarAvaliacao(avaliacaoMedico);
+        redirectAttributes.addFlashAttribute("sucesso", true);
         return "redirect:/medico/home";
     }
 
@@ -73,31 +73,35 @@ public class MedicoController {
                 ? java.util.Collections.emptyList()
                 : medicoService.buscarRespostasPorTriagens(triagens);
         model.addAttribute("respostas", respostas);
-
         return "html/gerenciar-paciente/gerenciar-paciente";
     }
 
     @PostMapping("/gerenciar/paciente/{id}")
-    public String editarPaciente(@PathVariable Integer id, InformacoesPaciente informacoesPaciente) {
+    public String editarPaciente(@PathVariable Integer id, InformacoesPaciente informacoesPaciente, RedirectAttributes redirectAttributes) {
         medicoService.editarInformacoesPaciente(id, informacoesPaciente);
-        return "redirect:/medico/home";
+        redirectAttributes.addFlashAttribute("perfilAtualizado", true);
+        return "redirect:/medico/gerenciar/paciente/" + id;
     }
 
     @GetMapping("/pacientes")
     public String paginaPacientesCadastradosMedico(Model model) {
         model.addAttribute("pacientes", medicoService.listarPacientes());
+        model.addAttribute("fotoMedico", medicoService.pegarFotoMedico());
         return "html/pacientes-cadastrados/pacientes-cadastrados";
     }
 
     @GetMapping("/perfil")
     public String paginaPerfilMedico(Model model) {
         model.addAttribute("medico", medicoService.informacoesMedico());
+        var foto = medicoService.pegarFotoMedico();
+        model.addAttribute("medicoFoto", foto);
         return "html/perfil-medico/perfil-medico";
     }
 
     @PostMapping("/perfil")
-    public String editarPerfil(InformacoesPerfil informacoesPerfil) {
-        medicoService.editarInformacoesMedico(informacoesPerfil);
-        return "redirect:/inicio/login";
+    public String editarPerfil(InformacoesPerfil informacoesPerfil, @RequestParam("foto") MultipartFile foto, RedirectAttributes redirectAttributes) throws IOException {
+        medicoService.editarInformacoesMedico(informacoesPerfil, foto);
+        redirectAttributes.addFlashAttribute("perfilAtualizado", true);
+        return "redirect:/medico/perfil";
     }
 }

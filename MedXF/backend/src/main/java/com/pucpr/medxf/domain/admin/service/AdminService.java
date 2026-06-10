@@ -20,10 +20,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -37,31 +43,23 @@ public class AdminService {
 
     @Transactional
     public void cadastrarMedico(CadastroMedico cadastroMedico) {
-
         if (userRepository.existsByEmail(cadastroMedico.email())) {
             throw new IllegalArgumentException("Email já cadastrado.");
         }
-
         if (medicoRepository.existsByCrm(cadastroMedico.crm())) {
             throw new IllegalArgumentException("CRM já cadastrado.");
         }
-
         if (medicoRepository.existsByCpf(cadastroMedico.cpf())) {
             throw new IllegalArgumentException("CPF já cadastrado.");
         }
-
-        var senhaCriptografada =
-                new BCryptPasswordEncoder().encode(cadastroMedico.senha());
-
+        var senhaCriptografada = new BCryptPasswordEncoder().encode(cadastroMedico.senha());
         User user = User.builder()
                 .email(cadastroMedico.email())
                 .senha(senhaCriptografada)
                 .role(UserRoles.USER)
                 .criadoEm(LocalDateTime.now())
                 .build();
-
         userRepository.save(user);
-
         Medico medico = Medico.builder()
                 .nome(cadastroMedico.nome())
                 .crm(cadastroMedico.crm())
@@ -73,7 +71,6 @@ public class AdminService {
                 .user(user)
                 .admin(pegarAdmin())
                 .build();
-
         medicoRepository.save(medico);
     }
 
@@ -112,26 +109,28 @@ public class AdminService {
         return infos;
     }
 
+    public String pegarFotoAdmin() {
+        var admin = pegarAdmin();
+        return admin.getFotoPerfil();
+    }
+
     public List<ListaPaciente> listarPacientes() {
         var pacientes = pacienteRepository.findAll();
         return pacientes.stream().map(ListaPaciente::new).toList();
     }
 
     public List<String> pegarDadosAdmin() {
-        var admin = pegarAdmin().getId();
         var user = pegarUser().getId();
         List<String> informacoes = new ArrayList<>();
-        var infosUser = userRepository.findById(user)
-                .orElseThrow(() -> new RuntimeException("User não encontrado"));
-        var infosAdmin = adminRepository.findByUserId(admin)
-                .orElseThrow(() -> new RuntimeException("User não encontrado"));
+        var infosUser = userRepository.findById(user).orElseThrow(() -> new RuntimeException("User não encontrado"));
+        var infosAdmin = adminRepository.findByUserId(user).orElseThrow(() -> new RuntimeException("User não encontrado"));
         informacoes.add(infosAdmin.getNome());
         informacoes.add(infosUser.getEmail());
         return informacoes;
     }
 
     @Transactional
-    public void editarDadosAdmin(InformacoesPerfilAdmin informacoesPerfilAdmin) {
+    public void editarDadosAdmin(InformacoesPerfilAdmin informacoesPerfilAdmin, MultipartFile foto) throws IOException {
         var admin = pegarAdmin();
         var user = pegarUser();
         if (informacoesPerfilAdmin.nome() != null
@@ -150,6 +149,13 @@ public class AdminService {
                 && !informacoesPerfilAdmin.senha().isBlank()) {
             var senhaCriptografada = new BCryptPasswordEncoder().encode(informacoesPerfilAdmin.senha());
             user.setSenha(senhaCriptografada);
+        }
+        if (!foto.isEmpty()) {
+            String nomeArquivo = UUID.randomUUID() + "_" + foto.getOriginalFilename();
+            Path caminho = Paths.get("uploads/" + nomeArquivo);
+            Files.createDirectories(caminho.getParent());
+            Files.write(caminho, foto.getBytes());
+            admin.setFotoPerfil(nomeArquivo);
         }
     }
 
@@ -171,11 +177,9 @@ public class AdminService {
     public void editarMedico(Integer id, CadastroMedico cadastroMedico) {
         var medico = medicoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Médico não encontrado"));
-
         if (cadastroMedico.nome() != null && !cadastroMedico.nome().isBlank()) {
             medico.setNome(cadastroMedico.nome());
         }
-
         if (cadastroMedico.crm() != null && !cadastroMedico.crm().isBlank()) {
             if (medicoRepository.existsByCrm(cadastroMedico.crm())
                     && !cadastroMedico.crm().equals(medico.getCrm())) {
@@ -183,7 +187,6 @@ public class AdminService {
             }
             medico.setCrm(cadastroMedico.crm());
         }
-
         if (cadastroMedico.cpf() != null && !cadastroMedico.cpf().isBlank()) {
             if (medicoRepository.existsByCpf(cadastroMedico.cpf())
                     && !cadastroMedico.cpf().equals(medico.getCpf())) {
@@ -191,38 +194,29 @@ public class AdminService {
             }
             medico.setCpf(cadastroMedico.cpf());
         }
-
         if (cadastroMedico.especialidade() != null) {
             medico.setEspecialidade(cadastroMedico.especialidade());
         }
-
         if (cadastroMedico.hospital() != null && !cadastroMedico.hospital().isBlank()) {
             medico.setHospital(cadastroMedico.hospital());
         }
-
         if (cadastroMedico.cidade() != null && !cadastroMedico.cidade().isBlank()) {
             medico.setCidade(cadastroMedico.cidade());
         }
-
         if (cadastroMedico.estado() != null && !cadastroMedico.estado().isBlank()) {
             medico.setEstado(cadastroMedico.estado());
         }
-
         if (cadastroMedico.email() != null && !cadastroMedico.email().isBlank()) {
             var user = medico.getUser();
-
             if (userRepository.existsByEmail(cadastroMedico.email())
                     && !cadastroMedico.email().equals(user.getEmail())) {
                 throw new RuntimeException("Email já cadastrado");
             }
-
             user.setEmail(cadastroMedico.email());
         }
-
         if (cadastroMedico.senha() != null && !cadastroMedico.senha().isBlank()) {
             var senhaCriptografada =
                     new BCryptPasswordEncoder().encode(cadastroMedico.senha());
-
             medico.getUser().setSenha(senhaCriptografada);
         }
     }

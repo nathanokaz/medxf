@@ -20,6 +20,9 @@ public record CadastroPaciente(
         @Email(message = "Email inválido.")
         String email,
 
+        @NotBlank
+        String senha,
+
         @NotBlank(message = "Telefone obrigatório.")
         String telefone,
 

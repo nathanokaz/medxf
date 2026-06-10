@@ -31,4 +31,5 @@ public class Resposta {
     @ManyToOne
     @JoinColumn(name = "triagem_id")
     private Triagem triagem;
+
 }
