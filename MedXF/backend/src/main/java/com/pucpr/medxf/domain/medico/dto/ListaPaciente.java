@@ -1,0 +1,31 @@
+package com.pucpr.medxf.domain.medico.dto;
+
+import com.pucpr.medxf.domain.paciente.Paciente;
+import com.pucpr.medxf.domain.paciente.dto.Historico;
+import com.pucpr.medxf.domain.paciente.dto.Sexo;
+
+import java.time.LocalDate;
+
+public record ListaPaciente(
+
+        Integer id,
+        String nome,
+        String cpf,
+        LocalDate nascimento,
+        Sexo sexo,
+        String email,
+        String telefone,
+        Historico historico1,
+        Historico historico2,
+        String fotoPerfil
+
+) {
+
+    public ListaPaciente(Paciente paciente) {
+        this(paciente.getId(), paciente.getNome(), paciente.getCpf(), paciente.getNascimento(), paciente.getSexo(),
+                paciente.getEmail(), paciente.getTelefone(), paciente.getHistorico1(), paciente.getHistorico2(),
+                paciente.getFotoPerfil()
+        );
+    }
+
+}

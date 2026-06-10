@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/avaliacao-medico/avaliacao-medico.css}">
+    <link rel="icon" th:href="@{/assets/icones/Icone-Usuario.png}" type="image/png">
+    <title>Avaliação - MedXF</title>
+</head>
+<body>
+<header>
+    <a th:href="@{/medico/triagem/socioeconomica}" id="botao-mais">
+        <img id="img-mais"
+             th:src="@{/assets/icones/Icone-Voltar.png}"
+             alt="icone de voltar"
+             width="20"
+             height="20">
+        <span id="nome">Menu Principal</span>
+    </a>
+    <img th:src="@{/assets/icones/Logo2.png}"
+         alt="logo"
+         width="100"
+         height="40">
+</header>
+<div class="titulo">
+    <h2>Questionário</h2>
+</div>
+<form th:action="@{/medico/avaliacao}" method="post">
+    <input type="hidden" name="pacienteId" th:value="${pacienteId}">
+    <div class="check-item">
+        <p>Deficiência intelectual</p>
+        <input type="hidden"
+               name="respostas[0].pergunta"
+               value="1">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[0].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[0].resposta">
+    </div>
+    <div class="check-item">
+        <p>Face alongada / orelhas grandes</p>
+        <input type="hidden"
+               name="respostas[1].pergunta"
+               value="2">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[1].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[1].resposta">
+    </div>
+    <div class="check-item">
+        <p>Macroorquidismo</p>
+        <input type="hidden"
+               name="respostas[2].pergunta"
+               value="3">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[2].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[2].resposta">
+    </div>
+    <div class="check-item">
+        <p>Hipermobilidade articular</p>
+        <input type="hidden"
+               name="respostas[3].pergunta"
+               value="4">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[3].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[3].resposta">
+    </div>
+    <div class="check-item">
+        <p>Dificuldades de aprendizagem</p>
+        <input type="hidden"
+               name="respostas[4].pergunta"
+               value="5">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[4].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[4].resposta">
+    </div>
+    <div class="check-item">
+        <p>Déficit de atenção</p>
+        <input type="hidden"
+               name="respostas[5].pergunta"
+               value="6">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[5].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[5].resposta">
+    </div>
+    <div class="check-item">
+        <p>Movimentos repetitivos</p>
+        <input type="hidden"
+               name="respostas[6].pergunta"
+               value="7">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[6].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[6].resposta">
+    </div>
+    <div class="check-item">
+        <p>Atraso na fala</p>
+        <input type="hidden"
+               name="respostas[7].pergunta"
+               value="8">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[7].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[7].resposta">
+    </div>
+    <div class="check-item">
+        <p>Hiperatividade</p>
+        <input type="hidden"
+               name="respostas[8].pergunta"
+               value="9">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[8].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[8].resposta">
+    </div>
+    <div class="check-item">
+        <p>Evita contato visual</p>
+        <input type="hidden"
+               name="respostas[9].pergunta"
+               value="10">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[9].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[9].resposta">
+    </div>
+    <div class="check-item">
+        <p>Evita contato físico</p>
+        <input type="hidden"
+               name="respostas[10].pergunta"
+               value="11">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[10].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[10].resposta">
+    </div>
+    <div class="check-item">
+        <p>Agressividade</p>
+        <input type="hidden"
+               name="respostas[11].pergunta"
+               value="12">
+        <details class="observacao">
+            <summary>Observações Médicas</summary>
+            <textarea
+                    name="respostas[11].observacao"
+                    placeholder="Observações médicas"></textarea>
+        </details>
+        <input type="checkbox"
+               name="respostas[11].resposta">
+    </div>
+    <button type="submit">
+        Finalizar Triagem
+    </button>
+</form>
+</body>
+</html>

@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F4F7FB;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    height: 72px;
+    background-color: #1565D8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+#botao-mais {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.12);
+    transition: 0.3s;
+}
+
+#botao-mais:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#botao-mais span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#nome {
+    flex: 1;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+.formulario {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    width: 100%;
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.titulo {
+    margin-bottom: 25px;
+}
+
+h2 {
+    color: #111827;
+    font-size: 28px;
+    text-align: center;
+}
+
+.nomes,
+.contato {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.data-sexo {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+#data-nascimento,
+#sexo-paciente {
+    flex: 1;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form input[type="date"],
+form select {
+    width: 100%;
+    height: 48px;
+    background: #F8FAFC;
+    border: 1px solid #DBE2EA;
+    border-radius: 14px;
+    padding: 0 14px;
+    font-size: 14px;
+    color: #1E293B;
+    outline: none;
+    transition: 0.3s;
+}
+
+form input:focus,
+form select:focus {
+    background: white;
+    border-color: #1565D8;
+    box-shadow: 0 0 0 3px rgba(21, 101, 216, 0.1);
+}
+
+h3 {
+    color: #1E293B;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 20px;
+}
+
+.perguntas {
+    display: flex;
+    gap: 12px;
+}
+
+.perguntas label {
+    flex: 1;
+    height: 48px;
+    border: 1px solid #DBE2EA;
+    border-radius: 14px;
+    background: #F8FAFC;
+    color: #475569;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.perguntas label:hover {
+    background: #E2E8F0;
+}
+
+.perguntas input[type="radio"] {
+    display: none;
+}
+
+.perguntas label:has(input[type="radio"]:checked) {
+    background: #1565D8;
+    border-color: #1565D8;
+    color: white;
+}
+
+.continuar {
+    margin-top: 30px;
+}
+
+#botao-continuar {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 14px;
+    background: #1565D8;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(21, 101, 216, 0.15);
+}
+
+#botao-continuar:hover {
+    background: #0F4FB5;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 0 15px;
+    }
+
+    #botao-mais span {
+        display: none;
+    }
+
+    .container {
+        padding: 20px 15px;
+    }
+
+    form {
+        padding: 24px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .data-sexo {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    form {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .perguntas {
+        flex-direction: column;
+    }
+}

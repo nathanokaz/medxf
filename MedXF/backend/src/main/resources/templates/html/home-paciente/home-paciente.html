@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/home-paciente/home-paciente.css}">
+    <link rel="icon" th:href="@{/assets/icones/Icone-Casa.png}">
+    <title>Início - MedXF</title>
+</head>
+<body>
+
+<header>
+    <div class="menu-container">
+        <button id="icone-mais">
+            <img th:src="@{/assets/icones/Mais-Info.png}" alt="menu" width="20" height="15">
+        </button>
+        <div id="popup-menu" class="popup-dropdown">
+            <nav class="popup-links">
+                <a th:href="@{/paciente/home}" class="popup-item">
+                    <span>Início</span>
+                </a>
+                <a th:href="@{/paciente/perfil}" class="popup-item">
+                    <span>Meus Dados</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="125" height="50">
+    <div class="usuario">
+        <p id="nome-paciente" th:text="${paciente[0]}"></p>
+        <a th:href="@{/paciente/perfil}">
+            <img class="avatar"
+                 th:if="${pacienteFoto != null}"
+                 th:src="@{'/uploads/' + ${pacienteFoto}}"
+                 alt="Foto do paciente">
+
+            <img class="avatar"
+                 th:unless="${pacienteFoto != null}"
+                 th:src="@{/assets/icones/Perfil.png}"
+                 alt="Foto padrão">
+        </a>
+    </div>
+</header>
+
+<div class="container">
+    <div class="principal">
+        <h1>Bem vindo, <span th:text="${paciente[0]}"></span></h1>
+        <h2>MedXF - Sistema de triagem para Síndrome do X Frágil</h2>
+
+        <div class="caixas">
+            <div class="caixa">
+                <p class="subtitulo">Nível de Avaliação</p>
+                <p class="numero" th:text="${nivelAvaliacao}">Não avaliado</p>
+            </div>
+            <div class="caixa">
+                <p class="subtitulo">Última Consulta</p>
+                <p class="numero" th:text="${ultimaConsulta}">Nenhuma</p>
+            </div>
+            <div class="caixa">
+                <p class="subtitulo">Status</p>
+                <p class="numero status-text">Ativo</p>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <h3>Ações Rápidas</h3>
+            <div class="actions-grid">
+                <a th:href="@{/paciente/perfil}" class="action-card">
+                    <div class="action-icon">📋</div>
+                    <h4>Editar Dados</h4>
+                    <p>Atualize suas informações pessoais</p>
+                </a>
+
+                <a th:href="@{/paciente/triagem}" class="action-card">
+                    <div class="action-icon">📊</div>
+                    <h4>Ver Triagem</h4>
+                    <p>Acompanhe seus resultados</p>
+                </a>
+
+                <a th:href="@{https://institutobk.org.br/programa-eu-digo-x/}" class="action-card" target="_blank" rel="noopener noreferrer">
+                    <div class="action-icon">❓</div>
+                    <h4>Dúvidas Frequentes</h4>
+                    <p>Saiba mais sobre a síndrome</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>Informações Importantes</h3>
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="info-title">Sobre a Síndrome do X Frágil</div>
+                    <p>A Síndrome do X Frágil é uma condição genética que afeta o desenvolvimento intelectual e comportamental. Este questionário ajuda na identificação de possíveis sinais.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-title">Confidencialidade</div>
+                    <p>Todos os seus dados estão protegidos e seguem as normas de privacidade. Suas informações serão utilizadas apenas para fins médicos e de pesquisa.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-title">Próximos Passos</div>
+                    <p>Após responder o questionário, seu resultado será analisado. Você será contatado para discussão dos resultados e recomendações médicas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const btnMenu = document.getElementById('icone-mais');
+    const popupMenu = document.getElementById('popup-menu');
+
+    btnMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+        popupMenu.classList.toggle('ativo');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!popupMenu.contains(e.target) && e.target !== btnMenu && e.target.closest('#icone-mais') === null) {
+            popupMenu.classList.remove('ativo');
+        }
+    });
+</script>
+
+</body>
+</html>

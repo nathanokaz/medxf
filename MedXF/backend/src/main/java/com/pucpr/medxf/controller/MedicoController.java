@@ -1,0 +1,115 @@
+package com.pucpr.medxf.controller;
+
+import com.pucpr.medxf.domain.medico.dto.*;
+import com.pucpr.medxf.domain.medico.service.MedicoService;
+import com.pucpr.medxf.domain.paciente.Paciente;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.IOException;
+
+@Controller
+@RequestMapping("/medico")
+@RequiredArgsConstructor
+public class MedicoController {
+
+    private final MedicoService medicoService;
+
+    @GetMapping("/home")
+    public String paginaHomeMedico(Model model) {
+        model.addAttribute("medico", medicoService.informacoesMedico());
+        model.addAttribute("infos", medicoService.informacoesNumericasHome());
+        model.addAttribute("pacientesHome", medicoService.listarPacientesHome());
+        model.addAttribute("medicoFoto", medicoService.pegarFotoMedico());
+        return "/html/home-medico/home-medico";
+    }
+
+    @GetMapping("/triagem")
+    public String paginaNovaTriagemMedico() {
+        return "html/nova-triagem/nova-triagem";
+    }
+
+    @PostMapping("/triagem")
+    public String cadastrarPaciente(@Valid CadastroPaciente cadastroPaciente, @RequestParam("foto") MultipartFile foto) throws IOException {
+        Paciente paciente = medicoService.cadastrarPaciente(cadastroPaciente, foto);
+        return "redirect:/medico/triagem/socioeconomica?pacienteId=" + paciente.getId();
+    }
+
+    @GetMapping("/triagem/socioeconomica")
+    public String paginaTriagemSocioeconomicaMedico(@RequestParam Integer pacienteId, Model model) {
+        model.addAttribute("pacienteId", pacienteId);
+        return "html/triagem-socioeconomica/triagem-socioeconomica";
+    }
+
+    @PostMapping("/triagem/socioeconomica")
+    public String cadastrarSocioeconomicaPaciente(@ModelAttribute CadastroSocioeconomico dados) {
+        medicoService.salvarSocioeconomica(dados);
+        return "redirect:/medico/avaliacao?pacienteId=" + dados.pacienteId();
+    }
+
+    @GetMapping("/avaliacao")
+    public String paginaAvaliacaoMedico(@RequestParam Integer pacienteId, Model model) {
+        model.addAttribute("pacienteId", pacienteId);
+        return "html/avaliacao-medico/avaliacao-medico";
+    }
+
+    @PostMapping("/avaliacao")
+    public String registrarAvaliacao(AvaliacaoMedico avaliacaoMedico, RedirectAttributes redirectAttributes) {
+        medicoService.cadastrarAvaliacao(avaliacaoMedico);
+        redirectAttributes.addFlashAttribute("sucesso", true);
+        return "redirect:/medico/home";
+    }
+
+    @GetMapping("/gerenciar/paciente/{id}")
+    public String paginaGerenciarPacienteMedico(@PathVariable Integer id, Model model) {
+        model.addAttribute("paciente", medicoService.informacoesPaciente(id));
+        var triagens = medicoService.buscarTriagensPorPaciente(id);
+        var respostas = (triagens == null || triagens.isEmpty())
+                ? java.util.Collections.emptyList()
+                : medicoService.buscarRespostasPorTriagens(triagens);
+        model.addAttribute("respostas", respostas);
+        return "html/gerenciar-paciente/gerenciar-paciente";
+    }
+
+    @PostMapping("/gerenciar/paciente/{id}")
+    public String editarPaciente(@PathVariable Integer id, InformacoesPaciente informacoesPaciente, RedirectAttributes redirectAttributes) {
+        medicoService.editarInformacoesPaciente(id, informacoesPaciente);
+        redirectAttributes.addFlashAttribute("perfilAtualizado", true);
+        return "redirect:/medico/gerenciar/paciente/" + id;
+    }
+
+    @GetMapping("/pacientes")
+    public String paginaPacientesCadastradosMedico(Model model) {
+        model.addAttribute("pacientes", medicoService.listarPacientes());
+        model.addAttribute("fotoMedico", medicoService.pegarFotoMedico());
+        return "html/pacientes-cadastrados/pacientes-cadastrados";
+    }
+
+    @GetMapping("/perfil")
+    public String paginaPerfilMedico(Model model) {
+        model.addAttribute("medico", medicoService.informacoesMedico());
+        var foto = medicoService.pegarFotoMedico();
+        model.addAttribute("medicoFoto", foto);
+        return "html/perfil-medico/perfil-medico";
+    }
+
+    @PostMapping("/perfil")
+    public String editarPerfil(InformacoesPerfil informacoesPerfil, @RequestParam("foto") MultipartFile foto, RedirectAttributes redirectAttributes) throws IOException {
+        medicoService.editarInformacoesMedico(informacoesPerfil, foto);
+        redirectAttributes.addFlashAttribute("perfilAtualizado", true);
+        return "redirect:/medico/perfil";
+    }
+
+    @GetMapping("/relatorio/paciente/{id}")
+    public String paginaRelatorioPaciente(@PathVariable Integer id, Model model) {
+        var infos = medicoService.todasInformacoesPaciente(id);
+        model.addAttribute("paciente", infos);
+        return "html/relatorio-paciente/relatorio-paciente";
+    }
+
+}

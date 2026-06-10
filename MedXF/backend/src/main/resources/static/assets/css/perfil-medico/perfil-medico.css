@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #F4F7FB;
+    color: #1E293B;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    height: 72px;
+    background-color: #1565D8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+#botao-mais {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.12);
+    transition: 0.3s;
+}
+
+#botao-mais:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#botao-mais span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#nome {
+    flex: 1;
+}
+
+.layout {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 32px 20px;
+}
+
+.page-header {
+    max-width: 650px;
+    margin: 0 auto 30px auto;
+}
+
+.page-header h1 {
+    font-size: 32px;
+    color: #111827;
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: #64748B;
+    font-size: 15px;
+}
+
+.patient-grid {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.patient-card {
+    width: 100%;
+    max-width: 650px;
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.patient-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    background: #DBEAFE;
+    color: #1565D8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.patient-info h2 {
+    color: #111827;
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.patient-info span {
+    color: #64748B;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    height: 48px;
+    background: #F8FAFC;
+    border: 1px solid #DBE2EA;
+    border-radius: 14px;
+    padding: 0 14px;
+    font-size: 14px;
+    color: #1E293B;
+    outline: none;
+    transition: 0.3s;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    padding: 14px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background: white;
+    border-color: #1565D8;
+    box-shadow: 0 0 0 3px rgba(21, 101, 216, 0.1);
+}
+
+.actions {
+    margin-top: 25px;
+}
+
+.save-btn {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 14px;
+    background: #1565D8;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(21, 101, 216, 0.15);
+}
+
+.save-btn:hover {
+    background: #0F4FB5;
+    transform: translateY(-1px);
+}
+
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e5e7eb;
+    border: 2px solid #ddd;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-btn {
+    padding: 8px 12px;
+    background: #2563eb;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.upload-btn:hover {
+    background: #1d4ed8;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 0 15px;
+    }
+
+    #botao-mais span {
+        display: none;
+    }
+
+    .content {
+        padding: 20px 15px;
+    }
+
+    .patient-card {
+        padding: 24px;
+    }
+
+    .page-header h1 {
+        font-size: 26px;
+    }
+
+    .avatar {
+        width: 65px;
+        height: 65px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .patient-card {
+        padding: 20px;
+    }
+
+    .patient-top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .patient-info {
+        width: 100%;
+    }
+
+    .page-header h1 {
+        font-size: 22px;
+    }
+}

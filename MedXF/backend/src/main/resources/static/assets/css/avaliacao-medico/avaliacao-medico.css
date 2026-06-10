@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F4F7FB;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    height: 72px;
+    background-color: #1565D8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+#botao-mais {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.12);
+    transition: 0.3s;
+}
+
+#botao-mais:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#botao-mais span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#nome {
+    flex: 1;
+}
+
+.titulo {
+    text-align: center;
+    padding-top: 18px;
+    margin-bottom: 14px;
+}
+
+h2 {
+    color: #111827;
+    font-size: 26px;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.check-item {
+    background: white;
+    border-radius: 18px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    transition: 0.2s;
+}
+
+.check-item:hover {
+    transform: translateY(-2px);
+}
+
+.check-item p {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1E293B;
+}
+
+.observacao {
+    width: 100%;
+}
+
+.observacao summary {
+    list-style: none;
+    cursor: pointer;
+    font-size: 12px;
+    color: #1565D8;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+    margin-top: 4px;
+}
+
+.observacao summary::-webkit-details-marker {
+    display: none;
+}
+
+.observacao summary::after {
+    content: "▾";
+    font-size: 12px;
+    transition: transform 0.25s ease;
+}
+
+.observacao[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.observacao textarea {
+    width: 100%;
+    height: 0;
+    opacity: 0;
+    border: 1px solid #DBE2EA;
+    border-radius: 12px;
+    padding: 0 12px;
+    background: #F8FAFC;
+    font-size: 14px;
+    resize: none;
+    transition: 0.25s ease;
+    margin-top: 6px;
+}
+
+.observacao[open] textarea {
+    height: 110px;
+    opacity: 1;
+    padding: 10px 12px;
+    background: white;
+}
+
+.check-item input[type="checkbox"] {
+    align-self: flex-end;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    border: 2px solid #cbd5e1;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    background: white;
+}
+
+.check-item input[type="checkbox"]:checked {
+    background: #1565D8;
+    border-color: #1565D8;
+}
+
+.check-item input[type="checkbox"]:checked::after {
+    content: "✓";
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+}
+
+button {
+    margin: 30px auto 40px;
+    width: 320px;
+    height: 50px;
+    background: #1565D8;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0F4FB5;
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 22px;
+    }
+
+    button {
+        width: 100%;
+    }
+}

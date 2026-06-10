@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/perfil-paciente/perfil-paciente.css}">
+    <link rel="icon" th:href="@{/assets/icones/Icone-Usuario.png}" type="image/png">
+    <title>Editar Perfil - MedXF</title>
+</head>
+<body>
+
+<header>
+    <a th:href="@{/paciente/home}" id="botao-mais">
+        <img id="img-mais"
+             th:src="@{/assets/icones/Icone-Voltar.png}"
+             alt="icone de voltar"
+             width="20"
+             height="20">
+        <span>Menu Principal</span>
+    </a>
+
+    <h1 id="nome"></h1>
+
+    <img th:src="@{/assets/icones/Logo2.png}"
+         alt="logo"
+         width="100"
+         height="40">
+</header>
+
+<div class="layout">
+    <main class="content">
+
+        <div class="page-header">
+            <div>
+                <h1>Paciente</h1>
+                <p>Insira os dados que deseja editar.</p>
+            </div>
+        </div>
+
+        <div class="patient-grid">
+            <div class="patient-card">
+
+                <form th:action="@{/paciente/perfil}"
+                      method="post"
+                      enctype="multipart/form-data">
+
+                    <div class="patient-top">
+
+                        <div class="avatar-container">
+
+                            <img class="avatar"
+                                 th:if="${pacienteFoto != null}"
+                                 th:src="@{'/uploads/' + ${pacienteFoto}}"
+                                 alt="Foto do paciente">
+
+                            <img class="avatar"
+                                 th:unless="${pacienteFoto != null}"
+                                 th:src="@{/assets/icones/Perfil.png}"
+                                 alt="Foto padrão">
+
+                            <label for="foto" class="upload-btn">
+                                Alterar foto
+                            </label>
+
+                            <input type="file"
+                                   id="foto"
+                                   name="foto"
+                                   accept="image/*">
+                        </div>
+
+                        <div class="patient-info">
+                            <h2 th:text="${paciente[0]}"></h2>
+                            <span>Dados do Paciente</span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email"
+                               th:placeholder="${paciente[1]}"
+                               name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nova Senha</label>
+                        <input type="password"
+                               placeholder="Digite sua nova senha"
+                               name="senha">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="text"
+                               th:placeholder="${paciente[2]}"
+                               name="telefone">
+                    </div>
+
+                    <div class="actions">
+                        <button type="submit"
+                                class="save-btn"
+                                style="width: 100%;">
+                            Salvar Alterações
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script th:if="${perfilAtualizado}">
+    Swal.fire({
+        icon: 'success',
+        title: 'Perfil atualizado!',
+        text: 'As informações foram atualizadas com sucesso.',
+        confirmButtonColor: '#2563EB'
+    });
+</script>
+</body>
+</html>
+

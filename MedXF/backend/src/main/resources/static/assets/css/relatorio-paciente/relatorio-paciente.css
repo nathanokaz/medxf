@@ -1,0 +1,338 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #F4F7FB;
+    min-height: 100vh;
+    color: #111827;
+    font-family: 'Inter', sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 72px;
+    background: #1565D8;
+    border-bottom: 1px solid #E5E7EB;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 32px;
+}
+
+#botao-voltar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    text-decoration: none;
+    color: #2563EB;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+#botao-voltar:hover {
+    opacity: 0.8;
+}
+
+#botao-voltar img {
+    width: 20px;
+    height: 20px;
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#nome-medico {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 2px solid #E5E7EB;
+}
+
+/* CONTAINER */
+
+.container {
+    max-width: 1200px;
+    margin: 32px auto;
+    padding: 0 24px;
+}
+
+/* TÍTULO */
+
+.titulo-relatorio {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 24px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.titulo-relatorio h1 {
+    font-size: 32px;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.titulo-relatorio p {
+    font-size: 15px;
+    color: #6B7280;
+}
+
+/* CARDS */
+
+.card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+
+    color: #111827;
+
+    border-bottom: 1px solid #E5E7EB;
+}
+
+/* DADOS */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.info span {
+    color: #6B7280;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.info strong {
+    color: #111827;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* HISTÓRICOS */
+
+.historicos {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.historico-card {
+    flex: 1;
+    min-width: 250px;
+
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+
+    padding: 20px;
+}
+
+.historico-card span {
+    display: block;
+    margin-bottom: 8px;
+
+    color: #6B7280;
+    font-size: 13px;
+}
+
+.historico-card strong {
+    color: #111827;
+    font-size: 16px;
+}
+
+/* RESUMO TRIAGENS */
+
+.resumo-triagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100px;
+
+    background: #EEF4FF;
+    border: 1px solid #BFDBFE;
+    border-radius: 12px;
+}
+
+.resumo-triagem strong {
+    font-size: 32px;
+    color: #2563EB;
+}
+
+/* TABELA */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #2563EB;
+}
+
+thead th {
+    padding: 14px;
+    text-align: left;
+
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+tbody tr {
+    border-bottom: 1px solid #E5E7EB;
+}
+
+tbody tr:nth-child(even) {
+    background: #F9FAFB;
+}
+
+tbody tr:hover {
+    background: #EEF4FF;
+}
+
+tbody td {
+    padding: 14px;
+    font-size: 14px;
+    color: #374151;
+}
+
+/* BOTÃO */
+
+.acoes {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.acoes button {
+    background: #2563EB;
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+
+    padding: 12px 24px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.acoes button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+
+    header {
+        padding: 0 16px;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .titulo-relatorio {
+        padding: 20px;
+    }
+
+    .titulo-relatorio h1 {
+        font-size: 26px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .historicos {
+        flex-direction: column;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .acoes {
+        justify-content: center;
+    }
+
+    .acoes button {
+        width: 100%;
+    }
+}
+
+/* IMPRESSÃO */
+
+@media print {
+
+    header,
+    .acoes {
+        display: none;
+    }
+
+    body {
+        background: white;
+    }
+
+    .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titulo-relatorio,
+    .card {
+        box-shadow: none;
+        border: 1px solid #D1D5DB;
+    }
+}
