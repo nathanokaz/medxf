@@ -81,7 +81,7 @@ header {
     background: white;
     border-radius: 24px;
     padding: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
 }
@@ -156,7 +156,7 @@ header {
 .form-group textarea:focus {
     background: #fff;
     border-color: #1565D8;
-    box-shadow: 0 0 0 3px rgba(21, 101, 216, 0.1);
+    box-shadow: 0 0 0 3px rgba(21,101,216,0.1);
 }
 
 .actions {
@@ -173,27 +173,21 @@ header {
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .save-btn:hover {
     background: #0F4FB5;
 }
 
-.perguntas,
-.opcoes {
+.perguntas {
     display: flex;
-    flex-wrap: wrap;
     gap: 12px;
     margin-top: 6px;
 }
 
-.perguntas label,
-.opcoes label {
+.perguntas label {
     flex: 1;
-    min-width: 150px;
-    min-height: 48px;
-    padding: 12px 16px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -205,67 +199,16 @@ header {
     border-radius: 12px;
     border: 1px solid #DCE3EB;
     background: #F8FAFC;
-    transition: 0.3s;
 }
 
-.perguntas label:hover,
-.opcoes label:hover {
-    border-color: #1565D8;
-    background: #EFF6FF;
-}
-
-.perguntas input[type="radio"],
-.opcoes input[type="radio"] {
+.perguntas input[type="radio"] {
     display: none;
 }
 
-.perguntas label:has(input[type="radio"]:checked),
-.opcoes label:has(input[type="radio"]:checked) {
+.perguntas label:has(input[type="radio"]:checked) {
     background: #1565D8;
     border-color: #1565D8;
     color: white;
-}
-
-.tabs {
-    display: flex;
-    gap: 12px;
-    margin: 24px 0;
-    flex-wrap: wrap;
-}
-
-.tab-button {
-    flex: 1;
-    min-height: 48px;
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid #DCE3EB;
-    background: #F8FAFC;
-    color: #334155;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.tab-button:hover {
-    border-color: #1565D8;
-    background: #EFF6FF;
-}
-
-.tab-button.active {
-    background: #1565D8;
-    border-color: #1565D8;
-    color: white;
-}
-
-.tab-content {
-    display: none;
-    margin-top: 10px;
-}
-
-.tab-content.active {
-    display: block;
 }
 
 @media (max-width: 768px) {
@@ -275,25 +218,6 @@ header {
 
     .patient-card {
         padding: 24px;
-    }
-
-    .tabs {
-        flex-direction: column;
-    }
-
-    .tab-button {
-        width: 100%;
-    }
-
-    .perguntas,
-    .opcoes {
-        flex-direction: column;
-    }
-
-    .perguntas label,
-    .opcoes label {
-        width: 100%;
-        min-width: 100%;
     }
 }
 

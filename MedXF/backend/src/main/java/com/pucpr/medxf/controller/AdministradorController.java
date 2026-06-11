@@ -3,6 +3,8 @@ package com.pucpr.medxf.controller;
 import com.pucpr.medxf.domain.admin.dto.CadastroMedico;
 import com.pucpr.medxf.domain.admin.dto.InformacoesPerfilAdmin;
 import com.pucpr.medxf.domain.admin.service.AdminService;
+import com.pucpr.medxf.domain.medico.dto.InformacoesPaciente;
+import com.pucpr.medxf.domain.medico.service.MedicoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import java.io.IOException;
 public class AdministradorController {
 
     private final AdminService adminService;
+    private final MedicoService medicoService;
 
 
     @GetMapping("/cadastrar/medico")
@@ -88,6 +91,20 @@ public class AdministradorController {
         model.addAttribute("pacientes", pacientes);
         model.addAttribute("foto", foto);
         return "html/gerenciar-pacientes-admin/gerenciar-pacientes-admin";
+    }
+
+    @GetMapping("/editar/paciente/{id}")
+    public String paginaEditarPaciente(@PathVariable Integer id, Model model) {
+        var paciente = adminService.informacoesPaciente(id);
+        model.addAttribute("paciente", paciente);
+        return "html/perfil-paciente-admin/perfil-paciente-admin";
+    }
+
+    @PostMapping("/editar/paciente/{id}")
+    public String editarPaciente(@PathVariable Integer id, InformacoesPaciente informacoesPaciente, RedirectAttributes redirectAttributes) {
+        medicoService.editarInformacoesPaciente(id, informacoesPaciente);
+        redirectAttributes.addFlashAttribute("perfilAtualizado", true);
+        return "redirect:/admin/editar/paciente/" + id;
     }
 
     @GetMapping("/perfil")

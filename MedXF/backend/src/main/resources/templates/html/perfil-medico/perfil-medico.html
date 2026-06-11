@@ -30,15 +30,7 @@
                 <form th:action="@{/medico/perfil}" method="post" enctype="multipart/form-data">
                     <div class="patient-top">
                         <div class="avatar-container">
-                            <img class="avatar"
-                                 th:if="${medicoFoto != null}"
-                                 th:src="@{'/uploads/' + ${medicoFoto}}"
-                                 alt="Foto do médico">
-
-                            <img class="avatar"
-                                 th:unless="${medicoFoto != null}"
-                                 th:src="@{/assets/icones/Perfil.png}"
-                                 alt="Foto padrão">
+                            <img id="previewFoto" class="avatar" th:src="${medicoFoto != null} ? @{'/uploads/' + ${medicoFoto}} : @{/assets/icones/Perfil.png}" alt="Foto do médico">
                             <label for="foto" class="upload-btn">
                                 Alterar foto
                             </label>
@@ -102,6 +94,17 @@
         text: 'As informações foram atualizadas com sucesso.',
         confirmButtonText: 'OK',
         confirmButtonColor: '#2563EB'
+    });
+</script>
+<script>
+    document.getElementById('foto').addEventListener('change', function () {
+
+        const arquivo = this.files[0];
+
+        if (arquivo) {
+            document.getElementById('previewFoto').src =
+                URL.createObjectURL(arquivo);
+        }
     });
 </script>
 

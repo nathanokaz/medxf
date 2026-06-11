@@ -36,9 +36,28 @@
     <div class="principal">
       <h1>Todos Pacientes Cadastrados</h1>
       <div class="lista">
+
         <div class="lista-header">
           <h3>Pacientes Cadastrados</h3>
+
+          <form th:action="@{/medico/pacientes}" method="get" class="form-busca">
+            <input
+                    type="text"
+                    name="cpf"
+                    placeholder="Pesquisar por CPF..."
+                    th:value="${param.cpf}"
+                    class="campo-busca">
+
+            <button type="submit" class="botao-busca">
+              Buscar
+            </button>
+          </form>
         </div>
+
+        <div th:if="${#lists.isEmpty(pacientes)}" class="nenhum-paciente">
+          Nenhum paciente encontrado.
+        </div>
+
         <table>
           <thead>
           <tr>
@@ -52,6 +71,7 @@
             <th class="titulo-lista">Ações</th>
           </tr>
           </thead>
+
           <tbody>
 
           <tr th:each="paciente : ${pacientes}">
@@ -121,7 +141,9 @@
 
           </tbody>
         </table>
+
       </div>
+    </div>
     </div>
   </div>
 </body>

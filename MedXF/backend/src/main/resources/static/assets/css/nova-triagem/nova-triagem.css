@@ -5,16 +5,18 @@
 }
 
 body {
-    background-color: #F4F7FB;
+    background: #F4F7FB;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: "Inter", sans-serif;
+    color: #111827;
 }
 
 header {
     width: 100%;
     height: 72px;
-    background-color: #1565D8;
+    background: #1565D8;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,41 +58,49 @@ header {
 
 .formulario {
     width: 100%;
-    max-width: 650px;
+    max-width: 850px;
     display: flex;
     justify-content: center;
 }
 
 form {
     width: 100%;
-    background: white;
+    background: #FFFFFF;
     border-radius: 24px;
     padding: 32px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
 .titulo {
-    margin-bottom: 25px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-h2 {
-    color: #111827;
-    font-size: 28px;
-    text-align: center;
+.titulo h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 6px;
+}
+
+.titulo p {
+    color: #64748B;
+    font-size: 14px;
 }
 
 .nomes,
 .contato {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 18px;
+    gap: 14px;
+    margin-bottom: 20px;
 }
 
 .data-sexo {
     display: flex;
-    gap: 12px;
-    margin-bottom: 18px;
+    gap: 14px;
+    margin-bottom: 20px;
 }
 
 #data-nascimento,
@@ -100,15 +110,16 @@ h2 {
 
 form input[type="text"],
 form input[type="email"],
+form input[type="password"],
 form input[type="tel"],
 form input[type="date"],
 form select {
     width: 100%;
-    height: 48px;
+    height: 52px;
     background: #F8FAFC;
     border: 1px solid #DBE2EA;
     border-radius: 14px;
-    padding: 0 14px;
+    padding: 0 16px;
     font-size: 14px;
     color: #1E293B;
     outline: none;
@@ -122,12 +133,34 @@ form select:focus {
     box-shadow: 0 0 0 3px rgba(21, 101, 216, 0.1);
 }
 
-h3 {
-    color: #1E293B;
-    font-size: 16px;
+.foto-perfil {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.foto-perfil label {
+    display: block;
+    font-size: 14px;
     font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+.foto-perfil input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    background: #F8FAFC;
+    border: 1px dashed #CBD5E1;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+h3 {
+    color: #0F172A;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 24px;
     margin-bottom: 12px;
-    margin-top: 20px;
 }
 
 .perguntas {
@@ -137,7 +170,7 @@ h3 {
 
 .perguntas label {
     flex: 1;
-    height: 48px;
+    height: 50px;
     border: 1px solid #DBE2EA;
     border-radius: 14px;
     background: #F8FAFC;
@@ -148,7 +181,7 @@ h3 {
     cursor: pointer;
     transition: 0.3s;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .perguntas label:hover {
@@ -166,25 +199,25 @@ h3 {
 }
 
 .continuar {
-    margin-top: 30px;
+    margin-top: 32px;
 }
 
 #botao-continuar {
     width: 100%;
-    height: 50px;
+    height: 52px;
     border: none;
     border-radius: 14px;
-    background: #1565D8;
+    background: #2563EB;
     color: white;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 4px 12px rgba(21, 101, 216, 0.15);
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
 }
 
 #botao-continuar:hover {
-    background: #0F4FB5;
+    background: #1D4ED8;
     transform: translateY(-1px);
 }
 
@@ -205,8 +238,8 @@ h3 {
         padding: 24px;
     }
 
-    h2 {
-        font-size: 24px;
+    .titulo h2 {
+        font-size: 26px;
     }
 
     .data-sexo {
@@ -219,7 +252,7 @@ h3 {
         padding: 20px;
     }
 
-    h2 {
+    .titulo h2 {
         font-size: 22px;
     }
 

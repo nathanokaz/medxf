@@ -11,6 +11,7 @@ import com.pucpr.medxf.domain.pergunta.Pergunta;
 import com.pucpr.medxf.domain.pergunta.repository.PerguntaRepository;
 import com.pucpr.medxf.domain.respostas.Resposta;
 import com.pucpr.medxf.domain.respostas.repository.RespostaRepository;
+import com.pucpr.medxf.domain.socioeconomico.dto.InformacoesSocioeconomicas;
 import com.pucpr.medxf.domain.triagem.Triagem;
 import com.pucpr.medxf.domain.triagem.repository.TriagemReposiotry;
 import com.pucpr.medxf.domain.user.User;
@@ -147,7 +148,8 @@ public class MedicoService {
     }
 
     public List<ListaPaciente> listarPacientes() {
-        var pacientes = pacienteRepository.findAll();
+        var medico = pegarMedico().getId();
+        var pacientes = pacienteRepository.findAllByMedicoId(medico);
         return pacientes.stream().map(ListaPaciente::new).toList();
     }
 
@@ -295,16 +297,17 @@ public class MedicoService {
     }
 
     public List<String> informacoesPaciente(Integer id) {
+        Paciente paciente = pacienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
         List<String> infoPaciente = new ArrayList<>();
-        var paciente = pacienteRepository.findById(id);
-        infoPaciente.add(paciente.get().getNome());
+        infoPaciente.add(paciente.getNome());
         infoPaciente.add(String.valueOf(id));
-        infoPaciente.add(paciente.get().getCpf());
-        infoPaciente.add(String.valueOf(paciente.get().getNascimento()));
-        infoPaciente.add(String.valueOf(paciente.get().getSexo()));
-        infoPaciente.add(paciente.get().getTelefone());
-        infoPaciente.add(String.valueOf(paciente.get().getHistorico1()));
-        infoPaciente.add(String.valueOf(paciente.get().getHistorico2()));
+        infoPaciente.add(paciente.getCpf());
+        infoPaciente.add(String.valueOf(paciente.getNascimento()));
+        infoPaciente.add(String.valueOf(paciente.getSexo()));
+        infoPaciente.add(paciente.getTelefone());
+        infoPaciente.add(String.valueOf(paciente.getHistorico1()));
+        infoPaciente.add(String.valueOf(paciente.getHistorico2()));
+        infoPaciente.add(paciente.getFotoPerfil());
         return infoPaciente;
     }
 
@@ -345,6 +348,14 @@ public class MedicoService {
         if (informacoesPaciente.sexo() != null) {
             paciente.setSexo(informacoesPaciente.sexo());
         }
+        if (informacoesPaciente.telefone() != null && !informacoesPaciente.telefone().isBlank()) {
+            if (pacienteRepository.existsByTelefone(informacoesPaciente.telefone())
+                    && !informacoesPaciente.telefone().equals(paciente.getTelefone())) {
+                throw new RuntimeException("Telefone já cadastrado");
+            }
+
+            paciente.setTelefone(informacoesPaciente.telefone());
+        }
         if (informacoesPaciente.historico1() != null) {
             paciente.setHistorico1(informacoesPaciente.historico1());
         }
@@ -368,5 +379,21 @@ public class MedicoService {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User não encontrado"));
+    }
+
+    public void editarSocioeconomico(Integer id, InformacoesSocioeconomicas dados) {
+        Socioeconomico socioeconomico = socioeconomicoRepository.findByPacienteId(id).orElseThrow(() -> new RuntimeException("Dados socioeconômicos não encontrados"));
+        socioeconomico.setNomeResponsavel(dados.getNomeResponsavel());
+        socioeconomico.setQuantidadeMoradores(dados.getQuantidadeMoradores());
+        socioeconomico.setRenda(dados.getRenda());
+        socioeconomico.setInternet(dados.getInternet());
+        socioeconomico.setBeneficio(dados.getBeneficio());
+        socioeconomico.setPlanoSaude(dados.getPlanoSaude());
+        socioeconomico.setMoradia(dados.getMoradia());
+        socioeconomicoRepository.save(socioeconomico);
+    }
+    public List<Paciente> buscarPacientePorCpf(String cpf) {
+
+        return pacienteRepository.findByCpf(cpf).map(List::of).orElse(List.of());
     }
 }

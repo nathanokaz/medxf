@@ -28,84 +28,216 @@
                     <p>Gerencie e atualize os dados dos pacientes.</p>
                 </div>
             </div>
-            <div class="patient-grid">
-                <form th:action="@{/medico/gerenciar/paciente/{id}(id=${paciente[1]})}" method="post">
-                    <div class="patient-card">
-                        <div class="patient-top">
-                            <div class="avatar">JS</div>
-                            <div class="patient-info">
-                                <h2 th:text="${paciente[0]}"></h2>
-                                <span>ID <span th:text="${paciente[1]}"></span></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label th:text="${paciente[0]}"></label>
-                            <input type="text" name="nome" th:placeholder="${paciente[0]}">
-                        </div>
-                        <div class="form-group">
-                            <label>CPF</label>
-                            <input type="text" name="cpf" th:placeholder="${paciente[2]}">
-                        </div>
-                        <div class="form-group">
-                            <label>Nascimento</label>
-                            <input type="date" name="nascimento" th:value="${paciente[3]}">
-                        </div>
-                        <div class="form-group">
-                            <label>Sexo</label>
-                            <select name="sexo">
-                                <option value="" disabled hidden th:selected="${paciente[4] == null}">
-                                    Selecione o sexo
-                                </option>
+            <form th:action="@{/medico/gerenciar/paciente/{id}(id=${paciente[1]})}" method="post">
+            <div class="patient-card">
+                <div class="patient-top">
+                    <div class="avatar">JS</div>
+                    <div class="patient-info">
+                        <h2 th:text="${paciente[0]}"></h2>
+                        <span>ID <span th:text="${paciente[1]}"></span></span>
+                    </div>
+                </div>
 
-                                <option value="MASCULINO" th:selected="${paciente[4] == 'MASCULINO'}">
-                                    Masculino
-                                </option>
+                <div class="tabs">
+                    <button type="button" class="tab-button active"
+                            onclick="mostrarAba('dados-paciente', this)">
+                        Dados do Paciente
+                    </button>
 
-                                <option value="FEMININO" th:selected="${paciente[4] == 'FEMININO'}">
-                                    Feminino
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Telefone</label>
-                            <input type="tel" name="telefone" th:placeholder="${paciente[5]}">
-                        </div>
-                        <div class="form-group">
-                            <label>Histórico familiar de deficiência intelectual?</label>
-                            <div class="perguntas">
-                                <label>
-                                    <input type="radio" name="historico1" value="SIM"
-                                           th:checked="${paciente[6] == 'SIM'}">
-                                    Sim
-                                </label>
-                                <label>
-                                    <input type="radio" name="historico1" value="NAO"
-                                           th:checked="${paciente[6] == 'NAO'}">
-                                    Não
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Histórico de X Frágil na família?</label>
-                            <div class="perguntas">
-                                <label>
-                                    <input type="radio" name="historico2" value="SIM"
-                                           th:checked="${paciente[7] == 'SIM'}">
-                                    Sim
-                                </label>
-                                <label>
-                                    <input type="radio" name="historico2" value="NAO"
-                                           th:checked="${paciente[7] == 'NAO'}">
-                                    Não
-                                </label>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <button type="submit" class="save-btn">Salvar Alterações</button>
+                    <button type="button" class="tab-button"
+                            onclick="mostrarAba('socioeconomico', this)">
+                        Socioeconômico
+                    </button>
+
+                    <button type="button" class="tab-button"
+                            onclick="mostrarAba('avaliacao', this)">
+                        Avaliação
+                    </button>
+                </div>
+
+                <div id="dados-paciente" class="tab-content active">
+
+                    <div class="form-group">
+                        <label th:text="${paciente[0]}"></label>
+                        <input type="text" name="nome" th:placeholder="${paciente[0]}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" name="cpf" th:placeholder="${paciente[2]}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nascimento</label>
+                        <input type="date" name="nascimento" th:value="${paciente[3]}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sexo</label>
+                        <select name="sexo">
+                            <option value="" disabled hidden th:selected="${paciente[4] == null}">
+                                Selecione o sexo
+                            </option>
+
+                            <option value="MASCULINO"
+                                    th:selected="${paciente[4] == 'MASCULINO'}">
+                                Masculino
+                            </option>
+
+                            <option value="FEMININO"
+                                    th:selected="${paciente[4] == 'FEMININO'}">
+                                Feminino
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="tel" name="telefone" th:placeholder="${paciente[5]}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Histórico familiar de deficiência intelectual?</label>
+
+                        <div class="perguntas">
+                            <label>
+                                <input type="radio" name="historico1" value="SIM"
+                                       th:checked="${paciente[6] == 'SIM'}">
+                                Sim
+                            </label>
+
+                            <label>
+                                <input type="radio" name="historico1" value="NAO"
+                                       th:checked="${paciente[6] == 'NAO'}">
+                                Não
+                            </label>
                         </div>
                     </div>
-                </form>
+
+                    <div class="form-group">
+                        <label>Histórico de X Frágil na família?</label>
+
+                        <div class="perguntas">
+                            <label>
+                                <input type="radio" name="historico2" value="SIM"
+                                       th:checked="${paciente[7] == 'SIM'}">
+                                Sim
+                            </label>
+
+                            <label>
+                                <input type="radio" name="historico2" value="NAO"
+                                       th:checked="${paciente[7] == 'NAO'}">
+                                Não
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="socioeconomico" class="tab-content">
+
+                    <div class="form-group">
+                        <label>Nome do Responsável</label>
+                        <input type="text" name="nomeResponsavel" th:value="${socioeconomico != null ? socioeconomico.nomeResponsavel : ''}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quantidade de Moradores</label>
+                        <input type="number" name="quantidadeMoradores" th:value="${socioeconomico != null ? socioeconomico.quantidadeMoradores : ''}">
+                    </div>
+
+                    <h3>Renda familiar mensal</h3>
+                    <div class="opcoes">
+                        <label>
+                            <input type="radio" name="renda" value="ATE_1_SALARIO" th:checked="${socioeconomico != null and socioeconomico.renda == 'ATE_1_SALARIO'}">Até 1 salário
+                        </label>
+
+                        <label>
+                            <input type="radio" name="renda" value="ATE_3_SALARIOS" th:checked="${socioeconomico != null and socioeconomico.renda == 'ATE_3_SALARIOS'}">Até 3 salários
+                        </label>
+
+                        <label>
+                            <input type="radio" name="renda" value="ATE_5_SALARIOS" th:checked="${socioeconomico != null and socioeconomico.renda == 'ATE_5_SALARIOS'}">Até 5 salários
+                        </label>
+
+                        <label>
+                            <input type="radio" name="renda" value="ACIMA_5_SALARIOS" th:checked="${socioeconomico != null and socioeconomico.renda == 'ACIMA_5_SALARIOS'}">Acima de 5 salários
+                        </label>
+                    </div>
+
+                    <h3>Internet</h3>
+                    <div class="opcoes">
+                        <label>
+                            <input type="radio" name="internet" value="SIM" th:checked="${socioeconomico != null and socioeconomico.internet == 'SIM'}">Sim
+                        </label>
+
+                        <label>
+                            <input type="radio" name="internet" value="NAO" th:checked="${socioeconomico != null and socioeconomico.internet == 'NAO'}">Não
+                        </label>
+                    </div>
+
+                    <h3>Benefício social</h3>
+                    <div class="opcoes">
+                        <label>
+                            <input type="radio" name="beneficio" value="SIM" th:checked="${socioeconomico != null and socioeconomico.beneficio == 'SIM'}">Sim
+                        </label>
+
+                        <label>
+                            <input type="radio" name="beneficio" value="NAO" th:checked="${socioeconomico != null and socioeconomico.beneficio == 'NAO'}">Não
+                        </label>
+                    </div>
+
+                    <h3>Plano de saúde</h3>
+                    <div class="opcoes">
+                        <label>
+                            <input type="radio" name="planoSaude" value="SIM" th:checked="${socioeconomico != null and socioeconomico.planoSaude == 'SIM'}">Sim
+                        </label>
+
+                        <label>
+                            <input type="radio" name="planoSaude" value="NAO" th:checked="${socioeconomico != null and socioeconomico.planoSaude == 'NAO'}">Não
+                        </label>
+                    </div>
+                    <h3>Moradia</h3>
+                    <div class="opcoes">
+                        <label>
+                            <input type="radio" name="moradia" value="PROPRIA" th:checked="${socioeconomico != null and socioeconomico.moradia == 'PROPRIA'}">Própria
+                        </label>
+
+                        <label>
+                            <input type="radio" name="moradia" value="ALUGADA" th:checked="${socioeconomico != null and socioeconomico.moradia == 'ALUGADA'}">Alugada
+                        </label>
+
+                        <label>
+                            <input type="radio" name="moradia" value="CEDIDA" th:checked="${socioeconomico != null and socioeconomico.moradia == 'CEDIDA'}">Cedida
+                        </label>
+                    </div>
+                </div>
+
+                <div id="avaliacao" class="tab-content">
+
+                    <div th:if="${respostas != null and !respostas.isEmpty()}">
+                        <div class="form-group" th:each="resposta : ${respostas}">
+                            <label th:text="${resposta.pergunta.descricao}"></label>
+                            <input type="text" th:value="${resposta.resposta ? 'Sim' : 'Não'}" readonly>
+                            <textarea th:if="${resposta.observacao != null and !#strings.isEmpty(resposta.observacao)}" th:text="${resposta.observacao}" readonly>
+                </textarea>
+
+                        </div>
+                    </div>
+
+                    <div th:if="${respostas == null or respostas.isEmpty()}">
+                        <p>Nenhuma avaliação encontrada para este paciente.</p>
+                    </div>
+
+                </div>
+
+                <div class="actions">
+                    <button type="submit" class="save-btn">
+                        Salvar Alterações
+                    </button>
+                </div>
             </div>
+            </form>
         </main>
     </div>
 
@@ -120,6 +252,16 @@
                 confirmButtonColor: '#2563EB'
             });
         });
+    </script>
+    <script>
+        function mostrarAba(id, botao) {
+            document.querySelectorAll('.tab-content')
+                .forEach(aba => aba.classList.remove('active'));
+            document.querySelectorAll('.tab-button')
+                .forEach(btn => btn.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            botao.classList.add('active');
+        }
     </script>
 </body>
 </html>

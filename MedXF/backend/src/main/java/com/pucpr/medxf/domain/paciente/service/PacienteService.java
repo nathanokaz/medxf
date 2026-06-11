@@ -1,7 +1,9 @@
 package com.pucpr.medxf.domain.paciente.service;
 
+import com.pucpr.medxf.domain.paciente.Paciente;
 import com.pucpr.medxf.domain.paciente.dto.EdicaoPaciente;
 import com.pucpr.medxf.domain.paciente.repository.PacienteRepository;
+import java.util.Optional;
 import com.pucpr.medxf.domain.triagem.Triagem;
 import com.pucpr.medxf.domain.user.User;
 import com.pucpr.medxf.domain.user.repository.UserRepository;
@@ -112,4 +114,6 @@ public class PacienteService {
         return ultimaTriagem.getCriado_em()
                 .format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
+
+
 }

@@ -173,6 +173,23 @@ public class AdminService {
         return infosMedico;
     }
 
+    public List<String> informacoesPaciente(Integer id) {
+        var paciente = pacienteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Médico não encontrado"));
+        List<String> infosPaciente = new ArrayList<>();
+        infosPaciente.add(paciente.getNome());
+        infosPaciente.add(paciente.getUser().getEmail());
+        infosPaciente.add(paciente.getCpf());
+        infosPaciente.add(String.valueOf(paciente.getNascimento()));
+        infosPaciente.add(String.valueOf(paciente.getSexo()));
+        infosPaciente.add(paciente.getTelefone());
+        infosPaciente.add(String.valueOf(paciente.getHistorico1()));
+        infosPaciente.add(String.valueOf(paciente.getHistorico2()));
+        infosPaciente.add(String.valueOf(id));
+        return infosPaciente;
+    }
+
+
     @Transactional
     public void editarMedico(Integer id, CadastroMedico cadastroMedico) {
         var medico = medicoRepository.findById(id)

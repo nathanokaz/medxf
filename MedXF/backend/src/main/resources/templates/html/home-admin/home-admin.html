@@ -22,6 +22,11 @@
                 <a th:href="@{/admin/cadastrar/medico}" class="popup-item">Adicionar Medico</a>
                 <a th:href="@{/admin/gerenciar/medicos}" class="popup-item">Gerenciar Médicos</a>
                 <a th:href="@{/admin/gerenciar/pacientes}" class="popup-item">Gerenciar Pacientes</a>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="popup-item">
+                        <span>Sair</span>
+                    </button>
+                </form>
             </nav>
         </div>
     </div>

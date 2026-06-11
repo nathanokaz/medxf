@@ -1,6 +1,7 @@
 package com.pucpr.medxf.controller;
 
 import com.pucpr.medxf.domain.medico.dto.*;
+import com.pucpr.medxf.domain.socioeconomico.dto.InformacoesSocioeconomicas;
 import com.pucpr.medxf.domain.medico.service.MedicoService;
 import com.pucpr.medxf.domain.paciente.Paciente;
 import jakarta.validation.Valid;
@@ -68,6 +69,7 @@ public class MedicoController {
     @GetMapping("/gerenciar/paciente/{id}")
     public String paginaGerenciarPacienteMedico(@PathVariable Integer id, Model model) {
         model.addAttribute("paciente", medicoService.informacoesPaciente(id));
+        model.addAttribute("socioeconomico", medicoService.buscarSocioeconomico(id));
         var triagens = medicoService.buscarTriagensPorPaciente(id);
         var respostas = (triagens == null || triagens.isEmpty())
                 ? java.util.Collections.emptyList()
@@ -77,15 +79,20 @@ public class MedicoController {
     }
 
     @PostMapping("/gerenciar/paciente/{id}")
-    public String editarPaciente(@PathVariable Integer id, InformacoesPaciente informacoesPaciente, RedirectAttributes redirectAttributes) {
+    public String editarPaciente(@PathVariable Integer id, @ModelAttribute InformacoesPaciente informacoesPaciente, @ModelAttribute InformacoesSocioeconomicas informacoesSocioeconomicas, RedirectAttributes redirectAttributes) {
         medicoService.editarInformacoesPaciente(id, informacoesPaciente);
+        medicoService.editarSocioeconomico(id, informacoesSocioeconomicas);
         redirectAttributes.addFlashAttribute("perfilAtualizado", true);
         return "redirect:/medico/gerenciar/paciente/" + id;
     }
 
     @GetMapping("/pacientes")
-    public String paginaPacientesCadastradosMedico(Model model) {
-        model.addAttribute("pacientes", medicoService.listarPacientes());
+    public String paginaPacientesCadastradosMedico(@RequestParam(required = false) String cpf, Model model) {
+        if (cpf != null && !cpf.isBlank()) {
+            model.addAttribute("pacientes", medicoService.buscarPacientePorCpf(cpf));
+        } else {
+            model.addAttribute("pacientes", medicoService.listarPacientes());
+        }
         model.addAttribute("fotoMedico", medicoService.pegarFotoMedico());
         return "html/pacientes-cadastrados/pacientes-cadastrados";
     }

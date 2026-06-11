@@ -26,6 +26,7 @@ public class SecurityConfiguration {
                                 response.sendRedirect(pegarRole(authentication))))
                 .logout(logout -> logout.logoutUrl("/logout")
                         .logoutSuccessUrl("/inicio?logout").permitAll())
+
                 .rememberMe(remember -> remember.key("867692"))
                 .build();
     }

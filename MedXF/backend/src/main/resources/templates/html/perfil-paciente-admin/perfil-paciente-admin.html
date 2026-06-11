@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/assets/css/global/global.css}">
+  <link rel="stylesheet" th:href="@{/assets/css/perfil-paciente-admin/perfil-paciente-admin.css}">
+  <link rel="icon" th:href="@{/assets/icones/Icone-Usuario.png}" type="image/png">
+  <title>Gerenciar Paciente - MedFX</title>
+</head>
+<body>
+<header>
+  <a th:href="@{/admin/home}" id="botao-mais">
+    <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
+    <span>Menu Principal</span>
+  </a>
+  <h1 id="nome"></h1>
+  <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
+</header>
+<div class="layout">
+  <main class="content">
+    <div class="page-header">
+      <div>
+        <h1>Pacientes</h1>
+        <p>Gerencie e atualize os dados dos pacientes.</p>
+      </div>
+    </div>
+    <div class="patient-grid">
+      <form th:action="@{/admin/editar/paciente/{id}(id=${paciente[8]})}" method="post">
+        <div class="patient-card">
+          <div class="patient-top">
+            <div class="avatar">JS</div>
+            <div class="patient-info">
+              <h2 th:text="${paciente[0]}"></h2>
+              <span>ID <span th:text="${paciente[1]}"></span></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label th:text="${paciente[0]}"></label>
+            <input type="text" name="nome" th:placeholder="${paciente[0]}">
+          </div>
+          <div class="form-group">
+            <label>CPF</label>
+            <input type="text" name="cpf" th:placeholder="${paciente[2]}">
+          </div>
+          <div class="form-group">
+            <label>Nascimento</label>
+            <input type="date" name="nascimento" th:value="${paciente[3]}">
+          </div>
+          <div class="form-group">
+            <label>Sexo</label>
+            <select name="sexo">
+              <option value="" disabled hidden th:selected="${paciente[4] == null}">
+                Selecione o sexo
+              </option>
+
+              <option value="MASCULINO" th:selected="${paciente[4] == 'MASCULINO'}">
+                Masculino
+              </option>
+
+              <option value="FEMININO" th:selected="${paciente[4] == 'FEMININO'}">
+                Feminino
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Telefone</label>
+            <input type="tel" name="telefone" th:placeholder="${paciente[5]}">
+          </div>
+          <div class="form-group">
+            <label>Histórico familiar de deficiência intelectual?</label>
+            <div class="perguntas">
+              <label>
+                <input type="radio" name="historico1" value="SIM"
+                       th:checked="${paciente[6] == 'SIM'}">
+                Sim
+              </label>
+              <label>
+                <input type="radio" name="historico1" value="NAO"
+                       th:checked="${paciente[6] == 'NAO'}">
+                Não
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Histórico de X Frágil na família?</label>
+            <div class="perguntas">
+              <label>
+                <input type="radio" name="historico2" value="SIM"
+                       th:checked="${paciente[7] == 'SIM'}">
+                Sim
+              </label>
+              <label>
+                <input type="radio" name="historico2" value="NAO"
+                       th:checked="${paciente[7] == 'NAO'}">
+                Não
+              </label>
+            </div>
+          </div>
+          <div class="actions">
+            <button type="submit" class="save-btn">Salvar Alterações</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script th:if="${perfilAtualizado}">
+  document.addEventListener("DOMContentLoaded", function () {
+    Swal.fire({
+      icon: 'success',
+      title: 'Paciente atualizado!',
+      text: 'Dados atualizados com sucesso.',
+      confirmButtonColor: '#2563EB'
+    });
+  });
+</script>
+</body>
+</html>

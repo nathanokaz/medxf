@@ -23,6 +23,11 @@
                 <a th:href="@{/paciente/perfil}" class="popup-item">
                     <span>Meus Dados</span>
                 </a>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="popup-item">
+                        <span>Sair</span>
+                    </button>
+                </form>
             </nav>
         </div>
     </div>

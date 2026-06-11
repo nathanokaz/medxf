@@ -25,6 +25,11 @@
                 <a th:href="@{/medico/pacientes}" class="popup-item">
                     <span>Todos Pacientes Cadastrados</span>
                 </a>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="popup-item">
+                        <span>Sair</span>
+                    </button>
+                </form>
             </nav>
         </div>
     </div>
