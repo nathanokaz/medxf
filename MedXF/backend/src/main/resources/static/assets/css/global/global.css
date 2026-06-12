@@ -9,3 +9,10 @@
     font-family: "SFPro";
     font-weight: 600;
 }
+
+img[src$="Icone-Voltar.png"] {
+    width: 14px !important;
+    height: 18px !important;
+    object-fit: contain;
+    flex-shrink: 0;
+}
