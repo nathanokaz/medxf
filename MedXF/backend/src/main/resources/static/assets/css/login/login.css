@@ -73,37 +73,13 @@ body {
     );
 }
 
-.painel-direito::before {
-    content: "";
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    background: rgba(42,57,126,0.08);
-    top: 8%;
-    right: 10%;
-}
-
-.painel-direito::after {
-    content: "";
-    position: absolute;
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    background: rgba(42,57,126,0.05);
-    bottom: 8%;
-    left: 10%;
-}
-
 .container {
     width: 500px;
     padding: 50px;
     background: rgba(255,255,255,0.95);
     border-radius: 32px;
     border: 1px solid rgba(255,255,255,0.7);
-    box-shadow:
-            0 25px 60px rgba(0,0,0,0.08),
-            0 10px 25px rgba(42,57,126,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(12px);
     display: flex;
     flex-direction: column;

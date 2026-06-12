@@ -94,10 +94,10 @@ header {
 
 .principal {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 }
 
 h1 {
@@ -355,7 +355,6 @@ table {
     }
 }
 
-/* Fix botão Sair */
 .popup-links form {
     display: contents;
 }

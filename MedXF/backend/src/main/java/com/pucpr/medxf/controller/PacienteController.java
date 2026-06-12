@@ -51,8 +51,6 @@ public class PacienteController {
         return "html/perfil-paciente/perfil-paciente";
     }
 
-
-
     @PostMapping("/perfil")
     public String editarPerfilPaciente(EdicaoPaciente edicaoPaciente, @RequestParam("foto") MultipartFile foto, RedirectAttributes redirectAttributes
     ) throws IOException {
