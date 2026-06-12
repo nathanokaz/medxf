@@ -18,7 +18,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/inicio/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(login -> login
-                        .loginPage("/inicio/login")
+                        .loginPage("/inicio")
                         .loginProcessingUrl("/login")
                         .usernameParameter("email")
                         .passwordParameter("password")

@@ -37,15 +37,15 @@
         <p id="nome-admin" th:text="${infosAdmin[0]}"></p>
         <a th:href="@{/admin/perfil}">
             <img
-                class="avatar-medico"
-                th:if="${foto != null}"
-                th:src="@{'/uploads/' + ${foto}}"
-                alt="Foto do admin">
+                    class="avatar-medico"
+                    th:if="${foto != null}"
+                    th:src="@{'/uploads/' + ${foto}}"
+                    alt="Foto do admin">
             <img
-                class="avatar-medico"
-                th:unless="${foto != null}"
-                th:src="@{/assets/icones/Perfil.png}"
-                alt="Foto padrão">
+                    class="avatar-medico"
+                    th:unless="${foto != null}"
+                    th:src="@{/assets/icones/Perfil.png}"
+                    alt="Foto padrão">
         </a>
     </div>
 </header>
@@ -95,17 +95,17 @@
                     <td class="conteudo-lista">
                         <div class="medico">
                             <img
-                                class="avatar-medico"
-                                width="40"
-                                height="40"
-                                th:if="${medico.fotoPerfil != null}"
-                                th:src="@{'/uploads/' + ${medico.fotoPerfil}}">
+                                    class="avatar-medico"
+                                    width="40"
+                                    height="40"
+                                    th:if="${medico.fotoPerfil != null}"
+                                    th:src="@{'/uploads/' + ${medico.fotoPerfil}}">
                             <img
-                                class="avatar-medico"
-                                width="40"
-                                height="40"
-                                th:unless="${medico.fotoPerfil != null}"
-                                th:src="@{/assets/icones/Perfil.png}">
+                                    class="avatar-medico"
+                                    width="40"
+                                    height="40"
+                                    th:unless="${medico.fotoPerfil != null}"
+                                    th:src="@{/assets/icones/Perfil.png}">
                             <div>
                                 <div class="nome" th:text="${medico.nome}"></div>
                                 <div class="email" th:text="${medico.email}"></div>

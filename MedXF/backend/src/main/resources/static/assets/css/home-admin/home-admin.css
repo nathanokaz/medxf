@@ -13,7 +13,7 @@ body {
 
 header {
     height: 70px;
-    background-color: #1565D8;
+    background-color: #2a397e;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -40,7 +40,7 @@ header {
     top: 55px;
     left: 0;
     width: 240px;
-    background-color: #1565D8;
+    background-color: #2a397e;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     display: none;
@@ -58,7 +58,7 @@ header {
     flex-direction: column;
 }
 
-.popup-item {
+.popup-item, button.popup-item {
     padding: 14px 18px;
     color: white;
     text-decoration: none;
@@ -67,7 +67,7 @@ header {
     outline: none;
 }
 
-.popup-item:hover {
+.popup-item:hover, button.popup-item:hover {
     background-color: #0f4fb5;
 }
 
@@ -132,7 +132,7 @@ h3 {
     border: none;
     border-radius: 18px;
     background-color: white;
-    border-top: 6px solid #1565D8;
+    border-top: 6px solid #2a397e;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     padding: 25px;
     display: flex;
@@ -154,7 +154,7 @@ h3 {
 
 .numero {
     margin-top: 8px;
-    color: #1565D8;
+    color: #2a397e;
     font-size: 34px;
     font-weight: 700;
 }
@@ -176,7 +176,7 @@ h3 {
 }
 
 .ver-mais {
-    color: #1565D8;
+    color: #2a397e;
     text-decoration: none;
     font-weight: 600;
     transition: 0.3s;
@@ -197,7 +197,7 @@ table {
 }
 
 .titulo-lista {
-    background-color: #1565D8;
+    background-color: #2a397e;
     color: white;
     text-align: left;
     padding: 14px;
@@ -253,7 +253,7 @@ table {
     width: 110px;
     height: 38px;
     border-radius: 12px;
-    background-color: #1565D8;
+    background-color: #2a397e;
     color: white;
     text-decoration: none;
     font-size: 14px;
@@ -359,4 +359,20 @@ table {
     h2 {
         font-size: 14px;
     }
+}
+
+/* Fix botão Sair */
+.popup-links form {
+    display: contents;
+}
+
+button.popup-item {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: inherit;
+    width: 100%;
+    text-align: left;
 }

@@ -1,103 +1,218 @@
 body {
+    height: 100vh;
+    margin: 0;
+    background-color: #F4F7FB;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+.painel-esquerdo {
+    width: 35%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 48px;
+    color: white;
+}
+
+.painel-esquerdo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.painel-esquerdo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            180deg,
+            rgba(42,57,126,0.55),
+            rgba(42,57,126,0.95)
+    );
+    z-index: 1;
+}
+
+.painel-esquerdo h2,
+.painel-esquerdo p {
+    position: relative;
+    z-index: 2;
+}
+
+.painel-esquerdo h2 {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.painel-esquerdo p {
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 420px;
+}
+
+.painel-direito {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+            135deg,
+            #F4F7FB,
+            #E9EEF8
+    );
+}
+
+.painel-direito::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: rgba(42,57,126,0.08);
+    top: 8%;
+    right: 10%;
+}
+
+.painel-direito::after {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: rgba(42,57,126,0.05);
+    bottom: 8%;
+    left: 10%;
+}
+
+.container {
+    width: 500px;
+    padding: 50px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 32px;
+    border: 1px solid rgba(255,255,255,0.7);
+    box-shadow:
+            0 25px 60px rgba(0,0,0,0.08),
+            0 10px 25px rgba(42,57,126,0.08);
+    backdrop-filter: blur(12px);
+    display: flex;
     flex-direction: column;
-    height: 100vh;
-    background-color: #F4F7FB;
+    align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .titulo {
-    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.titulo img {
+    width: 260px;
+    height: auto;
+}
+
+#texto-login {
+    margin-top: 14px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #2a397e;
 }
 
 .formulario {
     display: flex;
     flex-direction: column;
-}
-
-#checkbox {
-    width: 10px;
-    height: 10px;
-    background-color: #DDDDDD;
-    border-radius: 3px;
-    border: 1px solid #E0E3E7;
-}
-
-#texto-checkbox {
-    color: #181818;
-    font-size: 13px;
-}
-
-#div-email {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
+    width: 100%;
 }
 
 .div-formulario {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
-}
-
-button {
-    width: 300px;
-    height: 45px;
-    border-radius: 18px;
-    border: none;
-    background-color: #1565D8;
-    transition: 1s;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    color: white;
-    font-size: 20px;
-}
-
-button:hover {
-    transition: 1s;
-    transform: scale(1.03);
-    background-color: white;
-    color: #1565D8;
-}
-
-input {
-    width: 300px;
-    height: 40px;
-    border-radius: 18px;
-    border: none;
-    background-color: #EAEAEA;
-    font-size: 16px;
-    border: 2px solid #E0E3E7;
-    padding-left: 15px;
-    color: #5D5D5D;
-}
-
-input:focus {
-    border: #1565D8;
-}
-
-.botao {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 18px;
 }
 
 .label-input {
     margin-bottom: 10px;
-    margin-left: 10px;
+    margin-left: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #475569;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    height: 56px;
+    border-radius: 18px;
+    border: 2px solid #E2E8F0;
+    background: #F8FAFC;
+    font-size: 16px;
+    padding: 0 18px;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #2a397e;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(42,57,126,0.08);
 }
 
 .remember {
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0 20px 5px;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 40px;
+#checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+#texto-checkbox {
+    font-size: 14px;
+    color: #475569;
+    cursor: pointer;
+}
+
+.botao {
+    width: 100%;
+}
+
+button {
+    width: 100%;
+    height: 56px;
+    border: none;
     border-radius: 18px;
-    background-color: white;
+    background: #2a397e;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1f2f70;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
 }

@@ -9,17 +9,56 @@
     <title>Início - MedXF</title>
 </head>
 <body>
-    <div class="imagem">
-        <img th:src="@{/assets/icones/Logo.png}" alt="logo" width="250" height="80">
+
+<div class="layout">
+
+    <div class="painel-esquerdo">
+
+        <img th:src="@{/assets/icones/Foto-XFragil.png}"
+             alt="Síndrome do X Frágil">
+
+        <h2>Bem-vindo ao MedXF</h2>
+
+        <p>
+            Sistema de triagem clínica para Síndrome do X Frágil,
+            desenvolvido pela PUCPR para auxiliar profissionais de
+            saúde no acompanhamento e avaliação de pacientes.
+        </p>
+
     </div>
-    <div class="titulo">
-        <h1 id="texto">Triagem clínica para Síndorme do X Frágil</h1>
+
+    <div class="painel-direito">
+
+        <div class="container">
+
+            <div class="imagem">
+                <img th:src="@{/assets/icones/Logo.png}" alt="Logo MedXF">
+            </div>
+
+            <div class="titulo">
+                <h1 id="texto">
+                    Triagem Clínica para
+                    Síndrome do X Frágil
+                </h1>
+
+                <p id="subtitulo">
+                    Plataforma para apoio ao processo de triagem,
+                    avaliação e acompanhamento clínico.
+                </p>
+            </div>
+
+            <div class="botoes">
+
+                <a th:href="@{/inicio/login}" class="botao-home">
+                    Acessar Sistema
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
-    <div class="botoes">
-        <h2 id="texto-botoes">Inicie sua sessão:</h2>
-        <button class="botao-home">
-            <a th:href="@{/inicio/login}">Contiuar</a>
-        </button>
-    </div>
+
+</div>
 </body>
 </html>

@@ -9,32 +9,36 @@
     <title>Login - Médico</title>
 </head>
 <body>
-<div class="container">
-    <div class="titulo">
-        <img th:src="@{/assets/icones/Logo.png}" alt="logo" width="300" height="100">
-        <h1 id="texto-login" >Login - MedXF</h1>
+<div class="layout">
+    <div class="painel-esquerdo">
+        <img th:src="@{/assets/icones/Foto-XFragil.png}" alt="Síndrome do X Frágil">
+        <h2>Bem-vindo ao MedXF</h2>
+        <p>
+            Sistema de triagem clínica para Síndrome do X Frágil,
+            desenvolvido pela PUCPR.
+        </p>
     </div>
-    <form class="formulario" method="post" th:action="@{/login}">
-        <div id="div-email">
-            <label class="label-input" for="email">Email</label>
-            <input id="email" type="email" placeholder="Digite seu email" name="email">
-        </div>
-        <div class="div-formulario">
-            <label class="label-input" for="senha">Senha</label>
-            <input id="senha" type="password" placeholder="Digite sua senha" name="password">
-        </div>
-        <div class="div-formulario">
-            <div class="remember">
-                <label id="texto-checkbox">
-                    <input id="checkbox" type="checkbox">
-                    Lembrar de mim
-                </label>
+    <div class="painel-direito">
+        <div class="container">
+            <div class="titulo">
+                <img th:src="@{/assets/icones/Logo.png}" alt="logo" width="220" height="75">
+                <h1 id="texto-login">Login - MedXF</h1>
             </div>
+            <form class="formulario" method="post" th:action="@{/login}">
+                <div id="div-email">
+                    <label class="label-input" for="email">Email</label>
+                    <input id="email" type="email" placeholder="Digite seu email" name="email">
+                </div>
+                <div class="div-formulario">
+                    <label class="label-input" for="senha">Senha</label>
+                    <input id="senha" type="password" placeholder="Digite sua senha" name="password">
+                </div>
+                <div class="botao">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
         </div>
-        <div class="botao">
-            <button type="submit">Login</button>
-        </div>
-    </form>
+    </div>
 </div>
 </body>
 </html>

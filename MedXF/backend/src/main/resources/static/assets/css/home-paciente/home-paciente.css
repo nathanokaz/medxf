@@ -3,11 +3,17 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #F4F7FB;
+
+}
+
+html,
+body {
+    overflow-x: hidden;
 }
 
 header {
     height: 72px;
-    background-color: #1565D8;
+    background-color: #2a397e;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -35,7 +41,7 @@ header {
     top: 65px;
     left: 0;
     width: 230px;
-    background: #1565D8;
+    background: #2a397e;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     display: none;
@@ -53,7 +59,7 @@ header {
     flex-direction: column;
 }
 
-.popup-item {
+.popup-item, button.popup-item {
     color: white;
     text-decoration: none;
     padding: 12px 18px;
@@ -61,7 +67,7 @@ header {
     transition: background 0.2s;
 }
 
-.popup-item:hover {
+.popup-item:hover, button.popup-item:hover {
     background: rgba(255, 255, 255, 0.12);
 }
 
@@ -101,7 +107,7 @@ header {
 
 .principal {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -132,7 +138,7 @@ header {
     background: white;
     border-radius: 18px;
     padding: 28px;
-    border-top: 6px solid #1565D8;
+    border-top: 6px solid #2a397e;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
@@ -143,7 +149,7 @@ header {
 }
 
 .numero {
-    color: #1565D8;
+    color: #2a397e;
     font-size: 18px;
     font-weight: 700;
 }
@@ -176,7 +182,7 @@ header {
     padding: 24px;
     text-decoration: none;
     color: inherit;
-    border-left: 4px solid #1565D8;
+    border-left: 4px solid #2a397e;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -238,6 +244,17 @@ header {
     color: #64748B;
     font-size: 14px;
     line-height: 1.6;
+}
+
+.banner-home {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 24px;
+    margin-bottom: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 768px) {
@@ -307,4 +324,19 @@ header {
     .info-card {
         padding: 18px;
     }
+}
+
+.popup-links form {
+    display: contents;
+}
+
+button.popup-item {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: inherit;
+    width: 100%;
+    text-align: left;
 }

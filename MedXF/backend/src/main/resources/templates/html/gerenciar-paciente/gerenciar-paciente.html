@@ -12,23 +12,23 @@
     <title>Gerenciar Paciente - MedFX</title>
 </head>
 <body>
-    <header>
-        <a th:href="@{/medico/home}" id="botao-mais">
-            <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
-            <span>Menu Principal</span>
-        </a>
-        <h1 id="nome"></h1>
-        <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
-    </header>
-    <div class="layout">
-        <main class="content">
-            <div class="page-header">
-                <div>
-                    <h1>Pacientes</h1>
-                    <p>Gerencie e atualize os dados dos pacientes.</p>
-                </div>
+<header>
+    <a th:href="@{/medico/home}" id="botao-mais">
+        <img id="img-mais" th:src="@{/assets/icones/Icone-Voltar.png}" alt="icone de voltar" width="20" height="20">
+        <span>Menu Principal</span>
+    </a>
+    <h1 id="nome"></h1>
+    <img th:src="@{/assets/icones/Logo2.png}" alt="logo" width="100" height="40">
+</header>
+<div class="layout">
+    <main class="content">
+        <div class="page-header">
+            <div>
+                <h1>Pacientes</h1>
+                <p>Gerencie e atualize os dados dos pacientes.</p>
             </div>
-            <form th:action="@{/medico/gerenciar/paciente/{id}(id=${paciente[1]})}" method="post">
+        </div>
+        <form th:action="@{/medico/gerenciar/paciente/{id}(id=${paciente[1]})}" method="post">
             <div class="patient-card">
                 <div class="patient-top">
                     <div class="avatar">JS</div>
@@ -237,31 +237,31 @@
                     </button>
                 </div>
             </div>
-            </form>
-        </main>
-    </div>
+        </form>
+    </main>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script th:if="${perfilAtualizado}">
-        document.addEventListener("DOMContentLoaded", function () {
-            Swal.fire({
-                icon: 'success',
-                title: 'Paciente atualizado!',
-                text: 'Dados atualizados com sucesso.',
-                confirmButtonColor: '#2563EB'
-            });
+<script th:if="${perfilAtualizado}">
+    document.addEventListener("DOMContentLoaded", function () {
+        Swal.fire({
+            icon: 'success',
+            title: 'Paciente atualizado!',
+            text: 'Dados atualizados com sucesso.',
+            confirmButtonColor: '#2563EB'
         });
-    </script>
-    <script>
-        function mostrarAba(id, botao) {
-            document.querySelectorAll('.tab-content')
-                .forEach(aba => aba.classList.remove('active'));
-            document.querySelectorAll('.tab-button')
-                .forEach(btn => btn.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            botao.classList.add('active');
-        }
-    </script>
+    });
+</script>
+<script>
+    function mostrarAba(id, botao) {
+        document.querySelectorAll('.tab-content')
+            .forEach(aba => aba.classList.remove('active'));
+        document.querySelectorAll('.tab-button')
+            .forEach(btn => btn.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        botao.classList.add('active');
+    }
+</script>
 </body>
 </html>

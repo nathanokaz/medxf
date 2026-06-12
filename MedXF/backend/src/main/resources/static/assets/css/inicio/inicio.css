@@ -1,56 +1,200 @@
 body {
+    height: 100vh;
+    margin: 0;
+    background-color: #F4F7FB;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+body.fade-out {
+    opacity: 0;
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+.painel-esquerdo {
+    width: 35%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 48px;
+    color: white;
+}
+
+.painel-esquerdo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.painel-esquerdo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            180deg,
+            rgba(42, 57, 126, 0.55),
+            rgba(42, 57, 126, 0.95)
+    );
+    z-index: 1;
+}
+
+.painel-esquerdo h2,
+.painel-esquerdo p {
+    position: relative;
+    z-index: 2;
+}
+
+.painel-esquerdo h2 {
+    font-size: 34px;
+    margin: 0 0 12px 0;
+}
+
+.painel-esquerdo p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+    max-width: 420px;
+}
+
+.painel-direito {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+            135deg,
+            #F4F7FB,
+            #E9EEF8
+    );
+}
+
+.painel-direito::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: rgba(42, 57, 126, 0.08);
+    top: 8%;
+    right: 10%;
+}
+
+.painel-direito::after {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: rgba(42, 57, 126, 0.05);
+    bottom: 8%;
+    left: 10%;
+}
+
+.container {
+    width: 650px;
+    padding: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.08),
+            0 10px 25px rgba(42, 57, 126, 0.08);
+    backdrop-filter: blur(12px);
+    display: flex;
     flex-direction: column;
-    height: 100vh;
-    background-color: #F4F7FB;
+    align-items: center;
+    z-index: 2;
 }
 
 .imagem {
-    margin-right: 60px;
+    margin-bottom: 24px;
 }
 
-#texto {
-    color: #000000;
-}
-
-#texto-botoes {
-    font-size: 17px;
-    margin-right: 160px;
-    color: #64748B;
+.imagem img {
+    width: 280px;
+    height: auto;
 }
 
 .titulo {
-    margin-bottom: 35px;
+    text-align: center;
+    margin-bottom: 32px;
 }
 
-.botao-home {
-    width: 300px;
-    height: 45px;
+#texto {
+    color: #1E293B;
+    font-size: 34px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+}
+
+#subtitulo {
+    color: #64748B;
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.informacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.info-card {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
     border-radius: 18px;
-    border: none;
-    background-color: #1565D8;
-    transition: 1s;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 18px 22px;
 }
 
-.botao-home:hover {
-    transition: 1s;
-    transform: scale(1.03);
+.info-card h3 {
+    margin: 0 0 8px 0;
+    color: #2a397e;
+    font-size: 18px;
+}
+
+.info-card p {
+    margin: 0;
+    color: #64748B;
+    line-height: 1.6;
+    font-size: 14px;
 }
 
 .botoes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.botao-home {
+    width: 320px;
+    height: 58px;
+    border-radius: 18px;
+    background: #2a397e;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    gap: 17px
+    transition: 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 6px;
 }
 
-a {
-    font-size: 20px;
-    text-decoration: none;
-    color: white;
+.botao-home:hover {
+    background: #1f2f70;
+    transform: translateY(-2px);
 }

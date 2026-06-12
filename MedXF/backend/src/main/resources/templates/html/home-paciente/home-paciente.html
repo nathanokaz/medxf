@@ -50,12 +50,15 @@
 
 <div class="container">
     <div class="principal">
+        <img class="banner-home"
+             th:src="@{/assets/icones/Foto-XFragil2.png}"
+             alt="Banner">
         <h1>Bem vindo, <span th:text="${paciente[0]}"></span></h1>
         <h2>MedXF - Sistema de triagem para Síndrome do X Frágil</h2>
 
         <div class="caixas">
             <div class="caixa">
-                <p class="subtitulo">Nível de Avaliação</p>
+                <p class="subtitulo">Nível de Risco</p>
                 <p class="numero" th:text="${nivelAvaliacao}">Não avaliado</p>
             </div>
             <div class="caixa">
