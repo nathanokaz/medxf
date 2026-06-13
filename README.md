@@ -259,8 +259,3 @@ Desenvolvido por:
 
 Projeto de extensão acadêmica da PUCPR.
 
---- 
-
-# 📄 Licença
-
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais informações.
