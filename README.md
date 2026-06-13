@@ -119,7 +119,7 @@ Antes de iniciar, você precisa ter instalado:
 ## 📥 Clonar o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/medxf.git
+git clone https://github.com/nathanokaz/medxf.git
 cd medxf/MedXF/backend
 ```
 
@@ -238,13 +238,11 @@ http://localhost:8080/inicio
 
 # 📸 Principais Telas
 
-Adicione aqui screenshots do sistema:
-
 Página inicial do paciente
 ![HOME](./MedXF/backend/docs/home-paciente.png)
 
 Página inicial do médico
-![HOME](./MedXF/backend/docs/triagem.png)
+![HOME](./MedXF/backend/docs/home-medico.png)
 
 Página de triagem do médico
 ![HOME](./MedXF/backend/docs/triagem.png)
@@ -260,3 +258,9 @@ Desenvolvido por:
 * Ana Bruginski
 
 Projeto de extensão acadêmica da PUCPR.
+
+--- 
+
+# 📄 Licença
+
+Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais informações.
