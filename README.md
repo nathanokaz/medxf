@@ -240,15 +240,14 @@ http://localhost:8080/inicio
 
 Adicione aqui screenshots do sistema:
 
-* Tela Inicial
-* Login
-* Dashboard do Administrador
-* Dashboard do Médico
-* Dashboard do Paciente
-* Cadastro de Pacientes
-* Triagem Socioeconômica
-* Avaliação Médica
-* Relatórios
+Página inicial do paciente
+![HOME](./MedXF/backend/docs/home-paciente.png)
+
+Página inicial do médico
+![HOME](./MedXF/backend/docs/triagem.png)
+
+Página de triagem do médico
+![HOME](./MedXF/backend/docs/triagem.png)
 
 ---
 
