@@ -47,7 +47,7 @@ public class PacienteController {
         var infosPaciente = pacienteService.pegarInfosPaciente();
         var pacienteFoto = pacienteService.pegarFoto();
         model.addAttribute("paciente", infosPaciente);
-        model.addAttribute("pacienteFoto", pacienteFoto);
+        model.addAttribute("pacienteFoto", pacienteFoto );
         return "html/perfil-paciente/perfil-paciente";
     }
 

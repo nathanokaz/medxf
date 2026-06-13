@@ -12,11 +12,16 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
-        return httpSecurity.authorizeHttpRequests(http -> http
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity
+                .authorizeHttpRequests(http -> http
                         .requestMatchers("/css/**", "/assets/**").permitAll()
                         .requestMatchers("/inicio/**").permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/medico/**").hasRole("USER")
+                        .requestMatchers("/paciente/**").hasRole("PACIENTE")
+                        .anyRequest().authenticated()
+                )
                 .formLogin(login -> login
                         .loginPage("/inicio")
                         .loginProcessingUrl("/login")
@@ -24,10 +29,10 @@ public class SecurityConfiguration {
                         .passwordParameter("password")
                         .successHandler((request, response, authentication) ->
                                 response.sendRedirect(pegarRole(authentication))))
-                .logout(logout -> logout.logoutUrl("/logout")
-                        .logoutSuccessUrl("/inicio?logout").permitAll())
-
-                .rememberMe(remember -> remember.key("867692"))
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/inicio?logout")
+                        .permitAll())
                 .build();
     }
 
